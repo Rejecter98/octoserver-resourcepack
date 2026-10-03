@@ -1,0 +1,34 @@
+{
+ "model": {
+  "type": "minecraft:range_dispatch",
+  "property": "minecraft:custom_model_data",
+  "index": 0,
+  "fallback": {
+   "type": "minecraft:model",
+   "model": "minecraft:item/netherite_pickaxe"
+  },
+  "entries": [
+   {
+    "threshold": 100004,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/flame_pickaxe"
+    }
+   },
+   {
+    "threshold": 100005,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/frost_pickaxe"
+    }
+   },
+   {
+    "threshold": 100006,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/sakura_pickaxe"
+    }
+   }
+  ]
+ }
+}

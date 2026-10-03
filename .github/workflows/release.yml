@@ -1,0 +1,77 @@
+name: Release resource pack
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "pack/**"
+      - "skins.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build CosmeticPack.zip
+        run: |
+          rm -f CosmeticPack.zip
+          cd pack
+          zip -r -X ../CosmeticPack.zip . -x '*.DS_Store' -x '__MACOSX/*'
+          cd ..
+          unzip -l CosmeticPack.zip | grep -q ' pack.mcmeta$' || { echo "pack.mcmeta not at zip root"; exit 1; }
+
+      - name: Compute sha1
+        id: sha
+        run: echo "sha1=$(sha1sum CosmeticPack.zip | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: Next tag
+        id: tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          max=$(gh api "repos/${GITHUB_REPOSITORY}/releases" --paginate --jq '.[].tag_name' \
+                | grep -E '^v[0-9]+$' | sed 's/^v//' | sort -n | tail -1)
+          echo "tag=v$(( ${max:-0} + 1 ))" >> "$GITHUB_OUTPUT"
+
+      - name: Changed skins
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] \
+             && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            git diff --name-only "$BEFORE" HEAD -- pack/assets/cosmetics \
+              | sed -nE 's#.*/(textures|models)/item/([^/]+)\.(png|json)$#\2#p' > changed.txt
+            # skins.yml 에서 새로 생기거나 바뀐 스킨 id
+            git diff -U0 "$BEFORE" HEAD -- skins.yml \
+              | sed -nE 's/^[+-]  ([A-Za-z0-9_]+):\s*$/\1/p' >> changed.txt
+          else
+            sed -nE 's/^  ([A-Za-z0-9_]+):\s*$/\1/p' skins.yml > changed.txt
+          fi
+          sort -u changed.txt -o changed.txt
+          {
+            echo "sha1: ${{ steps.sha.outputs.sha1 }}"
+            echo
+            echo "변경된 스킨:"
+            if [ -s changed.txt ]; then sed 's/^/- /' changed.txt; else echo "- (스킨 변경 없음)"; fi
+          } > notes.md
+          cat notes.md
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.tag.outputs.tag }}" CosmeticPack.zip skins.yml \
+            --title "${{ steps.tag.outputs.tag }}" \
+            --notes-file notes.md \
+            --target "${GITHUB_SHA}"

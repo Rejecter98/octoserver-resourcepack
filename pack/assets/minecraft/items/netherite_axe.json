@@ -1,0 +1,34 @@
+{
+ "model": {
+  "type": "minecraft:range_dispatch",
+  "property": "minecraft:custom_model_data",
+  "index": 0,
+  "fallback": {
+   "type": "minecraft:model",
+   "model": "minecraft:item/netherite_axe"
+  },
+  "entries": [
+   {
+    "threshold": 100007,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/flame_axe"
+    }
+   },
+   {
+    "threshold": 100008,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/frost_axe"
+    }
+   },
+   {
+    "threshold": 100009,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/sakura_axe"
+    }
+   }
+  ]
+ }
+}

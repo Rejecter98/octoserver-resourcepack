@@ -1,0 +1,34 @@
+{
+ "model": {
+  "type": "minecraft:range_dispatch",
+  "property": "minecraft:custom_model_data",
+  "index": 0,
+  "fallback": {
+   "type": "minecraft:model",
+   "model": "minecraft:item/netherite_shovel"
+  },
+  "entries": [
+   {
+    "threshold": 100010,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/flame_shovel"
+    }
+   },
+   {
+    "threshold": 100011,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/frost_shovel"
+    }
+   },
+   {
+    "threshold": 100012,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/sakura_shovel"
+    }
+   }
+  ]
+ }
+}

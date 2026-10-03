@@ -1,0 +1,47 @@
+{
+ "providers": [
+  {
+   "type": "space",
+   "advances": {
+    "": -8,
+    "": -169
+   }
+  },
+  {
+   "type": "bitmap",
+   "file": "servermenu:gui/menu_3.png",
+   "ascent": 13,
+   "height": 74,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "servermenu:gui/menu_4.png",
+   "ascent": 13,
+   "height": 92,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "servermenu:gui/menu_5.png",
+   "ascent": 13,
+   "height": 110,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "servermenu:gui/menu_6.png",
+   "ascent": 13,
+   "height": 128,
+   "chars": [
+    ""
+   ]
+  }
+ ]
+}

@@ -1,0 +1,133 @@
+skins:
+  flame_blade:
+    display-name: "&c불꽃 검"
+    custom-model-data: 100001
+    category: sword
+    allowed-materials:
+      - WOODEN_SWORD
+      - STONE_SWORD
+      - IRON_SWORD
+      - GOLDEN_SWORD
+      - DIAMOND_SWORD
+      - NETHERITE_SWORD
+  frost_blade:
+    display-name: "&b서리 검"
+    custom-model-data: 100002
+    category: sword
+    allowed-materials:
+      - WOODEN_SWORD
+      - STONE_SWORD
+      - IRON_SWORD
+      - GOLDEN_SWORD
+      - DIAMOND_SWORD
+      - NETHERITE_SWORD
+  sakura_blade:
+    display-name: "&d벚꽃 검"
+    custom-model-data: 100003
+    category: sword
+    allowed-materials:
+      - WOODEN_SWORD
+      - STONE_SWORD
+      - IRON_SWORD
+      - GOLDEN_SWORD
+      - DIAMOND_SWORD
+      - NETHERITE_SWORD
+  flame_pickaxe:
+    display-name: "&c불꽃 곡괭이"
+    custom-model-data: 100004
+    category: pickaxe
+    allowed-materials:
+      - WOODEN_PICKAXE
+      - STONE_PICKAXE
+      - IRON_PICKAXE
+      - GOLDEN_PICKAXE
+      - DIAMOND_PICKAXE
+      - NETHERITE_PICKAXE
+  frost_pickaxe:
+    display-name: "&b서리 곡괭이"
+    custom-model-data: 100005
+    category: pickaxe
+    allowed-materials:
+      - WOODEN_PICKAXE
+      - STONE_PICKAXE
+      - IRON_PICKAXE
+      - GOLDEN_PICKAXE
+      - DIAMOND_PICKAXE
+      - NETHERITE_PICKAXE
+  sakura_pickaxe:
+    display-name: "&d벚꽃 곡괭이"
+    custom-model-data: 100006
+    category: pickaxe
+    allowed-materials:
+      - WOODEN_PICKAXE
+      - STONE_PICKAXE
+      - IRON_PICKAXE
+      - GOLDEN_PICKAXE
+      - DIAMOND_PICKAXE
+      - NETHERITE_PICKAXE
+  flame_axe:
+    display-name: "&c불꽃 도끼"
+    custom-model-data: 100007
+    category: axe
+    allowed-materials:
+      - WOODEN_AXE
+      - STONE_AXE
+      - IRON_AXE
+      - GOLDEN_AXE
+      - DIAMOND_AXE
+      - NETHERITE_AXE
+  frost_axe:
+    display-name: "&b서리 도끼"
+    custom-model-data: 100008
+    category: axe
+    allowed-materials:
+      - WOODEN_AXE
+      - STONE_AXE
+      - IRON_AXE
+      - GOLDEN_AXE
+      - DIAMOND_AXE
+      - NETHERITE_AXE
+  sakura_axe:
+    display-name: "&d벚꽃 도끼"
+    custom-model-data: 100009
+    category: axe
+    allowed-materials:
+      - WOODEN_AXE
+      - STONE_AXE
+      - IRON_AXE
+      - GOLDEN_AXE
+      - DIAMOND_AXE
+      - NETHERITE_AXE
+  flame_shovel:
+    display-name: "&c불꽃 삽"
+    custom-model-data: 100010
+    category: shovel
+    allowed-materials:
+      - WOODEN_SHOVEL
+      - STONE_SHOVEL
+      - IRON_SHOVEL
+      - GOLDEN_SHOVEL
+      - DIAMOND_SHOVEL
+      - NETHERITE_SHOVEL
+  frost_shovel:
+    display-name: "&b서리 삽"
+    custom-model-data: 100011
+    category: shovel
+    allowed-materials:
+      - WOODEN_SHOVEL
+      - STONE_SHOVEL
+      - IRON_SHOVEL
+      - GOLDEN_SHOVEL
+      - DIAMOND_SHOVEL
+      - NETHERITE_SHOVEL
+  sakura_shovel:
+    display-name: "&d벚꽃 삽"
+    custom-model-data: 100012
+    category: shovel
+    allowed-materials:
+      - WOODEN_SHOVEL
+      - STONE_SHOVEL
+      - IRON_SHOVEL
+      - GOLDEN_SHOVEL
+      - DIAMOND_SHOVEL
+      - NETHERITE_SHOVEL
