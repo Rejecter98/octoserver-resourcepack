@@ -169,6 +169,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cotton_candy_helmet"
     }
+   },
+   {
+    "threshold": 100044,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/cloud_helmet"
+    }
    }
   ]
  }

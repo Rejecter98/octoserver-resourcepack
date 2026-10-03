@@ -97,6 +97,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cotton_candy_chestplate"
     }
+   },
+   {
+    "threshold": 100045,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/cloud_chestplate"
+    }
    }
   ]
  }

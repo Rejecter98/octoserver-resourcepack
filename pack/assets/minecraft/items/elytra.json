@@ -30,6 +30,21 @@
      },
      "property": "minecraft:broken"
     }
+   },
+   {
+    "threshold": 100048,
+    "model": {
+     "type": "minecraft:condition",
+     "on_false": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/butterfly_elytra"
+     },
+     "on_true": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/butterfly_elytra_broken"
+     },
+     "property": "minecraft:broken"
+    }
    }
   ]
  }

@@ -14,6 +14,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cotton_candy_horse_armor"
     }
+   },
+   {
+    "threshold": 100049,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/sunflower_horse_armor"
+    }
    }
   ]
  }

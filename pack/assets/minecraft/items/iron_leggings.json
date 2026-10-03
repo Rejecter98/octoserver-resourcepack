@@ -97,6 +97,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cotton_candy_leggings"
     }
+   },
+   {
+    "threshold": 100046,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/cloud_leggings"
+    }
    }
   ]
  }

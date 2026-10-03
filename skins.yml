@@ -413,3 +413,141 @@ skins:
     category: shield
     allowed-materials:
       - SHIELD
+  cloud_helmet:
+    display-name: "&f구름 투구"
+    custom-model-data: 100044
+    category: helmet
+    equipment-asset: "cosmetics:cloud"
+    allowed-materials:
+      - LEATHER_HELMET
+      - CHAINMAIL_HELMET
+      - COPPER_HELMET
+      - IRON_HELMET
+      - GOLDEN_HELMET
+      - DIAMOND_HELMET
+      - NETHERITE_HELMET
+  cloud_chestplate:
+    display-name: "&f구름 흉갑"
+    custom-model-data: 100045
+    category: chestplate
+    equipment-asset: "cosmetics:cloud"
+    allowed-materials:
+      - LEATHER_CHESTPLATE
+      - CHAINMAIL_CHESTPLATE
+      - COPPER_CHESTPLATE
+      - IRON_CHESTPLATE
+      - GOLDEN_CHESTPLATE
+      - DIAMOND_CHESTPLATE
+      - NETHERITE_CHESTPLATE
+  cloud_leggings:
+    display-name: "&f구름 레깅스"
+    custom-model-data: 100046
+    category: leggings
+    equipment-asset: "cosmetics:cloud"
+    allowed-materials:
+      - LEATHER_LEGGINGS
+      - CHAINMAIL_LEGGINGS
+      - COPPER_LEGGINGS
+      - IRON_LEGGINGS
+      - GOLDEN_LEGGINGS
+      - DIAMOND_LEGGINGS
+      - NETHERITE_LEGGINGS
+  cloud_boots:
+    display-name: "&f구름 부츠"
+    custom-model-data: 100047
+    category: boots
+    equipment-asset: "cosmetics:cloud"
+    allowed-materials:
+      - LEATHER_BOOTS
+      - CHAINMAIL_BOOTS
+      - COPPER_BOOTS
+      - IRON_BOOTS
+      - GOLDEN_BOOTS
+      - DIAMOND_BOOTS
+      - NETHERITE_BOOTS
+  butterfly_elytra:
+    display-name: "&d나비 날개"
+    custom-model-data: 100048
+    category: elytra
+    equipment-asset: "cosmetics:butterfly"
+    allowed-materials:
+      - ELYTRA
+  sunflower_horse_armor:
+    display-name: "&e해바라기 말 갑옷"
+    custom-model-data: 100049
+    category: horse_armor
+    equipment-asset: "cosmetics:sunflower"
+    allowed-materials:
+      - LEATHER_HORSE_ARMOR
+      - COPPER_HORSE_ARMOR
+      - IRON_HORSE_ARMOR
+      - GOLDEN_HORSE_ARMOR
+      - DIAMOND_HORSE_ARMOR
+      - NETHERITE_HORSE_ARMOR
+  heart_wolf_armor:
+    display-name: "&d하트 늑대 갑옷"
+    custom-model-data: 100050
+    category: wolf_armor
+    equipment-asset: "cosmetics:heart"
+    allowed-materials:
+      - WOLF_ARMOR
+  ribbon_shears:
+    display-name: "&d리본 가위"
+    custom-model-data: 100051
+    category: shears
+    allowed-materials:
+      - SHEARS
+  bamboo_fishing_rod:
+    display-name: "&a대나무 낚싯대"
+    custom-model-data: 100052
+    category: fishing_rod
+    allowed-materials:
+      - FISHING_ROD
+  marshmallow_flint_and_steel:
+    display-name: "&f마시멜로 부싯돌"
+    custom-model-data: 100053
+    category: flint_and_steel
+    allowed-materials:
+      - FLINT_AND_STEEL
+  sprout_brush:
+    display-name: "&a새싹 브러시"
+    custom-model-data: 100054
+    category: brush
+    allowed-materials:
+      - BRUSH
+  starlight_spyglass:
+    display-name: "&9별빛 망원경"
+    custom-model-data: 100055
+    category: spyglass
+    allowed-materials:
+      - SPYGLASS
+  strawberry_carrot_on_a_stick:
+    display-name: "&c딸기 낚싯대"
+    custom-model-data: 100056
+    category: carrot_on_a_stick
+    allowed-materials:
+      - CARROT_ON_A_STICK
+  unicorn_spear:
+    display-name: "&d유니콘 창"
+    custom-model-data: 100057
+    category: spear
+    allowed-materials:
+      - WOODEN_SPEAR
+      - STONE_SPEAR
+      - COPPER_SPEAR
+      - IRON_SPEAR
+      - GOLDEN_SPEAR
+      - DIAMOND_SPEAR
+      - NETHERITE_SPEAR
+  coral_trident:
+    display-name: "&c산호 삼지창"
+    custom-model-data: 100058
+    category: trident
+    allowed-materials:
+      - TRIDENT
+  lemon_crossbow:
+    display-name: "&e레몬 석궁"
+    custom-model-data: 100059
+    category: crossbow
+    allowed-materials:
+      - CROSSBOW

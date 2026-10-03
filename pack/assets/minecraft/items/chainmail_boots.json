@@ -97,6 +97,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cotton_candy_boots"
     }
+   },
+   {
+    "threshold": 100047,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/cloud_boots"
+    }
    }
   ]
  }

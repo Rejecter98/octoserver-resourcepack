@@ -14,6 +14,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cotton_candy_flint_and_steel"
     }
+   },
+   {
+    "threshold": 100053,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/marshmallow_flint_and_steel"
+    }
    }
   ]
  }
