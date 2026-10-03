@@ -183,3 +183,119 @@ skins:
       - GOLDEN_BOOTS
       - DIAMOND_BOOTS
       - NETHERITE_BOOTS
+  cotton_candy_elytra:
+    display-name: "&d솜사탕 겉날개"
+    custom-model-data: 100017
+    category: elytra
+    equipment-asset: "cosmetics:cotton_candy"
+    allowed-materials:
+      - ELYTRA
+  cotton_candy_horse_armor:
+    display-name: "&d솜사탕 말 갑옷"
+    custom-model-data: 100018
+    category: horse_armor
+    equipment-asset: "cosmetics:cotton_candy"
+    allowed-materials:
+      - LEATHER_HORSE_ARMOR
+      - COPPER_HORSE_ARMOR
+      - IRON_HORSE_ARMOR
+      - GOLDEN_HORSE_ARMOR
+      - DIAMOND_HORSE_ARMOR
+      - NETHERITE_HORSE_ARMOR
+  cotton_candy_wolf_armor:
+    display-name: "&d솜사탕 늑대 갑옷"
+    custom-model-data: 100019
+    category: wolf_armor
+    equipment-asset: "cosmetics:cotton_candy"
+    allowed-materials:
+      - WOLF_ARMOR
+  cotton_candy_hoe:
+    display-name: "&d솜사탕 괭이"
+    custom-model-data: 100020
+    category: hoe
+    allowed-materials:
+      - WOODEN_HOE
+      - STONE_HOE
+      - COPPER_HOE
+      - IRON_HOE
+      - GOLDEN_HOE
+      - DIAMOND_HOE
+      - NETHERITE_HOE
+  cotton_candy_shears:
+    display-name: "&d솜사탕 가위"
+    custom-model-data: 100021
+    category: shears
+    allowed-materials:
+      - SHEARS
+  cotton_candy_fishing_rod:
+    display-name: "&d솜사탕 낚싯대"
+    custom-model-data: 100022
+    category: fishing_rod
+    allowed-materials:
+      - FISHING_ROD
+  cotton_candy_flint_and_steel:
+    display-name: "&d솜사탕 부싯돌"
+    custom-model-data: 100023
+    category: flint_and_steel
+    allowed-materials:
+      - FLINT_AND_STEEL
+  cotton_candy_brush:
+    display-name: "&d솜사탕 브러시"
+    custom-model-data: 100024
+    category: brush
+    allowed-materials:
+      - BRUSH
+  cotton_candy_spyglass:
+    display-name: "&d솜사탕 망원경"
+    custom-model-data: 100025
+    category: spyglass
+    allowed-materials:
+      - SPYGLASS
+  cotton_candy_carrot_on_a_stick:
+    display-name: "&d솜사탕 당근 낚싯대"
+    custom-model-data: 100026
+    category: carrot_on_a_stick
+    allowed-materials:
+      - CARROT_ON_A_STICK
+  cotton_candy_spear:
+    display-name: "&d솜사탕 창"
+    custom-model-data: 100027
+    category: spear
+    allowed-materials:
+      - WOODEN_SPEAR
+      - STONE_SPEAR
+      - COPPER_SPEAR
+      - IRON_SPEAR
+      - GOLDEN_SPEAR
+      - DIAMOND_SPEAR
+      - NETHERITE_SPEAR
+  cotton_candy_mace:
+    display-name: "&d솜사탕 철퇴"
+    custom-model-data: 100028
+    category: mace
+    allowed-materials:
+      - MACE
+  cotton_candy_trident:
+    display-name: "&d솜사탕 삼지창"
+    custom-model-data: 100029
+    category: trident
+    allowed-materials:
+      - TRIDENT
+  cotton_candy_bow:
+    display-name: "&d솜사탕 활"
+    custom-model-data: 100030
+    category: bow
+    allowed-materials:
+      - BOW
+  cotton_candy_crossbow:
+    display-name: "&d솜사탕 석궁"
+    custom-model-data: 100031
+    category: crossbow
+    allowed-materials:
+      - CROSSBOW
+  cotton_candy_shield:
+    display-name: "&d솜사탕 방패"
+    custom-model-data: 100032
+    category: shield
+    allowed-materials:
+      - SHIELD

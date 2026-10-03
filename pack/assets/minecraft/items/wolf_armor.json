@@ -1,0 +1,39 @@
+{
+ "model": {
+  "type": "minecraft:range_dispatch",
+  "property": "minecraft:custom_model_data",
+  "index": 0,
+  "fallback": {
+   "type": "minecraft:condition",
+   "component": "minecraft:dyed_color",
+   "on_false": {
+    "type": "minecraft:model",
+    "model": "minecraft:item/wolf_armor"
+   },
+   "on_true": {
+    "type": "minecraft:model",
+    "model": "minecraft:item/wolf_armor_dyed",
+    "tints": [
+     {
+      "type": "minecraft:constant",
+      "value": -1
+     },
+     {
+      "type": "minecraft:dye",
+      "default": 0
+     }
+    ]
+   },
+   "property": "minecraft:has_component"
+  },
+  "entries": [
+   {
+    "threshold": 100019,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/cotton_candy_wolf_armor"
+    }
+   }
+  ]
+ }
+}

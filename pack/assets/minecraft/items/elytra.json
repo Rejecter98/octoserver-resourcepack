@@ -1,0 +1,36 @@
+{
+ "model": {
+  "type": "minecraft:range_dispatch",
+  "property": "minecraft:custom_model_data",
+  "index": 0,
+  "fallback": {
+   "type": "minecraft:condition",
+   "on_false": {
+    "type": "minecraft:model",
+    "model": "minecraft:item/elytra"
+   },
+   "on_true": {
+    "type": "minecraft:model",
+    "model": "minecraft:item/elytra_broken"
+   },
+   "property": "minecraft:broken"
+  },
+  "entries": [
+   {
+    "threshold": 100017,
+    "model": {
+     "type": "minecraft:condition",
+     "on_false": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/cotton_candy_elytra"
+     },
+     "on_true": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/cotton_candy_elytra_broken"
+     },
+     "property": "minecraft:broken"
+    }
+   }
+  ]
+ }
+}

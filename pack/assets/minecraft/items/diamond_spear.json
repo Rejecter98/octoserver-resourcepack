@@ -1,0 +1,57 @@
+{
+ "model": {
+  "type": "minecraft:range_dispatch",
+  "property": "minecraft:custom_model_data",
+  "index": 0,
+  "fallback": {
+   "type": "minecraft:select",
+   "cases": [
+    {
+     "model": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/diamond_spear"
+     },
+     "when": [
+      "gui",
+      "ground",
+      "fixed",
+      "on_shelf"
+     ]
+    }
+   ],
+   "fallback": {
+    "type": "minecraft:model",
+    "model": "minecraft:item/diamond_spear_in_hand"
+   },
+   "property": "minecraft:display_context"
+  },
+  "entries": [
+   {
+    "threshold": 100027,
+    "model": {
+     "type": "minecraft:select",
+     "cases": [
+      {
+       "model": {
+        "type": "minecraft:model",
+        "model": "cosmetics:item/cotton_candy_spear"
+       },
+       "when": [
+        "gui",
+        "ground",
+        "fixed",
+        "on_shelf"
+       ]
+      }
+     ],
+     "fallback": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/cotton_candy_spear_in_hand"
+     },
+     "property": "minecraft:display_context"
+    }
+   }
+  ]
+ },
+ "swap_animation_scale": 1.95
+}
