@@ -16,12 +16,25 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
 - 텍스처: `pack/assets/cosmetics/textures/item/<스킨id>.png` (16x16 픽셀아트)
 - 모델: `pack/assets/cosmetics/models/item/<스킨id>.json`
   → `{"parent": "minecraft:item/handheld", "textures": {"layer0": "cosmetics:item/<스킨id>"}}`
+  (갑옷 스킨은 바닐라 갑옷처럼 `minecraft:item/generated`)
+- 바닐라 갑옷 아이템 정의는 장식(trim)·가죽 염색용 `minecraft:select` 구조라서, 갑옷 아이템 정의를
+  새로 만들 때는 fallback 에 바닐라 정의의 `model` 을 그대로 넣을 것
+  (바닐라 원본: `git ls-remote https://github.com/InventivetalentDev/minecraft-assets` 의 버전 브랜치, 예: `26.2`)
 - 아이템 정의: `pack/assets/minecraft/items/<재질>_<도구>.json`
   → `minecraft:range_dispatch` / property `minecraft:custom_model_data` / index 0,
     fallback 은 바닐라 모델, entries 에 threshold 별 모델 (`cosmetics:item/<스킨id>`)
 - 기존 스킨 12종: flame/frost/sakura × blade/pickaxe/axe/shovel = custom-model-data 100001~100012
+- 솜사탕 방어구 4종: cotton_candy_helmet/chestplate/leggings/boots = 100013~100016
+  (가죽·사슬·구리·철·금·다이아·네더라이트, equipment-asset `cosmetics:cotton_candy`)
+- 갑옷 입은 모습 (세트마다, `<세트이름>` 예: cotton_candy):
+  - `pack/assets/cosmetics/equipment/<세트이름>.json`
+    → `{"layers":{"humanoid":[{"texture":"cosmetics:<세트이름>"}],"humanoid_leggings":[{"texture":"cosmetics:<세트이름>"}]}}`
+  - `pack/assets/cosmetics/textures/entity/equipment/humanoid/<세트이름>.png` (64x32, 투구·흉갑·부츠)
+  - `pack/assets/cosmetics/textures/entity/equipment/humanoid_leggings/<세트이름>.png` (64x32, 레깅스)
+  - UV 배치는 바닐라 `textures/entity/equipment/humanoid(_leggings)/iron.png` 와 같게
+    (바닐라 원본을 모양·명암 기준으로 쓰고 색만 바꾸는 방식이 안전)
 - `pack/assets/servermenu/` (메뉴 GUI 배경·폰트) 는 다른 플러그인용 → **절대 수정 금지**
-- 참고: 현재 팩/skins.yml 에는 구리(copper) 도구가 없음 (나무·돌·철·금·다이아·네더라이트만)
+- 참고: 26.2 에는 구리 도구·갑옷이 있지만, 기존 도구 스킨 12종에는 아직 구리가 없음 (나무·돌·철·금·다이아·네더라이트만)
 
 ## 규칙
 - 새 custom-model-data 는 skins.yml 에서 가장 큰 값 +1 부터, 절대 중복 금지
@@ -29,16 +42,20 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
 - 스킨 하나는 같은 종류 도구 전 재질(나무·돌·구리(있으면)·철·금·다이아·네더라이트)에 적용,
   skins.yml allowed-materials 도 동일
 - skins.yml category 는 sword, pickaxe, axe, shovel, helmet, chestplate, leggings, boots 중 하나
-- 갑옷 스킨은 손에 든 모습/아이콘만 바뀌고 입은 모습은 안 바뀜 → 제안할 때 미리 알려줄 것
+- 갑옷 스킨은 아이콘(custom-model-data, 기존 방식) + 입은 모습(equipment) 둘 다 바뀜
+  - skins.yml 갑옷 스킨에 `equipment-asset: "cosmetics:<세트이름>"` 추가
+  - 갑옷 세트 4부위(투구·흉갑·레깅스·부츠)는 같은 equipment-asset 사용
+  - 리소스팩에 위 "갑옷 입은 모습" 파일 3개 추가
 - 컨셉: 친구들끼리 하는 "힐링" 서버 → 귀엽고 부드러운 파스텔 톤 선호
 - 사용자가 **"승인"이라고 하기 전에는 절대 push 하지 말 것**
 
 ## 작업 순서 (스킨 요청마다)
 1. 요청을 받으면 스킨 id·이름(한국어, &색코드)·카테고리·번호 계획을 먼저 짧게 보여줌
 2. 텍스처·모델·아이템 정의·skins.yml 수정
-3. 검증: 모든 JSON 파싱, PNG 16x16, 번호 중복 없음, 기존 entries 유지,
-   servermenu 폴더 변경 없음
+3. 검증: 모든 JSON 파싱, 아이콘 PNG 16x16 / 입은 모습 PNG 64x32, 번호 중복 없음, 기존 entries 유지,
+   equipment-asset ↔ equipment json ↔ 텍스처 연결, servermenu 폴더 변경 없음
 4. 미리보기 이미지 (새 스킨들을 크게 확대해 한 장에) 를 사용자에게 보여주고 승인 요청
+   - 갑옷이면 입은 모습(텍스처 펼친 그림)도 같이 보여줄 것
 5. 수정 요청이 오면 반영 후 다시 미리보기
 6. "승인" 하면 커밋·push → Actions 완료까지 기다림 → 새 릴리스 확인
    (Actions 결과를 못 읽으면 릴리스 zip 을 받아 직접 sha1 계산)

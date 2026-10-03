@@ -131,3 +131,55 @@ skins:
       - GOLDEN_SHOVEL
       - DIAMOND_SHOVEL
       - NETHERITE_SHOVEL
+  cotton_candy_helmet:
+    display-name: "&d솜사탕 투구"
+    custom-model-data: 100013
+    category: helmet
+    equipment-asset: "cosmetics:cotton_candy"
+    allowed-materials:
+      - LEATHER_HELMET
+      - CHAINMAIL_HELMET
+      - COPPER_HELMET
+      - IRON_HELMET
+      - GOLDEN_HELMET
+      - DIAMOND_HELMET
+      - NETHERITE_HELMET
+  cotton_candy_chestplate:
+    display-name: "&d솜사탕 흉갑"
+    custom-model-data: 100014
+    category: chestplate
+    equipment-asset: "cosmetics:cotton_candy"
+    allowed-materials:
+      - LEATHER_CHESTPLATE
+      - CHAINMAIL_CHESTPLATE
+      - COPPER_CHESTPLATE
+      - IRON_CHESTPLATE
+      - GOLDEN_CHESTPLATE
+      - DIAMOND_CHESTPLATE
+      - NETHERITE_CHESTPLATE
+  cotton_candy_leggings:
+    display-name: "&d솜사탕 레깅스"
+    custom-model-data: 100015
+    category: leggings
+    equipment-asset: "cosmetics:cotton_candy"
+    allowed-materials:
+      - LEATHER_LEGGINGS
+      - CHAINMAIL_LEGGINGS
+      - COPPER_LEGGINGS
+      - IRON_LEGGINGS
+      - GOLDEN_LEGGINGS
+      - DIAMOND_LEGGINGS
+      - NETHERITE_LEGGINGS
+  cotton_candy_boots:
+    display-name: "&d솜사탕 부츠"
+    custom-model-data: 100016
+    category: boots
+    equipment-asset: "cosmetics:cotton_candy"
+    allowed-materials:
+      - LEATHER_BOOTS
+      - CHAINMAIL_BOOTS
+      - COPPER_BOOTS
+      - IRON_BOOTS
+      - GOLDEN_BOOTS
+      - DIAMOND_BOOTS
+      - NETHERITE_BOOTS
