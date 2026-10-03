@@ -60,6 +60,21 @@
      },
      "property": "minecraft:using_item"
     }
+   },
+   {
+    "threshold": 100043,
+    "model": {
+     "type": "minecraft:condition",
+     "on_false": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/cat_paw_shield"
+     },
+     "on_true": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/cat_paw_shield_blocking"
+     },
+     "property": "minecraft:using_item"
+    }
    }
   ]
  }

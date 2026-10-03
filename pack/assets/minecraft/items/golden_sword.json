@@ -28,6 +28,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/sakura_blade"
     }
+   },
+   {
+    "threshold": 100034,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/honey_sword"
+    }
    }
   ]
  }

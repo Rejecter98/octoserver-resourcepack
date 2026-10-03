@@ -14,6 +14,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/deep_sea_anchor_pickaxe"
     }
+   },
+   {
+    "threshold": 100035,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/honey_pickaxe"
+    }
    }
   ]
  }

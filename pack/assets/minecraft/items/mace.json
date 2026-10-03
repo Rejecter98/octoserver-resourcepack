@@ -14,6 +14,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cotton_candy_mace"
     }
+   },
+   {
+    "threshold": 100041,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/star_candy_mace"
+    }
    }
   ]
  }

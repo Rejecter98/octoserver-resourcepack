@@ -311,3 +311,105 @@ skins:
       - GOLDEN_PICKAXE
       - DIAMOND_PICKAXE
       - NETHERITE_PICKAXE
+  honey_sword:
+    display-name: "&e꿀단지 검"
+    custom-model-data: 100034
+    category: sword
+    allowed-materials:
+      - WOODEN_SWORD
+      - STONE_SWORD
+      - COPPER_SWORD
+      - IRON_SWORD
+      - GOLDEN_SWORD
+      - DIAMOND_SWORD
+      - NETHERITE_SWORD
+  honey_pickaxe:
+    display-name: "&e꿀단지 곡괭이"
+    custom-model-data: 100035
+    category: pickaxe
+    allowed-materials:
+      - WOODEN_PICKAXE
+      - STONE_PICKAXE
+      - COPPER_PICKAXE
+      - IRON_PICKAXE
+      - GOLDEN_PICKAXE
+      - DIAMOND_PICKAXE
+      - NETHERITE_PICKAXE
+  honey_axe:
+    display-name: "&e꿀단지 도끼"
+    custom-model-data: 100036
+    category: axe
+    allowed-materials:
+      - WOODEN_AXE
+      - STONE_AXE
+      - COPPER_AXE
+      - IRON_AXE
+      - GOLDEN_AXE
+      - DIAMOND_AXE
+      - NETHERITE_AXE
+  honey_shovel:
+    display-name: "&e꿀단지 삽"
+    custom-model-data: 100037
+    category: shovel
+    allowed-materials:
+      - WOODEN_SHOVEL
+      - STONE_SHOVEL
+      - COPPER_SHOVEL
+      - IRON_SHOVEL
+      - GOLDEN_SHOVEL
+      - DIAMOND_SHOVEL
+      - NETHERITE_SHOVEL
+  honey_hoe:
+    display-name: "&e꿀단지 괭이"
+    custom-model-data: 100038
+    category: hoe
+    allowed-materials:
+      - WOODEN_HOE
+      - STONE_HOE
+      - COPPER_HOE
+      - IRON_HOE
+      - GOLDEN_HOE
+      - DIAMOND_HOE
+      - NETHERITE_HOE
+  watermelon_axe:
+    display-name: "&a수박 도끼"
+    custom-model-data: 100039
+    category: axe
+    allowed-materials:
+      - WOODEN_AXE
+      - STONE_AXE
+      - COPPER_AXE
+      - IRON_AXE
+      - GOLDEN_AXE
+      - DIAMOND_AXE
+      - NETHERITE_AXE
+  mushroom_shovel:
+    display-name: "&c버섯 삽"
+    custom-model-data: 100040
+    category: shovel
+    allowed-materials:
+      - WOODEN_SHOVEL
+      - STONE_SHOVEL
+      - COPPER_SHOVEL
+      - IRON_SHOVEL
+      - GOLDEN_SHOVEL
+      - DIAMOND_SHOVEL
+      - NETHERITE_SHOVEL
+  star_candy_mace:
+    display-name: "&d별사탕 철퇴"
+    custom-model-data: 100041
+    category: mace
+    allowed-materials:
+      - MACE
+  rainbow_bow:
+    display-name: "&b무지개 활"
+    custom-model-data: 100042
+    category: bow
+    allowed-materials:
+      - BOW
+  cat_paw_shield:
+    display-name: "&f냥발 방패"
+    custom-model-data: 100043
+    category: shield
+    allowed-materials:
+      - SHIELD

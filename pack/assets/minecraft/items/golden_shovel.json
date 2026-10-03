@@ -28,6 +28,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/sakura_shovel"
     }
+   },
+   {
+    "threshold": 100037,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/honey_shovel"
+    }
+   },
+   {
+    "threshold": 100040,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/mushroom_shovel"
+    }
    }
   ]
  }
