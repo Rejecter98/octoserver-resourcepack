@@ -11,6 +11,19 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
   `CosmeticPack.zip` 빌드 → sha1 계산 → 기존 `vN` 중 최대 N+1 태그로 릴리스 생성
   (첨부: `CosmeticPack.zip`, `skins.yml` / 본문 첫 줄 `sha1: <값>`, 그 아래 변경된 스킨 목록)
 
+## 서버 플러그인 (CosmeticSkins) 연동
+- 서버 폴더: `plugins/CosmeticSkins` (버전 없는 이름) — skins.yml 은 `plugins/CosmeticSkins/skins.yml`
+- **스킨 토큰 아이콘**: 토큰은 종이(PAPER) 아이템이지만, 서버가 `item_model` 을 그 스킨의 대표 재질로 바꾸고
+  같은 custom_model_data 를 붙여서 스킨 모양으로 보여줌
+  - 대표 재질 = allowed-materials 중 다이아 > 네더라이트 > 철 > 첫 번째 순
+    (예: 검 → DIAMOND_SWORD, 말 갑옷 → DIAMOND_HORSE_ARMOR, 활 → BOW)
+  - 그래서 allowed-materials 에 넣은 **모든 재질**의 `assets/minecraft/items/<재질>.json` 에
+    그 스킨의 entry 가 반드시 있어야 함 (빠지면 토큰·아이템이 기본 모양으로 보임)
+  - 토큰용 `paper.json` 같은 별도 파일은 만들지 말 것
+- **display-name** 은 토큰 이름과 스킨 도감 이름으로 그대로 쓰임
+  → 한국어 + `&` 색코드로 예쁘게 (테마 색 하나로 통일, 예: 솜사탕 `&d`, 서리 `&b`, 불꽃 `&c`, 벚꽃 `&d`)
+  - 이미 쓰이는 이름과 겹치지 않게, 너무 길지 않게 (도감 한 줄에 들어가도록)
+
 ## 리소스팩 구조
 - `pack.mcmeta`: min_format/max_format 88 (26.2 리소스팩 포맷)
 - 텍스처: `pack/assets/cosmetics/textures/item/<스킨id>.png` (16x16 픽셀아트)
@@ -26,6 +39,7 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
 - 스킨 모델 parent 는 해당 바닐라 아이템 모델과 같은 계열로 (도구·무기 `item/handheld`,
   낚싯대·당근 낚싯대 `item/handheld_rod`, 가위·부싯돌·갑옷·말/늑대 갑옷·겉날개 `item/generated` 등 — 바닐라 모델을 확인)
 - 기존 스킨 12종: flame/frost/sakura × blade/pickaxe/axe/shovel = custom-model-data 100001~100012
+- 솜사탕 신규 16종: cotton_candy_<category> (elytra ~ shield) = 100017~100032
 - 솜사탕 방어구 4종: cotton_candy_helmet/chestplate/leggings/boots = 100013~100016
   (가죽·사슬·구리·철·금·다이아·네더라이트, equipment-asset `cosmetics:cotton_candy`)
 - 갑옷 입은 모습 (세트마다, `<세트이름>` 예: cotton_candy):
@@ -47,7 +61,7 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
   - 말 갑옷: 가죽·구리·철·금·다이아·네더라이트 (6종, `<재질>_HORSE_ARMOR`)
   - 그 외(철퇴·삼지창·활·석궁·방패·가위·낚싯대·부싯돌·브러시·망원경·당근 낚싯대·겉날개·늑대 갑옷)는 아이템 1종
 - 창(spear)은 26.2 신규 아이템 → 재질 7종 전부(`WOODEN_SPEAR` ~ `NETHERITE_SPEAR`) allowed-materials 에 넣을 것
-- skins.yml category 는 아래 24종 중 하나
+- skins.yml category 는 아래 24종 중 하나 (서버 CosmeticSkins 의 부위 목록과 동일)
   - 방어구: helmet, chestplate, leggings, boots, elytra, horse_armor, wolf_armor
   - 도구: pickaxe, axe, shovel, hoe, shears, fishing_rod, flint_and_steel, brush, spyglass, carrot_on_a_stick
   - 무기: sword, spear, mace, trident, bow, crossbow, shield
@@ -80,11 +94,13 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
 - 사용자가 **"승인"이라고 하기 전에는 절대 push 하지 말 것**
 
 ## 작업 순서 (스킨 요청마다)
-1. 요청을 받으면 스킨 id·이름(한국어, &색코드)·카테고리·번호 계획을 먼저 짧게 보여줌
+1. 요청을 받으면 스킨 id·이름(한국어, &색코드 — 토큰·도감에 그대로 보임)·카테고리·번호 계획을 먼저 짧게 보여줌
 2. 텍스처·모델·아이템 정의·skins.yml 수정
 3. 검증: 모든 JSON 파싱, 아이콘 PNG 16x16 / 입은 모습 PNG 크기(humanoid·wings·wolf_body 64x32, horse_body 64x64),
    번호 중복 없음, 기존 entries 유지, equipment-asset ↔ equipment json ↔ 텍스처 연결,
-   상태 있는 아이템은 fallback 이 바닐라 정의와 동일 + 스킨 모델이 상태별로 다 있는지, servermenu 폴더 변경 없음
+   상태 있는 아이템은 fallback 이 바닐라 정의와 동일 + 스킨 모델이 상태별로 다 있는지, servermenu 폴더 변경 없음,
+   **새 스킨마다 allowed-materials 전부에 `assets/minecraft/items/<재질>.json` entry(같은 threshold)가 있는지**
+   (토큰 대표 재질 포함 — 하나라도 빠지면 토큰이 기본 모양으로 보임), `paper.json` 이 생기지 않았는지
 4. 미리보기 이미지 (새 스킨들을 크게 확대해 한 장에) 를 사용자에게 보여주고 승인 요청
    - 갑옷·겉날개·말/늑대 갑옷이면 입은 모습(텍스처 펼친 그림)도 같이 보여줄 것
    - 상태 있는 아이템이면 상태별 모습(활 당기기 단계 등)도 같이 보여줄 것
