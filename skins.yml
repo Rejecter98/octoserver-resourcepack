@@ -299,3 +299,15 @@ skins:
     category: shield
     allowed-materials:
       - SHIELD
+  deep_sea_anchor_pickaxe:
+    display-name: "&3심해 닻"
+    custom-model-data: 100033
+    category: pickaxe
+    allowed-materials:
+      - WOODEN_PICKAXE
+      - STONE_PICKAXE
+      - COPPER_PICKAXE
+      - IRON_PICKAXE
+      - GOLDEN_PICKAXE
+      - DIAMOND_PICKAXE
+      - NETHERITE_PICKAXE

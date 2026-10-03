@@ -28,6 +28,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/sakura_pickaxe"
     }
+   },
+   {
+    "threshold": 100033,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/deep_sea_anchor_pickaxe"
+    }
    }
   ]
  }
