@@ -34,23 +34,35 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
   - S 상시: sakura_fairy_sword(100063), firefly_pickaxe(100064)
   - S 한정(시즌 1 심해): deep_sea_whale_bow(100065) — 전용 사운드 `cosmetics:skin.whale.shoot` (거품 보글보글 0.43초)
   - 나머지는 전부 B
-- **스킨 이펙트 (CosmeticSkins 1.4.0-octo~)**: skins.yml 스킨마다 선택으로 `effects:` (S 등급의 조건)
+- **스킨 이펙트 (CosmeticSkins 1.4.1-octo~)**: skins.yml 스킨마다 선택으로 `effects:` (S 등급의 조건)
   ```yaml
   effects:
-    hit:    { particle: CHERRY_LEAVES, count: 6, spread: 0.3, speed: 0.02 }        # 무기로 때릴 때 (맞은 대상 위치)
-    break:  { particle: DUST, count: 5, spread: 0.3, color: "#FFC8E0", size: 1.0 } # 도구로 블록 캘 때 (블록 위치)
-    shoot:  { particle: BUBBLE_POP, count: 6, sound: "cosmetics:skin.whale.shoot", volume: 0.8, pitch: 1.0 } # 활/석궁 쏠 때
-    hold:   { particle: FIREFLY, count: 1, spread: 0.2, interval: 60 }             # 손에 든 동안 주기적으로 (틱, 20=1초)
+    swing:  { particle: CHERRY_LEAVES, count: 15, spread: 0.3, speed: 0.02 }              # 허공에 휘두를 때 (손, 0.25초 쿨타임)
+    hit:    { particle: CHERRY_LEAVES, count: 20, spread: 0.3, speed: 0.02, at: target }  # 무기로 때릴 때
+    break:  { particle: WAX_ON, count: 20, spread: 0.4, speed: 0.03, at: target }         # 도구로 블록 캘 때
+    shoot:  { particle: BUBBLE_POP, count: 20, spread: 0.3, speed: 0.03, sound: "cosmetics:skin.whale.shoot", volume: 0.8, pitch: 1.0 }
+    hold:   { particle: FIREFLY, count: 3, spread: 0.3, speed: 0.01, interval: 10 }      # 손에 든 동안 주기적으로 (틱, 20=1초)
   ```
+  - 트리거 5종: `swing`(허공 휘두르기, 손에서, 0.25초 쿨타임) · `hit`(무기로 때릴 때) · `break`(도구로 블록 캘 때) ·
+    `shoot`(활/석궁 쏠 때) · `hold`(손에 든 동안 주기적으로, `interval` 틱)
+  - **위치 `at`**: 기본은 `hand`(손 위치). 맞은 대상/블록 위치가 필요하면 `at: target`, 둘 다면 `at: both`
+    (`target`/`both` 는 위치가 있는 hit·break 에서만 의미 있음 — swing·shoot·hold 는 `at` 생략 = 손)
+  - **swing 과 hit 겹침 주의**: 때리거나 캘 때도 휘두르기가 같이 일어남 → swing + hit 를 둘 다 넣으면
+    손(swing)과 대상(hit)에 동시에 나옴. 둘 다 쓸 땐 hit 를 `at: target` 으로 두어 같은 자리에 겹치지 않게 하고,
+    hit 를 `at: hand`/`both` 로 쓸 거면 swing 은 빼기. 곡괭이처럼 계속 캐는 도구는 swing 을 빼는 게 깔끔함
   - **값 형식 (서버 확인 완료)**: `particle` 은 Bukkit 대문자 이름(`CHERRY_LEAVES`) — `minecraft:` 형식은 서버가 인식 못 함.
     `sound` 는 바닐라 `minecraft:block.amethyst_block.chime`, 커스텀 `cosmetics:skin.whale.shoot` 형식
   - 각 항목 키: `particle`, `count`, `spread`, `speed`, `color`("#RRGGBB", DUST 계열만), `size`,
-    `sound`, `volume`, `pitch`, `interval`(hold 전용)
+    `sound`, `volume`, `pitch`, `interval`(hold 전용), `at`(hand/target/both)
   - **블록/아이템 데이터가 필요한 파티클은 금지** (서버가 무시): BLOCK, BLOCK_MARKER, BLOCK_CRUMBLE, FALLING_DUST,
     DUST_PILLAR, ITEM, 그리고 색 2개가 필요한 DUST_COLOR_TRANSITION, 색이 필수인 ENTITY_EFFECT 도 쓰지 않음
   - 무난한 파티클: DUST(색 지정), CHERRY_LEAVES, END_ROD, HEART, NOTE, HAPPY_VILLAGER, WAX_ON, GLOW, SNOWFLAKE,
     BUBBLE_POP, NAUTILUS, FIREFLY, CLOUD (26.2 바닐라 particles 목록에 있는 것만)
-  - **힐링 서버 톤**: hold 는 count 1~2 · interval 40 이상으로 은은하게, hit/break 는 count 8 이하
+  - **양 기준 (인게임 테스트 결과 — 적으면 거의 안 보임)**: 서버 config 의 전체 배율 `effects-scale` 이 있으므로,
+    스킨별 값은 **배율 1.0 기준으로 잘 보이는 양**으로 맞출 것
+    - hit / break / swing / shoot: count 15~30, spread 0.2~0.4
+    - hold: count 3~5, interval 5~10 (손에 들고 있으면 확실히 보이게)
+    - speed: 0.01~0.05 (크면 순식간에 흩어져서 안 보임)
   - 바닐라 소리는 `minecraft:block.amethyst_block.chime` 처럼 사운드 이벤트 이름으로 (26.2 sounds.json 에 있는 것만)
   - 크기 변화(S): 스킨 모델의 `display` 에서 손에 든 모습 scale 을 키움 (1.1~1.3 정도, 인벤토리 gui 는 그대로)
 - **커스텀 사운드 (한정 S 전용)**:
@@ -141,8 +153,10 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
    **새 스킨마다 allowed-materials 전부에 `assets/minecraft/items/<재질>.json` entry(같은 threshold)가 있는지**
    (토큰 대표 재질 포함 — 하나라도 빠지면 토큰이 기본 모양으로 보임), `paper.json` 이 생기지 않았는지,
    모든 스킨에 `rarity` 가 있고 값이 B/A/S 중 하나인지,
-   effects 가 있으면: 키가 위 목록 안에 있는지, 금지 파티클이 아닌지, color 는 DUST 계열에만, interval 은 hold 에만,
-   hold 가 은은한지(count ≤ 2, interval ≥ 40), `effects` 나 크기 변화가 있으면 rarity S 인지,
+   effects 가 있으면: 트리거·키가 위 목록 안에 있는지, 금지 파티클이 아닌지, color 는 DUST 계열에만, interval 은 hold 에만,
+   `at` 은 hand/target/both 이고 target/both 는 hit·break 에만, 양이 기준 안인지(hit/break/swing/shoot count 15~30 ·
+   spread 0.2~0.4, hold count 3~5 · interval 5~10, speed 0.01~0.05), swing 과 hit 가 같은 자리(hand)에 겹치지 않는지,
+   `effects` 나 크기 변화가 있으면 rarity S 인지,
    `cosmetics:` 사운드는 sounds.json 에 이벤트가 있고 ogg 파일이 있으며 Vorbis·모노(채널 1)인지(ffprobe),
    바닐라 사운드는 26.2 sounds.json 에 있는 이벤트인지
 4. 미리보기 이미지 (새 스킨들을 크게 확대해 한 장에) 를 사용자에게 보여주고 승인 요청

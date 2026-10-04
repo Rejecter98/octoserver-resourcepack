@@ -668,17 +668,23 @@ skins:
       - DIAMOND_SWORD
       - NETHERITE_SWORD
     effects:
-      hit:
+      swing:
         particle: CHERRY_LEAVES
-        count: 6
+        count: 15
         spread: 0.3
         speed: 0.02
+      hit:
+        particle: CHERRY_LEAVES
+        count: 25
+        spread: 0.35
+        speed: 0.03
+        at: target
       hold:
         particle: CHERRY_LEAVES
-        count: 1
+        count: 3
         spread: 0.3
         speed: 0.01
-        interval: 60
+        interval: 8
   firefly_pickaxe:
     display-name: "&e반딧불 곡괭이"
     rarity: S
@@ -695,15 +701,16 @@ skins:
     effects:
       break:
         particle: WAX_ON
-        count: 5
-        spread: 0.3
-        speed: 0.02
+        count: 20
+        spread: 0.4
+        speed: 0.03
+        at: target
       hold:
         particle: FIREFLY
-        count: 1
-        spread: 0.4
+        count: 4
+        spread: 0.3
         speed: 0.01
-        interval: 60
+        interval: 10
   deep_sea_whale_bow:
     display-name: "&3심해 고래 활"
     rarity: S
@@ -714,15 +721,15 @@ skins:
     effects:
       shoot:
         particle: BUBBLE_POP
-        count: 6
-        spread: 0.2
-        speed: 0.02
+        count: 20
+        spread: 0.3
+        speed: 0.03
         sound: "cosmetics:skin.whale.shoot"
         volume: 0.8
         pitch: 1.0
       hold:
         particle: BUBBLE_POP
-        count: 1
+        count: 3
         spread: 0.3
-        speed: 0.01
-        interval: 80
+        speed: 0.02
+        interval: 8
