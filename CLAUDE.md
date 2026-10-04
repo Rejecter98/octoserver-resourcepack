@@ -76,6 +76,31 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
   → 한국어 + `&` 색코드로 예쁘게 (테마 색 하나로 통일, 예: 솜사탕 `&d`, 서리 `&b`, 불꽃 `&c`, 벚꽃 `&d`)
   - 이미 쓰이는 이름과 겹치지 않게, 너무 길지 않게 (도감 한 줄에 들어가도록)
 
+## 도감 미등록 실루엣 (assets/dogam — 자동 생성, 레포에 커밋하지 않음)
+- 서버 도감 플러그인이 요청하는 모델:
+  - 아이템: `assets/dogam/items/silhouette/<아이템id>.json` → 26.2 의 **모든 아이템**(1,537개) 빠짐없이
+    (없으면 보라·검정 체크무늬)
+  - 스킨: `assets/dogam/items/silhouette/skin/<스킨id>.json` → skins.yml 의 **모든 스킨**
+  - 입체 모델용: `assets/dogam/models/silhouette/[skin/]<id>.json`
+- 실루엣 = 원래 모양 그대로 + 색만 검정 (`minecraft:constant` 틴트, 기본 `0x000000`;
+  너무 새까매서 안 보이면 `--color 0x202020`)
+- 생성기: `tools/gen_silhouettes.py`
+  - Mojang 버전 매니페스트에서 클라이언트 jar 를 받아 items/*.json · models/** 만 읽음 (jar·텍스처는 레포에 넣지 않음)
+  - 대표 모델: condition → on_false, select → (display_context 면 gui 케이스) fallback/첫 케이스,
+    range_dispatch → fallback/첫 entry, composite → 첫 모델(special 이 섞이면 회색)
+  - 평면(builtin/generated 계열): 원래 모델 그대로 참조 + 레이어 수만큼 검정 tints
+  - 입체(elements): parent 체인의 elements 를 복사한 모델(parent = 원래 모델, 모든 face `tintindex: 0`) + 검정 tint
+  - `minecraft:special`(상자·현수막·머리·셜커 상자·방패·구리 골렘 석상 등) · 빈 모델(air) → `minecraft:item/gray_stained_glass_pane`
+    (현재 63개, 그래도 파일은 반드시 생성)
+  - 스킨: skins.yml 각 스킨의 첫 allowed-material 아이템 정의에서 그 스킨 entry 를 같은 규칙으로 따라감
+  - 출력 폴더는 매번 지우고 새로 만듦 / 확인용 `assets/dogam/report.json` (zip 에서는 제외)
+- **release.yml 이 zip 만들기 전에 자동 실행** → 새 스킨을 skins.yml 에 넣으면 실루엣도 자동으로 생김
+  (생성 실패·아이템 수 불일치면 릴리스가 멈춤)
+  - 마크 버전 업데이트: Actions 의 workflow_dispatch 에서 `mc_version` 입력 (또는 스크립트 `DEFAULT_VERSION` 수정)
+- 이 세션 환경은 Mojang 서버 접속이 막혀 있음 → 로컬 확인은 미러 에셋으로:
+  `python3 tools/gen_silhouettes.py --assets-dir <InventivetalentDev/minecraft-assets 26.2 체크아웃>`
+- `pack/assets/dogam/` 은 `.gitignore` 에 있음 (생성물이라 커밋하지 않음)
+
 ## 리소스팩 구조
 - `pack.mcmeta`: min_format/max_format 88 (26.2 리소스팩 포맷)
 - 텍스처: `pack/assets/cosmetics/textures/item/<스킨id>.png` (16x16 픽셀아트)
@@ -159,7 +184,9 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
    spread 0.2~0.4, hold count 3~5 · interval 5~10, speed 0.01~0.05), swing 과 hit 가 같은 자리(hand)에 겹치지 않는지,
    `effects` 나 크기 변화가 있으면 rarity S 인지,
    `cosmetics:` 사운드는 sounds.json 에 이벤트가 있고 ogg 파일이 있으며 Vorbis·모노(채널 1)인지(ffprobe),
-   바닐라 사운드는 26.2 sounds.json 에 있는 이벤트인지
+   바닐라 사운드는 26.2 sounds.json 에 있는 이벤트인지,
+   `tools/gen_silhouettes.py --assets-dir ...` 를 돌려서 새 스킨 실루엣(`silhouette/skin/<id>.json`)이 생기고
+   아이템 수가 26.2 와 같은지 (스킨이 회색 대체로 빠지면 원인 확인)
 4. 미리보기 이미지 (새 스킨들을 크게 확대해 한 장에) 를 사용자에게 보여주고 승인 요청
    - 갑옷·겉날개·말/늑대 갑옷이면 입은 모습(텍스처 펼친 그림)도 같이 보여줄 것
    - 상태 있는 아이템이면 상태별 모습(활 당기기 단계 등)도 같이 보여줄 것

@@ -6,7 +6,13 @@ on:
     paths:
       - "pack/**"
       - "skins.yml"
+      - "tools/**"
   workflow_dispatch:
+    inputs:
+      mc_version:
+        description: "마인크래프트 버전 (도감 실루엣 생성용, 비우면 스크립트 기본값)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -23,11 +29,22 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate dogam silhouettes
+        run: |
+          pip install --quiet pyyaml
+          V="${{ github.event.inputs.mc_version }}"
+          python3 tools/gen_silhouettes.py ${V:+--version "$V"}
+          test -f pack/assets/dogam/items/silhouette/diamond_sword.json
+
       - name: Build CosmeticPack.zip
         run: |
           rm -f CosmeticPack.zip
           cd pack
-          zip -r -X ../CosmeticPack.zip . -x '*.DS_Store' -x '__MACOSX/*'
+          zip -r -X ../CosmeticPack.zip . -x '*.DS_Store' -x '__MACOSX/*' -x 'assets/dogam/report.json'
           cd ..
           unzip -l CosmeticPack.zip | grep -q ' pack.mcmeta$' || { echo "pack.mcmeta not at zip root"; exit 1; }
 
@@ -58,9 +75,21 @@ jobs:
           else
             sed -nE 's/^  ([A-Za-z0-9_]+):\s*$/\1/p' skins.yml > changed.txt
           fi
-          sort -u changed.txt -o changed.txt
+          # 파일 이름(상태별 텍스처 등)을 skins.yml 의 스킨 id 로 바꿔서 스킨 단위로 정리
+          python3 - <<'PY'
+          import yaml
+          ids = sorted(yaml.safe_load(open("skins.yml"))["skins"], key=len, reverse=True)
+          out = set()
+          for name in open("changed.txt").read().split():
+              hit = next((i for i in ids if name == i or name.startswith(i + "_")), None)
+              if hit:
+                  out.add(hit)
+          open("changed.txt", "w").write("".join(f"{i}\n" for i in sorted(out)))
+          PY
           {
             echo "sha1: ${{ steps.sha.outputs.sha1 }}"
+            echo
+            python3 -c "import json;r=json.load(open('pack/assets/dogam/report.json'));print(f\"도감 실루엣: {r['version']} 아이템 {r['items']}개 · 스킨 {r['skins']}개 (회색 대체 {len(r['gray'])}개)\")"
             echo
             echo "변경된 스킨:"
             if [ -s changed.txt ]; then sed 's/^/- /' changed.txt; else echo "- (스킨 변경 없음)"; fi
