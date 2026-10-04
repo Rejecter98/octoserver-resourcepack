@@ -23,14 +23,36 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
 - **rarity (등급)**: skins.yml 의 모든 스킨에 `rarity:` 필수 (값은 `B` / `A` / `S`). 기준:
   - **B** : 기존(바닐라) 모양에 색칠·픽셀만 바꾼 스킨 (실루엣이 원본과 같음)
   - **A** : 외형(모양·실루엣) 자체가 원본에서 바뀐 스킨 (예: 심해 닻 — 곡괭이가 닻 모양)
-  - **S** : 크기 변화나 이펙트·파티클(effects)까지 포함된 스킨
-  - **S 한정** : S + 전용 사운드 포함. 한정 여부는 가챠 배너 설정에서 지정하므로 skins.yml 의 rarity 는 그대로 `S`
+  - **S** : 크기 변화(모델 display 크기 조정) 또는 `effects`(파티클) 포함
+  - **S 한정** : S + 전용 커스텀 사운드 포함. 한정 여부는 가챠 배너 설정에서 지정하므로 skins.yml 의 rarity 는 그대로 `S`
   - 위치: `display-name` 바로 아래 (skins.yml 맨 위 주석에 같은 기준이 적혀 있으니 지우지 말 것)
   - 새 스킨은 위 기준으로 등급을 정하고, **계획 단계 표에 등급도 같이** 보여줄 것
   - 바닐라 그림을 다시 칠하는 방식(지금까지의 대부분)은 B, 직접 새 실루엣을 그리면 A
-  - S 의 크기 변화·이펙트·사운드는 리소스팩만으로 안 되는 부분(플러그인 설정)이 있음 → 첫 S 스킨을 만들 때
-    skins.yml 에 어떤 키로 적는지 사용자에게 확인하고 여기에 기록할 것
+  - S·한정 S 는 가챠 상위 등급이므로 실루엣도 새로 그리는 것(A 수준 외형)을 기본으로 하고 거기에 효과를 얹을 것
 - 현재 등급: deep_sea_anchor_pickaxe 만 A, 나머지 58종은 B
+- **스킨 이펙트 (CosmeticSkins 1.4.0-octo~)**: skins.yml 스킨마다 선택으로 `effects:` (S 등급의 조건)
+  ```yaml
+  effects:
+    hit:    { particle: CHERRY_LEAVES, count: 6, spread: 0.3, speed: 0.02 }        # 무기로 때릴 때 (맞은 대상 위치)
+    break:  { particle: DUST, count: 5, spread: 0.3, color: "#FFC8E0", size: 1.0 } # 도구로 블록 캘 때 (블록 위치)
+    shoot:  { particle: BUBBLE_POP, count: 6, sound: "cosmetics:skin.whale.shoot", volume: 0.8, pitch: 1.0 } # 활/석궁 쏠 때
+    hold:   { particle: FIREFLY, count: 1, spread: 0.2, interval: 60 }             # 손에 든 동안 주기적으로 (틱, 20=1초)
+  ```
+  - 각 항목 키: `particle`, `count`, `spread`, `speed`, `color`("#RRGGBB", DUST 계열만), `size`,
+    `sound`, `volume`, `pitch`, `interval`(hold 전용)
+  - **블록/아이템 데이터가 필요한 파티클은 금지** (서버가 무시): BLOCK, BLOCK_MARKER, BLOCK_CRUMBLE, FALLING_DUST,
+    DUST_PILLAR, ITEM, 그리고 색 2개가 필요한 DUST_COLOR_TRANSITION, 색이 필수인 ENTITY_EFFECT 도 쓰지 않음
+  - 무난한 파티클: DUST(색 지정), CHERRY_LEAVES, END_ROD, HEART, NOTE, HAPPY_VILLAGER, WAX_ON, GLOW, SNOWFLAKE,
+    BUBBLE_POP, NAUTILUS, FIREFLY, CLOUD (26.2 바닐라 particles 목록에 있는 것만)
+  - **힐링 서버 톤**: hold 는 count 1~2 · interval 40 이상으로 은은하게, hit/break 는 count 8 이하
+  - 바닐라 소리는 `minecraft:block.amethyst_block.chime` 처럼 사운드 이벤트 이름으로 (26.2 sounds.json 에 있는 것만)
+  - 크기 변화(S): 스킨 모델의 `display` 에서 손에 든 모습 scale 을 키움 (1.1~1.3 정도, 인벤토리 gui 는 그대로)
+- **커스텀 사운드 (한정 S 전용)**:
+  - `pack/assets/cosmetics/sounds.json` 에 이벤트 추가 — 이미 있으면 **덮어쓰지 말고 항목만 추가**
+    → `{"skin.anchor.hit": {"sounds": [{"name": "cosmetics:skin/anchor_hit"}]}}`
+  - 파일: `pack/assets/cosmetics/sounds/skin/<이름>.ogg` — **Ogg Vorbis, 모노** (스테레오면 위치에 따라 안 들림)
+  - skins.yml 에서는 `sound: "cosmetics:skin.anchor.hit"` (이벤트 이름)
+  - 소리는 직접 합성해서 만듦 (ffmpeg libvorbis 사용 가능), 짧고(1초 안팎) 부드럽게, 볼륨 과하지 않게
 - **display-name** 은 토큰 이름과 스킨 도감 이름으로 그대로 쓰임
   → 한국어 + `&` 색코드로 예쁘게 (테마 색 하나로 통일, 예: 솜사탕 `&d`, 서리 `&b`, 불꽃 `&c`, 벚꽃 `&d`)
   - 이미 쓰이는 이름과 겹치지 않게, 너무 길지 않게 (도감 한 줄에 들어가도록)
@@ -112,10 +134,15 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
    상태 있는 아이템은 fallback 이 바닐라 정의와 동일 + 스킨 모델이 상태별로 다 있는지, servermenu 폴더 변경 없음,
    **새 스킨마다 allowed-materials 전부에 `assets/minecraft/items/<재질>.json` entry(같은 threshold)가 있는지**
    (토큰 대표 재질 포함 — 하나라도 빠지면 토큰이 기본 모양으로 보임), `paper.json` 이 생기지 않았는지,
-   모든 스킨에 `rarity` 가 있고 값이 B/A/S 중 하나인지
+   모든 스킨에 `rarity` 가 있고 값이 B/A/S 중 하나인지,
+   effects 가 있으면: 키가 위 목록 안에 있는지, 금지 파티클이 아닌지, color 는 DUST 계열에만, interval 은 hold 에만,
+   hold 가 은은한지(count ≤ 2, interval ≥ 40), `effects` 나 크기 변화가 있으면 rarity S 인지,
+   `cosmetics:` 사운드는 sounds.json 에 이벤트가 있고 ogg 파일이 있으며 Vorbis·모노(채널 1)인지(ffprobe),
+   바닐라 사운드는 26.2 sounds.json 에 있는 이벤트인지
 4. 미리보기 이미지 (새 스킨들을 크게 확대해 한 장에) 를 사용자에게 보여주고 승인 요청
    - 갑옷·겉날개·말/늑대 갑옷이면 입은 모습(텍스처 펼친 그림)도 같이 보여줄 것
    - 상태 있는 아이템이면 상태별 모습(활 당기기 단계 등)도 같이 보여줄 것
+   - S 면 이펙트(어떤 파티클·색·언제)를 그림/표로, 커스텀 사운드는 ogg 파일도 같이 보내서 들어볼 수 있게
 5. 수정 요청이 오면 반영 후 다시 미리보기
 6. "승인" 하면 커밋·push → Actions 완료까지 기다림 → 새 릴리스 확인
    (Actions 결과를 못 읽으면 릴리스 zip 을 받아 직접 sha1 계산)
