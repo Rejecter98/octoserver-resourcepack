@@ -27,6 +27,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/sunflower_horse_armor"
     }
+   },
+   {
+    "threshold": 100073,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/lavender_horse_armor"
+    }
    }
   ]
  }

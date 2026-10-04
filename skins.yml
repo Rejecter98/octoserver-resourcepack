@@ -733,3 +733,261 @@ skins:
         spread: 0.3
         speed: 0.02
         interval: 8
+  mint_choco_sword:
+    display-name: "&a민트초코 검"
+    rarity: B
+    custom-model-data: 100066
+    category: sword
+    allowed-materials:
+      - WOODEN_SWORD
+      - STONE_SWORD
+      - COPPER_SWORD
+      - IRON_SWORD
+      - GOLDEN_SWORD
+      - DIAMOND_SWORD
+      - NETHERITE_SWORD
+  peach_axe:
+    display-name: "&d복숭아 도끼"
+    rarity: B
+    custom-model-data: 100067
+    category: axe
+    allowed-materials:
+      - WOODEN_AXE
+      - STONE_AXE
+      - COPPER_AXE
+      - IRON_AXE
+      - GOLDEN_AXE
+      - DIAMOND_AXE
+      - NETHERITE_AXE
+  matcha_shovel:
+    display-name: "&a말차 삽"
+    rarity: B
+    custom-model-data: 100068
+    category: shovel
+    allowed-materials:
+      - WOODEN_SHOVEL
+      - STONE_SHOVEL
+      - COPPER_SHOVEL
+      - IRON_SHOVEL
+      - GOLDEN_SHOVEL
+      - DIAMOND_SHOVEL
+      - NETHERITE_SHOVEL
+  blueberry_hoe:
+    display-name: "&9블루베리 괭이"
+    rarity: B
+    custom-model-data: 100069
+    category: hoe
+    allowed-materials:
+      - WOODEN_HOE
+      - STONE_HOE
+      - COPPER_HOE
+      - IRON_HOE
+      - GOLDEN_HOE
+      - DIAMOND_HOE
+      - NETHERITE_HOE
+  milk_tea_crossbow:
+    display-name: "&6밀크티 석궁"
+    rarity: B
+    custom-model-data: 100070
+    category: crossbow
+    allowed-materials:
+      - CROSSBOW
+  snowflake_trident:
+    display-name: "&b눈꽃 삼지창"
+    rarity: B
+    custom-model-data: 100071
+    category: trident
+    allowed-materials:
+      - TRIDENT
+  sunset_elytra:
+    display-name: "&6노을 날개"
+    rarity: B
+    custom-model-data: 100072
+    category: elytra
+    equipment-asset: "cosmetics:sunset"
+    allowed-materials:
+      - ELYTRA
+  lavender_horse_armor:
+    display-name: "&d라벤더 말 갑옷"
+    rarity: B
+    custom-model-data: 100073
+    category: horse_armor
+    equipment-asset: "cosmetics:lavender"
+    allowed-materials:
+      - LEATHER_HORSE_ARMOR
+      - COPPER_HORSE_ARMOR
+      - IRON_HORSE_ARMOR
+      - GOLDEN_HORSE_ARMOR
+      - DIAMOND_HORSE_ARMOR
+      - NETHERITE_HORSE_ARMOR
+  rose_shield:
+    display-name: "&c장미 방패"
+    rarity: B
+    custom-model-data: 100074
+    category: shield
+    allowed-materials:
+      - SHIELD
+  soda_wolf_armor:
+    display-name: "&b소다 늑대 갑옷"
+    rarity: B
+    custom-model-data: 100075
+    category: wolf_armor
+    equipment-asset: "cosmetics:soda"
+    allowed-materials:
+      - WOLF_ARMOR
+  cat_ear_helmet:
+    display-name: "&d냥이 모자"
+    rarity: A
+    custom-model-data: 100076
+    category: helmet
+    equipment-asset: "cosmetics:cat_ear"
+    allowed-materials:
+      - LEATHER_HELMET
+      - CHAINMAIL_HELMET
+      - COPPER_HELMET
+      - IRON_HELMET
+      - GOLDEN_HELMET
+      - DIAMOND_HELMET
+      - NETHERITE_HELMET
+  duck_boots:
+    display-name: "&e오리 장화"
+    rarity: A
+    custom-model-data: 100077
+    category: boots
+    equipment-asset: "cosmetics:duck"
+    allowed-materials:
+      - LEATHER_BOOTS
+      - CHAINMAIL_BOOTS
+      - COPPER_BOOTS
+      - IRON_BOOTS
+      - GOLDEN_BOOTS
+      - DIAMOND_BOOTS
+      - NETHERITE_BOOTS
+  lollipop_mace:
+    display-name: "&d롤리팝 철퇴"
+    rarity: A
+    custom-model-data: 100078
+    category: mace
+    allowed-materials:
+      - MACE
+  leaf_axe:
+    display-name: "&a나뭇잎 도끼"
+    rarity: A
+    custom-model-data: 100079
+    category: axe
+    allowed-materials:
+      - WOODEN_AXE
+      - STONE_AXE
+      - COPPER_AXE
+      - IRON_AXE
+      - GOLDEN_AXE
+      - DIAMOND_AXE
+      - NETHERITE_AXE
+  candy_cane_hoe:
+    display-name: "&c사탕지팡이 괭이"
+    rarity: A
+    custom-model-data: 100080
+    category: hoe
+    allowed-materials:
+      - WOODEN_HOE
+      - STONE_HOE
+      - COPPER_HOE
+      - IRON_HOE
+      - GOLDEN_HOE
+      - DIAMOND_HOE
+      - NETHERITE_HOE
+  feather_spear:
+    display-name: "&b깃털 창"
+    rarity: A
+    custom-model-data: 100081
+    category: spear
+    allowed-materials:
+      - WOODEN_SPEAR
+      - STONE_SPEAR
+      - COPPER_SPEAR
+      - IRON_SPEAR
+      - GOLDEN_SPEAR
+      - DIAMOND_SPEAR
+      - NETHERITE_SPEAR
+  cloud_brush:
+    display-name: "&f몽글 브러시"
+    rarity: A
+    custom-model-data: 100082
+    category: brush
+    allowed-materials:
+      - BRUSH
+  bunny_shears:
+    display-name: "&d토끼 가위"
+    rarity: A
+    custom-model-data: 100083
+    category: shears
+    allowed-materials:
+      - SHEARS
+  heart_flint_and_steel:
+    display-name: "&c하트 부싯돌"
+    rarity: A
+    custom-model-data: 100084
+    category: flint_and_steel
+    allowed-materials:
+      - FLINT_AND_STEEL
+  kaleidoscope_spyglass:
+    display-name: "&d만화경 망원경"
+    rarity: A
+    custom-model-data: 100085
+    category: spyglass
+    allowed-materials:
+      - SPYGLASS
+  constellation_sword:
+    display-name: "&5별자리 검"
+    rarity: S
+    custom-model-data: 100086
+    category: sword
+    allowed-materials:
+      - WOODEN_SWORD
+      - STONE_SWORD
+      - COPPER_SWORD
+      - IRON_SWORD
+      - GOLDEN_SWORD
+      - DIAMOND_SWORD
+      - NETHERITE_SWORD
+    effects:
+      swing:
+        particle: END_ROD
+        count: 15
+        spread: 0.3
+        speed: 0.02
+      hit:
+        particle: END_ROD
+        count: 25
+        spread: 0.35
+        speed: 0.03
+        at: target
+      hold:
+        particle: END_ROD
+        count: 3
+        spread: 0.3
+        speed: 0.01
+        interval: 8
+  sun_phoenix_crossbow:
+    display-name: "&6햇살 봉황 석궁"
+    rarity: S
+    custom-model-data: 100087
+    category: crossbow
+    allowed-materials:
+      - CROSSBOW
+    effects:
+      shoot:
+        particle: DUST
+        count: 25
+        spread: 0.3
+        speed: 0.03
+        color: "#FFB347"
+        size: 1.2
+      hold:
+        particle: DUST
+        count: 3
+        spread: 0.3
+        speed: 0.01
+        color: "#FFD27F"
+        size: 1.0
+        interval: 8

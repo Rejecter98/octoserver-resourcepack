@@ -28,6 +28,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/sakura_fairy_sword"
     }
+   },
+   {
+    "threshold": 100066,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/mint_choco_sword"
+    }
+   },
+   {
+    "threshold": 100086,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/constellation_sword"
+    }
    }
   ]
  }

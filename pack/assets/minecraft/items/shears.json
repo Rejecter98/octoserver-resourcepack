@@ -21,6 +21,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/ribbon_shears"
     }
+   },
+   {
+    "threshold": 100083,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/bunny_shears"
+    }
    }
   ]
  }

@@ -42,6 +42,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/watermelon_axe"
     }
+   },
+   {
+    "threshold": 100067,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/peach_axe"
+    }
+   },
+   {
+    "threshold": 100079,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/leaf_axe"
+    }
    }
   ]
  }

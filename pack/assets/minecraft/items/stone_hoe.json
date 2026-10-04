@@ -28,6 +28,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/watering_can_hoe"
     }
+   },
+   {
+    "threshold": 100069,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/blueberry_hoe"
+    }
+   },
+   {
+    "threshold": 100080,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/candy_cane_hoe"
+    }
    }
   ]
  }

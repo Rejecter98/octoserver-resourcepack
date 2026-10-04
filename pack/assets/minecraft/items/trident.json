@@ -129,6 +129,39 @@
      },
      "property": "minecraft:display_context"
     }
+   },
+   {
+    "threshold": 100071,
+    "model": {
+     "type": "minecraft:select",
+     "cases": [
+      {
+       "model": {
+        "type": "minecraft:model",
+        "model": "cosmetics:item/snowflake_trident"
+       },
+       "when": [
+        "gui",
+        "ground",
+        "fixed",
+        "on_shelf"
+       ]
+      }
+     ],
+     "fallback": {
+      "type": "minecraft:condition",
+      "on_false": {
+       "type": "minecraft:model",
+       "model": "cosmetics:item/snowflake_trident_in_hand"
+      },
+      "on_true": {
+       "type": "minecraft:model",
+       "model": "cosmetics:item/snowflake_trident_throwing"
+      },
+      "property": "minecraft:using_item"
+     },
+     "property": "minecraft:display_context"
+    }
    }
   ]
  }

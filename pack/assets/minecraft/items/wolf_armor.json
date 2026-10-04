@@ -40,6 +40,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/heart_wolf_armor"
     }
+   },
+   {
+    "threshold": 100075,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/soda_wolf_armor"
+    }
    }
   ]
  }

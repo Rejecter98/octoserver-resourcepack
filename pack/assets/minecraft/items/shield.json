@@ -75,6 +75,21 @@
      },
      "property": "minecraft:using_item"
     }
+   },
+   {
+    "threshold": 100074,
+    "model": {
+     "type": "minecraft:condition",
+     "on_false": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/rose_shield"
+     },
+     "on_true": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/rose_shield_blocking"
+     },
+     "property": "minecraft:using_item"
+    }
    }
   ]
  }

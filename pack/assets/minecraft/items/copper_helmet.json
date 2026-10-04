@@ -104,6 +104,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cloud_helmet"
     }
+   },
+   {
+    "threshold": 100076,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/cat_ear_helmet"
+    }
    }
   ]
  }

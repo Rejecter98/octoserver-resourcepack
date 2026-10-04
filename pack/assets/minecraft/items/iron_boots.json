@@ -104,6 +104,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cloud_boots"
     }
+   },
+   {
+    "threshold": 100077,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/duck_boots"
+    }
    }
   ]
  }

@@ -75,6 +75,31 @@
      },
      "property": "minecraft:display_context"
     }
+   },
+   {
+    "threshold": 100085,
+    "model": {
+     "type": "minecraft:select",
+     "cases": [
+      {
+       "model": {
+        "type": "minecraft:model",
+        "model": "cosmetics:item/kaleidoscope_spyglass"
+       },
+       "when": [
+        "gui",
+        "ground",
+        "fixed",
+        "on_shelf"
+       ]
+      }
+     ],
+     "fallback": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/kaleidoscope_spyglass_in_hand"
+     },
+     "property": "minecraft:display_context"
+    }
    }
   ]
  }

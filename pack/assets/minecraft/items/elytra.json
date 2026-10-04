@@ -45,6 +45,21 @@
      },
      "property": "minecraft:broken"
     }
+   },
+   {
+    "threshold": 100072,
+    "model": {
+     "type": "minecraft:condition",
+     "on_false": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/sunset_elytra"
+     },
+     "on_true": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/sunset_elytra_broken"
+     },
+     "property": "minecraft:broken"
+    }
    }
   ]
  }
