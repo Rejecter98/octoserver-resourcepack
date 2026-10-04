@@ -1,6 +1,12 @@
+# 스킨 등급(rarity) 기준
+#   B : 기존 모양에 색칠·픽셀만 바꾼 스킨
+#   A : 외형(모양) 자체가 원본에서 바뀐 스킨
+#   S : 크기 변화나 이펙트·파티클까지 포함된 스킨
+#   S(한정) : S + 전용 사운드까지 포함 — 한정 여부는 가챠 배너 설정에서 지정
 skins:
   flame_blade:
     display-name: "&c불꽃 검"
+    rarity: B
     custom-model-data: 100001
     category: sword
     allowed-materials:
@@ -12,6 +18,7 @@ skins:
       - NETHERITE_SWORD
   frost_blade:
     display-name: "&b서리 검"
+    rarity: B
     custom-model-data: 100002
     category: sword
     allowed-materials:
@@ -23,6 +30,7 @@ skins:
       - NETHERITE_SWORD
   sakura_blade:
     display-name: "&d벚꽃 검"
+    rarity: B
     custom-model-data: 100003
     category: sword
     allowed-materials:
@@ -34,6 +42,7 @@ skins:
       - NETHERITE_SWORD
   flame_pickaxe:
     display-name: "&c불꽃 곡괭이"
+    rarity: B
     custom-model-data: 100004
     category: pickaxe
     allowed-materials:
@@ -45,6 +54,7 @@ skins:
       - NETHERITE_PICKAXE
   frost_pickaxe:
     display-name: "&b서리 곡괭이"
+    rarity: B
     custom-model-data: 100005
     category: pickaxe
     allowed-materials:
@@ -56,6 +66,7 @@ skins:
       - NETHERITE_PICKAXE
   sakura_pickaxe:
     display-name: "&d벚꽃 곡괭이"
+    rarity: B
     custom-model-data: 100006
     category: pickaxe
     allowed-materials:
@@ -67,6 +78,7 @@ skins:
       - NETHERITE_PICKAXE
   flame_axe:
     display-name: "&c불꽃 도끼"
+    rarity: B
     custom-model-data: 100007
     category: axe
     allowed-materials:
@@ -78,6 +90,7 @@ skins:
       - NETHERITE_AXE
   frost_axe:
     display-name: "&b서리 도끼"
+    rarity: B
     custom-model-data: 100008
     category: axe
     allowed-materials:
@@ -89,6 +102,7 @@ skins:
       - NETHERITE_AXE
   sakura_axe:
     display-name: "&d벚꽃 도끼"
+    rarity: B
     custom-model-data: 100009
     category: axe
     allowed-materials:
@@ -100,6 +114,7 @@ skins:
       - NETHERITE_AXE
   flame_shovel:
     display-name: "&c불꽃 삽"
+    rarity: B
     custom-model-data: 100010
     category: shovel
     allowed-materials:
@@ -111,6 +126,7 @@ skins:
       - NETHERITE_SHOVEL
   frost_shovel:
     display-name: "&b서리 삽"
+    rarity: B
     custom-model-data: 100011
     category: shovel
     allowed-materials:
@@ -122,6 +138,7 @@ skins:
       - NETHERITE_SHOVEL
   sakura_shovel:
     display-name: "&d벚꽃 삽"
+    rarity: B
     custom-model-data: 100012
     category: shovel
     allowed-materials:
@@ -133,6 +150,7 @@ skins:
       - NETHERITE_SHOVEL
   cotton_candy_helmet:
     display-name: "&d솜사탕 투구"
+    rarity: B
     custom-model-data: 100013
     category: helmet
     equipment-asset: "cosmetics:cotton_candy"
@@ -146,6 +164,7 @@ skins:
       - NETHERITE_HELMET
   cotton_candy_chestplate:
     display-name: "&d솜사탕 흉갑"
+    rarity: B
     custom-model-data: 100014
     category: chestplate
     equipment-asset: "cosmetics:cotton_candy"
@@ -159,6 +178,7 @@ skins:
       - NETHERITE_CHESTPLATE
   cotton_candy_leggings:
     display-name: "&d솜사탕 레깅스"
+    rarity: B
     custom-model-data: 100015
     category: leggings
     equipment-asset: "cosmetics:cotton_candy"
@@ -172,6 +192,7 @@ skins:
       - NETHERITE_LEGGINGS
   cotton_candy_boots:
     display-name: "&d솜사탕 부츠"
+    rarity: B
     custom-model-data: 100016
     category: boots
     equipment-asset: "cosmetics:cotton_candy"
@@ -185,6 +206,7 @@ skins:
       - NETHERITE_BOOTS
   cotton_candy_elytra:
     display-name: "&d솜사탕 겉날개"
+    rarity: B
     custom-model-data: 100017
     category: elytra
     equipment-asset: "cosmetics:cotton_candy"
@@ -192,6 +214,7 @@ skins:
       - ELYTRA
   cotton_candy_horse_armor:
     display-name: "&d솜사탕 말 갑옷"
+    rarity: B
     custom-model-data: 100018
     category: horse_armor
     equipment-asset: "cosmetics:cotton_candy"
@@ -204,6 +227,7 @@ skins:
       - NETHERITE_HORSE_ARMOR
   cotton_candy_wolf_armor:
     display-name: "&d솜사탕 늑대 갑옷"
+    rarity: B
     custom-model-data: 100019
     category: wolf_armor
     equipment-asset: "cosmetics:cotton_candy"
@@ -211,6 +235,7 @@ skins:
       - WOLF_ARMOR
   cotton_candy_hoe:
     display-name: "&d솜사탕 괭이"
+    rarity: B
     custom-model-data: 100020
     category: hoe
     allowed-materials:
@@ -223,42 +248,49 @@ skins:
       - NETHERITE_HOE
   cotton_candy_shears:
     display-name: "&d솜사탕 가위"
+    rarity: B
     custom-model-data: 100021
     category: shears
     allowed-materials:
       - SHEARS
   cotton_candy_fishing_rod:
     display-name: "&d솜사탕 낚싯대"
+    rarity: B
     custom-model-data: 100022
     category: fishing_rod
     allowed-materials:
       - FISHING_ROD
   cotton_candy_flint_and_steel:
     display-name: "&d솜사탕 부싯돌"
+    rarity: B
     custom-model-data: 100023
     category: flint_and_steel
     allowed-materials:
       - FLINT_AND_STEEL
   cotton_candy_brush:
     display-name: "&d솜사탕 브러시"
+    rarity: B
     custom-model-data: 100024
     category: brush
     allowed-materials:
       - BRUSH
   cotton_candy_spyglass:
     display-name: "&d솜사탕 망원경"
+    rarity: B
     custom-model-data: 100025
     category: spyglass
     allowed-materials:
       - SPYGLASS
   cotton_candy_carrot_on_a_stick:
     display-name: "&d솜사탕 당근 낚싯대"
+    rarity: B
     custom-model-data: 100026
     category: carrot_on_a_stick
     allowed-materials:
       - CARROT_ON_A_STICK
   cotton_candy_spear:
     display-name: "&d솜사탕 창"
+    rarity: B
     custom-model-data: 100027
     category: spear
     allowed-materials:
@@ -271,36 +303,42 @@ skins:
       - NETHERITE_SPEAR
   cotton_candy_mace:
     display-name: "&d솜사탕 철퇴"
+    rarity: B
     custom-model-data: 100028
     category: mace
     allowed-materials:
       - MACE
   cotton_candy_trident:
     display-name: "&d솜사탕 삼지창"
+    rarity: B
     custom-model-data: 100029
     category: trident
     allowed-materials:
       - TRIDENT
   cotton_candy_bow:
     display-name: "&d솜사탕 활"
+    rarity: B
     custom-model-data: 100030
     category: bow
     allowed-materials:
       - BOW
   cotton_candy_crossbow:
     display-name: "&d솜사탕 석궁"
+    rarity: B
     custom-model-data: 100031
     category: crossbow
     allowed-materials:
       - CROSSBOW
   cotton_candy_shield:
     display-name: "&d솜사탕 방패"
+    rarity: B
     custom-model-data: 100032
     category: shield
     allowed-materials:
       - SHIELD
   deep_sea_anchor_pickaxe:
     display-name: "&3심해 닻"
+    rarity: A
     custom-model-data: 100033
     category: pickaxe
     allowed-materials:
@@ -313,6 +351,7 @@ skins:
       - NETHERITE_PICKAXE
   honey_sword:
     display-name: "&e꿀단지 검"
+    rarity: B
     custom-model-data: 100034
     category: sword
     allowed-materials:
@@ -325,6 +364,7 @@ skins:
       - NETHERITE_SWORD
   honey_pickaxe:
     display-name: "&e꿀단지 곡괭이"
+    rarity: B
     custom-model-data: 100035
     category: pickaxe
     allowed-materials:
@@ -337,6 +377,7 @@ skins:
       - NETHERITE_PICKAXE
   honey_axe:
     display-name: "&e꿀단지 도끼"
+    rarity: B
     custom-model-data: 100036
     category: axe
     allowed-materials:
@@ -349,6 +390,7 @@ skins:
       - NETHERITE_AXE
   honey_shovel:
     display-name: "&e꿀단지 삽"
+    rarity: B
     custom-model-data: 100037
     category: shovel
     allowed-materials:
@@ -361,6 +403,7 @@ skins:
       - NETHERITE_SHOVEL
   honey_hoe:
     display-name: "&e꿀단지 괭이"
+    rarity: B
     custom-model-data: 100038
     category: hoe
     allowed-materials:
@@ -373,6 +416,7 @@ skins:
       - NETHERITE_HOE
   watermelon_axe:
     display-name: "&a수박 도끼"
+    rarity: B
     custom-model-data: 100039
     category: axe
     allowed-materials:
@@ -385,6 +429,7 @@ skins:
       - NETHERITE_AXE
   mushroom_shovel:
     display-name: "&c버섯 삽"
+    rarity: B
     custom-model-data: 100040
     category: shovel
     allowed-materials:
@@ -397,24 +442,28 @@ skins:
       - NETHERITE_SHOVEL
   star_candy_mace:
     display-name: "&d별사탕 철퇴"
+    rarity: B
     custom-model-data: 100041
     category: mace
     allowed-materials:
       - MACE
   rainbow_bow:
     display-name: "&b무지개 활"
+    rarity: B
     custom-model-data: 100042
     category: bow
     allowed-materials:
       - BOW
   cat_paw_shield:
     display-name: "&f냥발 방패"
+    rarity: B
     custom-model-data: 100043
     category: shield
     allowed-materials:
       - SHIELD
   cloud_helmet:
     display-name: "&f구름 투구"
+    rarity: B
     custom-model-data: 100044
     category: helmet
     equipment-asset: "cosmetics:cloud"
@@ -428,6 +477,7 @@ skins:
       - NETHERITE_HELMET
   cloud_chestplate:
     display-name: "&f구름 흉갑"
+    rarity: B
     custom-model-data: 100045
     category: chestplate
     equipment-asset: "cosmetics:cloud"
@@ -441,6 +491,7 @@ skins:
       - NETHERITE_CHESTPLATE
   cloud_leggings:
     display-name: "&f구름 레깅스"
+    rarity: B
     custom-model-data: 100046
     category: leggings
     equipment-asset: "cosmetics:cloud"
@@ -454,6 +505,7 @@ skins:
       - NETHERITE_LEGGINGS
   cloud_boots:
     display-name: "&f구름 부츠"
+    rarity: B
     custom-model-data: 100047
     category: boots
     equipment-asset: "cosmetics:cloud"
@@ -467,6 +519,7 @@ skins:
       - NETHERITE_BOOTS
   butterfly_elytra:
     display-name: "&d나비 날개"
+    rarity: B
     custom-model-data: 100048
     category: elytra
     equipment-asset: "cosmetics:butterfly"
@@ -474,6 +527,7 @@ skins:
       - ELYTRA
   sunflower_horse_armor:
     display-name: "&e해바라기 말 갑옷"
+    rarity: B
     custom-model-data: 100049
     category: horse_armor
     equipment-asset: "cosmetics:sunflower"
@@ -486,6 +540,7 @@ skins:
       - NETHERITE_HORSE_ARMOR
   heart_wolf_armor:
     display-name: "&d하트 늑대 갑옷"
+    rarity: B
     custom-model-data: 100050
     category: wolf_armor
     equipment-asset: "cosmetics:heart"
@@ -493,42 +548,49 @@ skins:
       - WOLF_ARMOR
   ribbon_shears:
     display-name: "&d리본 가위"
+    rarity: B
     custom-model-data: 100051
     category: shears
     allowed-materials:
       - SHEARS
   bamboo_fishing_rod:
     display-name: "&a대나무 낚싯대"
+    rarity: B
     custom-model-data: 100052
     category: fishing_rod
     allowed-materials:
       - FISHING_ROD
   marshmallow_flint_and_steel:
     display-name: "&f마시멜로 부싯돌"
+    rarity: B
     custom-model-data: 100053
     category: flint_and_steel
     allowed-materials:
       - FLINT_AND_STEEL
   sprout_brush:
     display-name: "&a새싹 브러시"
+    rarity: B
     custom-model-data: 100054
     category: brush
     allowed-materials:
       - BRUSH
   starlight_spyglass:
     display-name: "&9별빛 망원경"
+    rarity: B
     custom-model-data: 100055
     category: spyglass
     allowed-materials:
       - SPYGLASS
   strawberry_carrot_on_a_stick:
     display-name: "&c딸기 낚싯대"
+    rarity: B
     custom-model-data: 100056
     category: carrot_on_a_stick
     allowed-materials:
       - CARROT_ON_A_STICK
   unicorn_spear:
     display-name: "&d유니콘 창"
+    rarity: B
     custom-model-data: 100057
     category: spear
     allowed-materials:
@@ -541,12 +603,14 @@ skins:
       - NETHERITE_SPEAR
   coral_trident:
     display-name: "&c산호 삼지창"
+    rarity: B
     custom-model-data: 100058
     category: trident
     allowed-materials:
       - TRIDENT
   lemon_crossbow:
     display-name: "&e레몬 석궁"
+    rarity: B
     custom-model-data: 100059
     category: crossbow
     allowed-materials:
