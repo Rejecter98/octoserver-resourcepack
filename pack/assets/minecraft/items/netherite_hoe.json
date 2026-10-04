@@ -21,6 +21,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/honey_hoe"
     }
+   },
+   {
+    "threshold": 100061,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/watering_can_hoe"
+    }
    }
   ]
  }

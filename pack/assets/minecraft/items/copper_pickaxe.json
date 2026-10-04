@@ -21,6 +21,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/honey_pickaxe"
     }
+   },
+   {
+    "threshold": 100064,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/firefly_pickaxe"
+    }
    }
   ]
  }

@@ -615,3 +615,114 @@ skins:
     category: crossbow
     allowed-materials:
       - CROSSBOW
+  starlight_wand_sword:
+    display-name: "&d별빛 요술봉"
+    rarity: A
+    custom-model-data: 100060
+    category: sword
+    allowed-materials:
+      - WOODEN_SWORD
+      - STONE_SWORD
+      - COPPER_SWORD
+      - IRON_SWORD
+      - GOLDEN_SWORD
+      - DIAMOND_SWORD
+      - NETHERITE_SWORD
+  watering_can_hoe:
+    display-name: "&b물뿌리개 괭이"
+    rarity: A
+    custom-model-data: 100061
+    category: hoe
+    allowed-materials:
+      - WOODEN_HOE
+      - STONE_HOE
+      - COPPER_HOE
+      - IRON_HOE
+      - GOLDEN_HOE
+      - DIAMOND_HOE
+      - NETHERITE_HOE
+  fish_bread_shovel:
+    display-name: "&6붕어빵 삽"
+    rarity: A
+    custom-model-data: 100062
+    category: shovel
+    allowed-materials:
+      - WOODEN_SHOVEL
+      - STONE_SHOVEL
+      - COPPER_SHOVEL
+      - IRON_SHOVEL
+      - GOLDEN_SHOVEL
+      - DIAMOND_SHOVEL
+      - NETHERITE_SHOVEL
+  sakura_fairy_sword:
+    display-name: "&d벚꽃 요정 검"
+    rarity: S
+    custom-model-data: 100063
+    category: sword
+    allowed-materials:
+      - WOODEN_SWORD
+      - STONE_SWORD
+      - COPPER_SWORD
+      - IRON_SWORD
+      - GOLDEN_SWORD
+      - DIAMOND_SWORD
+      - NETHERITE_SWORD
+    effects:
+      hit:
+        particle: CHERRY_LEAVES
+        count: 6
+        spread: 0.3
+        speed: 0.02
+      hold:
+        particle: CHERRY_LEAVES
+        count: 1
+        spread: 0.3
+        speed: 0.01
+        interval: 60
+  firefly_pickaxe:
+    display-name: "&e반딧불 곡괭이"
+    rarity: S
+    custom-model-data: 100064
+    category: pickaxe
+    allowed-materials:
+      - WOODEN_PICKAXE
+      - STONE_PICKAXE
+      - COPPER_PICKAXE
+      - IRON_PICKAXE
+      - GOLDEN_PICKAXE
+      - DIAMOND_PICKAXE
+      - NETHERITE_PICKAXE
+    effects:
+      break:
+        particle: WAX_ON
+        count: 5
+        spread: 0.3
+        speed: 0.02
+      hold:
+        particle: FIREFLY
+        count: 1
+        spread: 0.4
+        speed: 0.01
+        interval: 60
+  deep_sea_whale_bow:
+    display-name: "&3심해 고래 활"
+    rarity: S
+    custom-model-data: 100065
+    category: bow
+    allowed-materials:
+      - BOW
+    effects:
+      shoot:
+        particle: BUBBLE_POP
+        count: 6
+        spread: 0.2
+        speed: 0.02
+        sound: "cosmetics:skin.whale.shoot"
+        volume: 0.8
+        pitch: 1.0
+      hold:
+        particle: BUBBLE_POP
+        count: 1
+        spread: 0.3
+        speed: 0.01
+        interval: 80

@@ -1,0 +1,9 @@
+{
+  "skin.whale.shoot": {
+    "sounds": [
+      {
+        "name": "cosmetics:skin/whale_shoot"
+      }
+    ]
+  }
+}

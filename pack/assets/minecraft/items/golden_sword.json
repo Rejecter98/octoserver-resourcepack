@@ -35,6 +35,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/honey_sword"
     }
+   },
+   {
+    "threshold": 100060,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/starlight_wand_sword"
+    }
+   },
+   {
+    "threshold": 100063,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/sakura_fairy_sword"
+    }
    }
   ]
  }

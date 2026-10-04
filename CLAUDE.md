@@ -29,7 +29,11 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
   - 새 스킨은 위 기준으로 등급을 정하고, **계획 단계 표에 등급도 같이** 보여줄 것
   - 바닐라 그림을 다시 칠하는 방식(지금까지의 대부분)은 B, 직접 새 실루엣을 그리면 A
   - S·한정 S 는 가챠 상위 등급이므로 실루엣도 새로 그리는 것(A 수준 외형)을 기본으로 하고 거기에 효과를 얹을 것
-- 현재 등급: deep_sea_anchor_pickaxe 만 A, 나머지 58종은 B
+- 현재 등급 (65종):
+  - A: deep_sea_anchor_pickaxe(100033), starlight_wand_sword(100060), watering_can_hoe(100061), fish_bread_shovel(100062)
+  - S 상시: sakura_fairy_sword(100063), firefly_pickaxe(100064)
+  - S 한정(시즌 1 심해): deep_sea_whale_bow(100065) — 전용 사운드 `cosmetics:skin.whale.shoot` (거품 보글보글 0.43초)
+  - 나머지는 전부 B
 - **스킨 이펙트 (CosmeticSkins 1.4.0-octo~)**: skins.yml 스킨마다 선택으로 `effects:` (S 등급의 조건)
   ```yaml
   effects:
@@ -38,6 +42,8 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
     shoot:  { particle: BUBBLE_POP, count: 6, sound: "cosmetics:skin.whale.shoot", volume: 0.8, pitch: 1.0 } # 활/석궁 쏠 때
     hold:   { particle: FIREFLY, count: 1, spread: 0.2, interval: 60 }             # 손에 든 동안 주기적으로 (틱, 20=1초)
   ```
+  - **값 형식 (서버 확인 완료)**: `particle` 은 Bukkit 대문자 이름(`CHERRY_LEAVES`) — `minecraft:` 형식은 서버가 인식 못 함.
+    `sound` 는 바닐라 `minecraft:block.amethyst_block.chime`, 커스텀 `cosmetics:skin.whale.shoot` 형식
   - 각 항목 키: `particle`, `count`, `spread`, `speed`, `color`("#RRGGBB", DUST 계열만), `size`,
     `sound`, `volume`, `pitch`, `interval`(hold 전용)
   - **블록/아이템 데이터가 필요한 파티클은 금지** (서버가 무시): BLOCK, BLOCK_MARKER, BLOCK_CRUMBLE, FALLING_DUST,

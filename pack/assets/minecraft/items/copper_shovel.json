@@ -21,6 +21,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/mushroom_shovel"
     }
+   },
+   {
+    "threshold": 100062,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/fish_bread_shovel"
+    }
    }
   ]
  }
