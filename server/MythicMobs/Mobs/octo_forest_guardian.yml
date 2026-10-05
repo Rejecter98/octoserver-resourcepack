@@ -1,0 +1,74 @@
+# OctoRaid 일일 레이드 보스 — 숲의 수호자 (MythicMobs 5.13 무료 기능만 사용)
+# 넣을 곳: plugins/MythicMobs/Mobs/octo_forest_guardian.yml  →  /mm reload
+#
+# - 3D 모델: BetterModel 의 octo_forest_guardian 모델을 스폰할 때 입힘 (bm:model).
+#   BetterModel 이 없거나 모델이 없으면 bm: 줄만 실패하고 아래 바닐라 외형(변명자 + 진달래 머리 + 나무 도끼)으로 정상 진행.
+# - 체력 2400 은 spigot.yml settings.attribute.maxHealth.max 를 10000 으로 올려야 그대로 적용됨
+#   (OctoRaid 인원 배율 최대 2.8배 → 6720).
+# - 실제 근접 피해 = Damage 12 + 나무 도끼 6 = 18 (몹이 든 무기의 공격력도 더해짐).
+# - 드랍·경험치 없음 / 사라지지 않음 / 보상·제한 시간·인원 배율·크기(scale)는 OctoRaid 가 처리.
+octo_forest_guardian:
+  Type: VINDICATOR
+  Display: '&2숲의 수호자'
+  Health: 2400
+  Damage: 12
+  Armor: 6
+  BossBar:
+    Enabled: true
+    Title: '&2숲의 수호자'
+    Range: 60
+    Color: GREEN
+    Style: SEGMENTED_10
+  Options:
+    MovementSpeed: 0.3
+    KnockbackResistance: 0.8
+    FollowRange: 48
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    PreventSunburn: true
+    Despawn: false
+    Silent: false
+  Equipment:
+  - WOODEN_AXE HAND
+  - FLOWERING_AZALEA HEAD
+  Skills:
+  # ---- 시작
+  - setvariable{var=caster.phase;value=1;type=INTEGER} @self ~onSpawn
+  - setvariable{var=caster.busy;value=0;type=INTEGER} @self ~onSpawn
+  - bm:model{mid=octo_forest_guardian;da=true} @self ~onSpawn
+  - 'message{m="&2숲의 수호자&7: 숲을 해치는 자여... 돌아가라!"} @PlayersInRadius{r=60} ~onSpawn'
+  # ---- 상시 오라 (2초마다 포자 조금)
+  - effect:particles{p=spore_blossom_air;a=6;hs=1;vs=1.2;y=2} @self ~onTimer:40
+  # ---- 기본 공격 모션
+  - bm:state{mid=octo_forest_guardian;s=attack} @self ~onAttack
+  # ---- 패턴 (페이즈 1 / 페이즈 2 간격)
+  - skill{s=octo_fg_slam} @self ~onTimer:200 ?variableequals{var=caster.phase;value=1}
+  - skill{s=octo_fg_slam} @self ~onTimer:140 ?variableequals{var=caster.phase;value=2}
+  - skill{s=octo_fg_roots} @self ~onTimer:280 ?variableequals{var=caster.phase;value=1}
+  - skill{s=octo_fg_roots} @self ~onTimer:200 ?variableequals{var=caster.phase;value=2}
+  - skill{s=octo_fg_summon} @self ~onTimer:500
+  # ---- 체력 50% 이하 → 페이즈 2 (한 번만)
+  - skill{s=octo_fg_phase2} @self ~onDamaged ?healthpercent{h=<0.5} ?variableequals{var=caster.phase;value=1}
+  # ---- 사망 (쓰러지는 모션은 BetterModel 이 death 애니메이션을 자동 재생)
+  - 'message{m="&2숲의 수호자&7: 숲이... 다시... 잠든다..."} @PlayersInRadius{r=60} ~onDeath'
+  - effect:particles{p=happy_villager;a=40;hs=2;vs=1.5;y=1} @self ~onDeath
+
+# 새싹 졸개: 살아 있는 동안 5초마다 수호자 체력 1% 회복 → 먼저 처치할 이유
+octo_forest_sprout:
+  Type: ZOMBIE
+  Display: '&a숲의 새싹'
+  Health: 30
+  Damage: 3
+  Options:
+    MovementSpeed: 0.28
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    PreventSunburn: true
+    Despawn: true
+  Equipment:
+  - OAK_LEAVES HEAD
+  Skills:
+  - healpercent{m=0.01} @parent ~onTimer:100
+  - effect:particles{p=happy_villager;a=8;hs=0.6;vs=0.6;y=2} @parent ~onTimer:100

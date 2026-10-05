@@ -10,6 +10,10 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
 - `.github/workflows/release.yml` — main 에 `pack/**` 또는 `skins.yml` 변경이 push 되면
   `CosmeticPack.zip` 빌드 → sha1 계산 → 기존 `vN` 중 최대 N+1 태그로 릴리스 생성
   (첨부: `CosmeticPack.zip`, `skins.yml` / 본문 첫 줄 `sha1: <값>`, 그 아래 변경된 스킨 목록)
+  - `models/**`, `server/BetterModel/**`, `tools/**` 변경도 릴리스를 만듦
+- `models/` — 레이드 보스 BetterModel 원본 `.bbmodel` (팩 밖, 서버 `plugins/BetterModel/models/` 에도 같은 파일)
+- `server/` — 서버에 넣는 설정 원본 (MythicMobs Mobs/Skills, BetterModel config.yml)
+- `tools/gen_bettermodel.py` — 릴리스 때 BetterModel 팩을 실제 BetterModel 로 생성해 합침 (아래 "레이드 보스")
 
 ## 서버 플러그인 (CosmeticSkins) 연동
 - 서버 폴더: `plugins/CosmeticSkins` (버전 없는 이름) — skins.yml 은 `plugins/CosmeticSkins/skins.yml`
@@ -200,6 +204,40 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
    - 서버에서 할 일: skins.yml → `plugins/CosmeticSkins/` 에 덮어쓰기,
      `resource-pack-sha1` 교체, 서버 재시작
    - 릴리스 태그 이름
+
+## 레이드 보스 (OctoRaid + MythicMobs 5.13 무료 + BetterModel)
+- 보스 하나당 결과물: 컨셉 · 밸런스 계산 · `server/MythicMobs/Mobs|Skills/<이름>.yml` · `models/<이름>.bbmodel`
+  · raids.yml boss 부분 · (필요 시) spigot.yml 값 · 릴리스 sha1 · 적용 체크리스트 · 플러그인 쪽 요청사항(따로)
+- 진행: 테마/설계안 → 미리보기(모델 렌더 + 모션 GIF) → 사용자 "승인" → 제작·릴리스 → 전달
+- OctoRaid 가 하는 일(보스에서 하지 말 것): 파티·아레나·제한 시간·사망/부활·보상·인원 체력 배율(1+0.6×(n-1))·
+  크기(SCALE 속성)·60블록 리쉬·종료 시 몹 정리. 보스는 `PreventOtherDrops: true`, `Despawn: false`, 보상 없음
+- 이름: 영문 소문자 + `octo_` (스킬 `octo_<약어>_<패턴>`), 대사 한국어 + `&` 색코드
+- 큰 공격은 반드시 예고(채팅·사운드·파티클·멈춤) → 모션의 예고 자세 시간과 스킬 `delay` 를 맞출 것
+- 체력 2048 초과(인원 배율 2.8배 포함)면 spigot.yml `settings.attribute.maxHealth.max` 값을 안내
+- 몹이 든 무기 공격력이 Damage 에 더해짐 (나무 도끼 +6, 철 도끼 +8 …) → 실제 피해 = Damage + 무기
+- MythicMobs 줄에 `: `(콜론+공백)이 들어가면 YAML 이 깨짐 → 그 줄 전체를 작은따옴표로 감쌀 것
+- MythicMobs 문법은 wiki.mythiccraft.io 에서 확인 (추측 금지). 프리미엄 기능 금지
+- 모델이 없어도 레이드가 돌아가야 함: 바닐라 외형(몹 종류·장비·크기·가벼운 오라) + `bm:` 줄은 실패해도 무시됨
+
+### BetterModel 연동 (버전 고정: BetterModel 3.5.0, Paper 26.2 build 129 — `tools/gen_bettermodel.py` 상단)
+- MythicMobs 문법 (BetterModel 3.5.0 소스 `compatibility/mythicmobs` 에서 확인):
+  - 모델 입히기: `bm:model{mid=<모델>;da=true} @self ~onSpawn` (scale 생략 = 몹 SCALE 속성을 그대로 따라감)
+  - 패턴 모션: `bm:state{mid=<모델>;s=<애니메이션>} @self` (li/lo = 블렌드 틱, sp = 속도, r=true = 정지)
+  - 애니메이션 이름 `idle`·`walk`·`spawn`·`damage`·`death` 는 BetterModel 이 자동 재생 → 나머지만 bm:state
+- .bbmodel 규칙: Blockbench free 포맷, 앞 = 북쪽(-Z), 큐브 회전 없이 뼈(그룹) 회전만 사용, 큐브 30~40개,
+  텍스처는 파일 안에 base64 로 포함, 뼈 이름 태그 `h_`(머리=시선 따라감) `glow_`(발광)
+  - 생성기: `tools/models/<모델>.py` (큐브·텍스처·애니메이션을 코드로 작성 → `models/<모델>.bbmodel`)
+  - 미리보기: `tools/models/render.py` (소프트웨어 렌더러. Blockbench 규칙: 그룹 Euler ZYX, 애니메이션 회전 x·y 부호 반전)
+- **팩 합치기 (사용자 서버 작업 없이)**: 릴리스 워크플로가 `tools/gen_bettermodel.py` 실행 →
+  Paper + BetterModel 을 잠깐 켜서 `models/*.bbmodel` 로 팩 생성(`pack-type: folder`) →
+  `assets/bettermodel/**` 만 `pack/assets/bettermodel/` 로 **통째 교체** (그 밖의 경로가 생기면 실패로 멈춤 = 겹침 보고)
+  - `pack/assets/bettermodel/` 은 생성물이라 `.gitignore` (커밋하지 않음), pack.mcmeta(88)는 우리 것 유지
+  - 서버 BetterModel 설정 = `server/BetterModel/config.yml` (`pack-type: none`, `pack.use-obfuscation: false`,
+    `module.player-animation: false`) — CI 는 같은 파일에서 pack-type 만 folder 로 바꿔 씀 → 이름·내용 일치
+  - 서버와 CI 의 BetterModel 버전·config·.bbmodel 이 같아야 함. BetterModel 버전을 올릴 땐 스크립트 상수와
+    사용자 서버 jar 를 같이 바꾸도록 안내
+- 모델이 바뀔 때 사용자 서버 작업: `.bbmodel` 를 `plugins/BetterModel/models/` 에 넣기 → `/bettermodel reload`
+  → `resource-pack-sha1` 교체 (BetterModel 첫 실행 전에 models 폴더를 만들어 두면 예제 모델이 안 생김)
 
 ## 참고 (세션 환경)
 - 이 환경의 `gh` 는 GraphQL 이 막혀 있음 → `gh api repos/Rejecter98/octoserver-resourcepack/...` (REST) 사용

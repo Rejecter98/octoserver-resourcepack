@@ -1,0 +1,90 @@
+# 숲의 수호자 스킬 — 넣을 곳: plugins/MythicMobs/Skills/octo_forest_guardian.yml  →  /mm reload
+# bm:state 줄 = BetterModel 패턴 모션 (BetterModel 이 없으면 그 줄만 무시되고 패턴은 그대로 동작)
+# caster.busy = 패턴끼리 겹치지 않게 하는 표시 (1 이면 다른 패턴은 이번 타이머를 건너뜀)
+
+# ② 대지 내려찍기 — 1.6초 예고(멈춤 + 포효 + 반경 5 초록 원) → 반경 5 피해 40 + 띄우기
+octo_fg_slam:
+  Conditions:
+  - variableequals{var=caster.busy;value=0}
+  Skills:
+  - setvariable{var=caster.busy;value=1;type=INTEGER} @self
+  - bm:state{mid=octo_forest_guardian;s=slam} @self
+  - message{m="&2숲의 수호자&7가 망치를 높이 듭니다! &c(초록 원 밖으로!)"} @PlayersInRadius{r=60}
+  - sound{s=entity.ravager.roar;v=1;p=1.2} @self
+  - potion{type=SLOWNESS;duration=36;level=10;hasParticles=false;hasIcon=false} @self
+  - effect:particlering{particle=dust;color=#7CD67C;size=1.5;radius=5;points=32;amount=1;repeat=6;repeatInterval=5} @selfLocation
+  - delay 32
+  - sound{s=entity.generic.explode;v=1;p=0.8} @self
+  - effect:particles{p=explosion;a=6;hs=3;vs=0.3} @self
+  - effect:particlering{particle=happy_villager;radius=5;points=24;amount=2} @selfLocation
+  - damage{a=40} @PlayersInRadius{r=5}
+  - throw{velocity=8;velocityY=6} @PlayersInRadius{r=5}
+  - skill{s=octo_fg_shockwave} @self ?variableequals{var=caster.phase;value=2}
+  - delay 14
+  - setvariable{var=caster.busy;value=0;type=INTEGER} @self
+
+# ⑤ (페이즈 2 전용) 내려찍기 직후 바깥 고리(5~9블록) 충격파 — 1초 예고(주황 원 2개) → 피해 28
+octo_fg_shockwave:
+  Skills:
+  - message{m="&c충격파가 바깥으로 퍼집니다! &7(수호자 쪽으로 들어오세요)"} @PlayersInRadius{r=60}
+  - effect:particlering{particle=dust;color=#F0905A;size=1.5;radius=7;points=40;amount=1;repeat=3;repeatInterval=6} @selfLocation
+  - effect:particlering{particle=dust;color=#F0905A;size=1.5;radius=9;points=48;amount=1;repeat=3;repeatInterval=6} @selfLocation
+  - delay 20
+  - sound{s=entity.generic.explode;v=0.8;p=1.3} @self
+  - effect:particlering{particle=cloud;radius=7;points=40;amount=2} @selfLocation
+  - damage{a=28} @PlayersInRing{min=5;max=9}
+  - throw{velocity=5;velocityY=3} @PlayersInRing{min=5;max=9}
+
+# ③ 뿌리 덫 — 각 플레이어 발밑(시전 순간 위치)에 1.5초 갈색 원 → 그 자리에 뿌리: 피해 24 + 2초 묶임
+octo_fg_roots:
+  Conditions:
+  - variableequals{var=caster.busy;value=0}
+  Skills:
+  - setvariable{var=caster.busy;value=1;type=INTEGER} @self
+  - bm:state{mid=octo_forest_guardian;s=root_bind} @self
+  - message{m="&a땅이 꿈틀거립니다! &7(발밑 갈색 원에서 벗어나세요)"} @PlayersInRadius{r=60}
+  - sound{s=block.rooted_dirt.break;v=1;p=0.6} @self
+  - potion{type=SLOWNESS;duration=30;level=10;hasParticles=false;hasIcon=false} @self
+  - skill{s=octo_fg_roots_strike} @PlayerLocationsInRadius{r=40}
+  - delay 40
+  - setvariable{var=caster.busy;value=0;type=INTEGER} @self
+
+# (내부) 위치 대상 그대로 이어받음 → 표시 → 뿌리
+octo_fg_roots_strike:
+  Skills:
+  - effect:particlering{particle=dust;color=#8B5A2B;size=1.3;radius=1.5;points=14;amount=1;repeat=5;repeatInterval=6}
+  - delay 30
+  - sound{s=block.rooted_dirt.place;v=1;p=0.7}
+  - effect:particles{p=happy_villager;a=20;hs=0.8;vs=1;y=0.5}
+  - damage{a=24} @PlayersNearTargetLocations{r=1.5}
+  - potion{type=SLOWNESS;duration=40;level=3} @PlayersNearTargetLocations{r=1.5}
+
+# ④ 새싹 소환 — 동시에 최대 4마리
+octo_fg_summon:
+  Conditions:
+  - variableequals{var=caster.busy;value=0}
+  - mobsinradius{types=octo_forest_sprout;amount=0to2;radius=60}
+  Skills:
+  - setvariable{var=caster.busy;value=1;type=INTEGER} @self
+  - bm:state{mid=octo_forest_guardian;s=summon} @self
+  - message{m="&a숲의 새싹들이 깨어납니다! &7(새싹이 살아 있으면 수호자가 회복해요)"} @PlayersInRadius{r=60}
+  - sound{s=item.bone_meal.use;v=1;p=0.8} @self
+  - effect:particles{p=happy_villager;a=30;hs=2;vs=1;y=3} @self
+  - delay 16
+  - summon{type=octo_forest_sprout;amount=2;radius=4} @self
+  - delay 16
+  - setvariable{var=caster.busy;value=0;type=INTEGER} @self
+
+# 페이즈 2 진입 (체력 50%) — 포효, 약간 빨라짐, 패턴 간격 짧아짐(몹 파일 타이머)
+octo_fg_phase2:
+  Skills:
+  - setvariable{var=caster.phase;value=2;type=INTEGER} @self
+  - setvariable{var=caster.busy;value=1;type=INTEGER} @self
+  - bm:state{mid=octo_forest_guardian;s=roar} @self
+  - 'message{m="&2숲의 수호자&7: &c숲이... 분노한다! &7(내려찍기 뒤 충격파 추가)"} @PlayersInRadius{r=60}'
+  - sound{s=entity.ravager.roar;v=1;p=0.7} @self
+  - potion{type=SLOWNESS;duration=40;level=10;hasParticles=false;hasIcon=false} @self
+  - effect:particles{p=spore_blossom_air;a=40;hs=3;vs=2;y=2} @self
+  - potion{type=SPEED;duration=999999;level=0;hasParticles=false;hasIcon=false} @self
+  - delay 40
+  - setvariable{var=caster.busy;value=0;type=INTEGER} @self

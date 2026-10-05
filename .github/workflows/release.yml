@@ -7,6 +7,8 @@ on:
       - "pack/**"
       - "skins.yml"
       - "tools/**"
+      - "models/**"
+      - "server/BetterModel/**"
   workflow_dispatch:
     inputs:
       mc_version:
@@ -39,6 +41,23 @@ jobs:
           V="${{ github.event.inputs.mc_version }}"
           python3 tools/gen_silhouettes.py ${V:+--version "$V"}
           test -f pack/assets/dogam/items/silhouette/diamond_sword.json
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/octo-bettermodel
+          key: bettermodel-${{ hashFiles('tools/gen_bettermodel.py') }}
+
+      - name: Generate BetterModel pack (assets/bettermodel)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/gen_bettermodel.py
+          cat bettermodel_report.json
 
       - name: Build CosmeticPack.zip
         run: |
@@ -90,6 +109,8 @@ jobs:
             echo "sha1: ${{ steps.sha.outputs.sha1 }}"
             echo
             python3 -c "import json;r=json.load(open('pack/assets/dogam/report.json'));print(f\"도감 실루엣: {r['version']} 아이템 {r['items']}개 · 스킨 {r['skins']}개 (회색 대체 {len(r['gray'])}개)\")"
+            echo
+            python3 -c "import json;r=json.load(open('bettermodel_report.json'));print(f\"BetterModel {r.get('bettermodel','-')} 모델: {', '.join(r['models']) or '없음'} (파일 {r['files']}개)\")"
             echo
             echo "변경된 스킨:"
             if [ -s changed.txt ]; then sed 's/^/- /' changed.txt; else echo "- (스킨 변경 없음)"; fi
