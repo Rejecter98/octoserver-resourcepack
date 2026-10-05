@@ -144,6 +144,6 @@ jobs:
         run: |
           for f in ci-*.log; do
             [ -f "$f" ] || continue
-            msg=$(tail -n 60 "$f" | sed 's/%/%25/g' | sed ':a;N;$!ba;s/\n/%0A/g')
+            msg=$(tail -n 40 "$f" | sed 's/%/%25/g' | sed ':a;N;$!ba;s/\n/%0A/g')
             echo "::error title=$f::$msg"
           done

@@ -118,7 +118,8 @@ def main():
     cfg = (ROOT / "server/BetterModel/config.yml").read_text(encoding="utf-8")
     if "\npack-type: none" not in cfg or "use-obfuscation: false" not in cfg:
         raise SystemExit("server/BetterModel/config.yml 에 pack-type: none / use-obfuscation: false 가 있어야 함")
-    (pl / "BetterModel/config.yml").write_text(cfg.replace("\npack-type: none", "\npack-type: folder"), encoding="utf-8")
+    cfg = cfg.replace("\npack-type: none", "\npack-type: folder").replace("  pack: false", "  pack: true", 1)
+    (pl / "BetterModel/config.yml").write_text(cfg, encoding="utf-8")
     for m in models:
         shutil.copy(m, pl / "BetterModel/models" / m.name)
     # Paper 가 다운받는 바닐라 jar 캐시 재사용
@@ -167,7 +168,7 @@ def main():
     if errs:
         raise SystemExit("BetterModel 오류 로그:\n" + "\n".join(errs[:20]))
 
-    build = work / "BetterModel/build"
+    build = pl / "BetterModel/build"  # build-folder-location 은 plugins/ 기준 (DATA_FOLDER.parent)
     if not build.is_dir():
         raise SystemExit(f"생성 폴더 없음: {build}")
     files = [f for f in build.rglob("*") if f.is_file()]
@@ -187,5 +188,29 @@ def main():
     print("[완료]", rep)
 
 
+def tree(d, limit=60):
+    d = pathlib.Path(d)
+    if not d.exists():
+        return [f"(없음) {d}"]
+    out = []
+    for f in sorted(d.rglob("*")):
+        if "world" in f.parts or "libraries" in f.parts or "cache" in f.parts or "versions" in f.parts:
+            continue
+        out.append(f"{f.relative_to(d)}{'/' if f.is_dir() else ''}")
+        if len(out) >= limit:
+            break
+    return out
+
+
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SystemExit as e:
+        if e.code not in (None, 0):
+            w = ROOT / ".bm-work"
+            print("---- 작업 폴더 ----")
+            print("\n".join(tree(w)))
+            print("---- 실패 이유 ----")
+            print(e.code)
+            sys.exit(1)
+        raise
