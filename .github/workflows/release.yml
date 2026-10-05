@@ -56,7 +56,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          python3 tools/gen_bettermodel.py
+          set -o pipefail
+          python3 tools/gen_bettermodel.py 2>&1 | tee ci-bettermodel.log
           cat bettermodel_report.json
 
       - name: Build CosmeticPack.zip
@@ -121,7 +122,25 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${{ steps.tag.outputs.tag }}" CosmeticPack.zip skins.yml \
-            --title "${{ steps.tag.outputs.tag }}" \
-            --notes-file notes.md \
-            --target "${GITHUB_SHA}"
+          set -o pipefail
+          ls -la CosmeticPack.zip skins.yml notes.md
+          for i in 1 2 3; do
+            if gh release create "${{ steps.tag.outputs.tag }}" CosmeticPack.zip skins.yml \
+                 --title "${{ steps.tag.outputs.tag }}" \
+                 --notes-file notes.md \
+                 --target "${GITHUB_SHA}" 2>&1 | tee -a ci-release.log; then exit 0; fi
+            echo "retry $i" | tee -a ci-release.log
+            gh release delete "${{ steps.tag.outputs.tag }}" --yes --cleanup-tag 2>&1 | tee -a ci-release.log || true
+            sleep 15
+          done
+          exit 1
+
+      # 로그를 직접 못 읽는 환경을 위해 실패 시 마지막 로그를 주석(annotation)으로 남김
+      - name: Report failure log
+        if: failure()
+        run: |
+          for f in ci-*.log; do
+            [ -f "$f" ] || continue
+            msg=$(tail -n 60 "$f" | sed 's/%/%25/g' | sed ':a;N;$!ba;s/\n/%0A/g')
+            echo "::error title=$f::$msg"
+          done
