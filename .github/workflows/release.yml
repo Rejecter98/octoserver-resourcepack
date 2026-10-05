@@ -9,6 +9,7 @@ on:
       - "tools/**"
       - "models/**"
       - "server/BetterModel/**"
+      - ".github/workflows/release.yml"
   workflow_dispatch:
     inputs:
       mc_version:
@@ -83,14 +84,16 @@ jobs:
 
       - name: Changed skins
         env:
-          BEFORE: ${{ github.event.before }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          if [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] \
-             && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
-            git diff --name-only "$BEFORE" HEAD -- pack/assets/cosmetics \
+          # 기준 = 직전 릴리스 태그 (실패·취소된 실행이 있어도 지난 릴리스 이후 바뀐 스킨을 모두 표시)
+          PREV=$(gh api "repos/${GITHUB_REPOSITORY}/releases" --paginate --jq '.[].tag_name' \
+                 | grep -E '^v[0-9]+$' | sort -V | tail -1)
+          git fetch --tags --force -q || true
+          if [ -n "$PREV" ] && git cat-file -e "$PREV^{commit}" 2>/dev/null; then
+            git diff --name-only "$PREV" HEAD -- pack/assets/cosmetics \
               | sed -nE 's#.*/(textures|models)/item/([^/]+)\.(png|json)$#\2#p' > changed.txt
-            # skins.yml 에서 새로 생기거나 바뀐 스킨 id
-            git diff -U0 "$BEFORE" HEAD -- skins.yml \
+            git diff -U0 "$PREV" HEAD -- skins.yml \
               | sed -nE 's/^[+-]  ([A-Za-z0-9_]+):\s*$/\1/p' >> changed.txt
           else
             sed -nE 's/^  ([A-Za-z0-9_]+):\s*$/\1/p' skins.yml > changed.txt
