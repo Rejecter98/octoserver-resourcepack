@@ -28,6 +28,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/lollipop_mace"
     }
+   },
+   {
+    "threshold": 100094,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/cherry_mace"
+    }
+   },
+   {
+    "threshold": 100111,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/sunflower_mace"
+    }
    }
   ]
  }

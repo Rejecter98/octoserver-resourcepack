@@ -28,6 +28,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/bunny_shears"
     }
+   },
+   {
+    "threshold": 100099,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/strawberry_shears"
+    }
    }
   ]
  }

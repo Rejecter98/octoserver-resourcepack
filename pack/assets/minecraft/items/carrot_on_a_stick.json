@@ -21,6 +21,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/strawberry_carrot_on_a_stick"
     }
+   },
+   {
+    "threshold": 100104,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/carrot_cake_carrot_on_a_stick"
+    }
    }
   ]
  }

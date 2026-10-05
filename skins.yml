@@ -991,3 +991,256 @@ skins:
         color: "#FFD27F"
         size: 1.0
         interval: 8
+  banana_milk_sword:
+    display-name: "&e바나나우유 검"
+    rarity: B
+    custom-model-data: 100088
+    category: sword
+    allowed-materials:
+      - WOODEN_SWORD
+      - STONE_SWORD
+      - COPPER_SWORD
+      - IRON_SWORD
+      - GOLDEN_SWORD
+      - DIAMOND_SWORD
+      - NETHERITE_SWORD
+  macaron_pickaxe:
+    display-name: "&d마카롱 곡괭이"
+    rarity: B
+    custom-model-data: 100089
+    category: pickaxe
+    allowed-materials:
+      - WOODEN_PICKAXE
+      - STONE_PICKAXE
+      - COPPER_PICKAXE
+      - IRON_PICKAXE
+      - GOLDEN_PICKAXE
+      - DIAMOND_PICKAXE
+      - NETHERITE_PICKAXE
+  green_grape_axe:
+    display-name: "&a청포도 도끼"
+    rarity: B
+    custom-model-data: 100090
+    category: axe
+    allowed-materials:
+      - WOODEN_AXE
+      - STONE_AXE
+      - COPPER_AXE
+      - IRON_AXE
+      - GOLDEN_AXE
+      - DIAMOND_AXE
+      - NETHERITE_AXE
+  sweet_potato_shovel:
+    display-name: "&d고구마 삽"
+    rarity: B
+    custom-model-data: 100091
+    category: shovel
+    allowed-materials:
+      - WOODEN_SHOVEL
+      - STONE_SHOVEL
+      - COPPER_SHOVEL
+      - IRON_SHOVEL
+      - GOLDEN_SHOVEL
+      - DIAMOND_SHOVEL
+      - NETHERITE_SHOVEL
+  corn_hoe:
+    display-name: "&e옥수수 괭이"
+    rarity: B
+    custom-model-data: 100092
+    category: hoe
+    allowed-materials:
+      - WOODEN_HOE
+      - STONE_HOE
+      - COPPER_HOE
+      - IRON_HOE
+      - GOLDEN_HOE
+      - DIAMOND_HOE
+      - NETHERITE_HOE
+  ice_cream_spear:
+    display-name: "&b아이스크림 창"
+    rarity: B
+    custom-model-data: 100093
+    category: spear
+    allowed-materials:
+      - WOODEN_SPEAR
+      - STONE_SPEAR
+      - COPPER_SPEAR
+      - IRON_SPEAR
+      - GOLDEN_SPEAR
+      - DIAMOND_SPEAR
+      - NETHERITE_SPEAR
+  cherry_mace:
+    display-name: "&c체리 철퇴"
+    rarity: B
+    custom-model-data: 100094
+    category: mace
+    allowed-materials:
+      - MACE
+  sea_glass_trident:
+    display-name: "&3바다유리 삼지창"
+    rarity: B
+    custom-model-data: 100095
+    category: trident
+    allowed-materials:
+      - TRIDENT
+  watermelon_bar_bow:
+    display-name: "&c수박바 활"
+    rarity: B
+    custom-model-data: 100096
+    category: bow
+    allowed-materials:
+      - BOW
+  grape_crossbow:
+    display-name: "&5포도 석궁"
+    rarity: B
+    custom-model-data: 100097
+    category: crossbow
+    allowed-materials:
+      - CROSSBOW
+  clover_shield:
+    display-name: "&a클로버 방패"
+    rarity: B
+    custom-model-data: 100098
+    category: shield
+    allowed-materials:
+      - SHIELD
+  strawberry_shears:
+    display-name: "&d딸기 가위"
+    rarity: B
+    custom-model-data: 100099
+    category: shears
+    allowed-materials:
+      - SHEARS
+  milky_way_fishing_rod:
+    display-name: "&9은하수 낚싯대"
+    rarity: B
+    custom-model-data: 100100
+    category: fishing_rod
+    allowed-materials:
+      - FISHING_ROD
+  apple_flint_and_steel:
+    display-name: "&c사과 부싯돌"
+    rarity: B
+    custom-model-data: 100101
+    category: flint_and_steel
+    allowed-materials:
+      - FLINT_AND_STEEL
+  pumpkin_brush:
+    display-name: "&6호박 브러시"
+    rarity: B
+    custom-model-data: 100102
+    category: brush
+    allowed-materials:
+      - BRUSH
+  dewdrop_spyglass:
+    display-name: "&a이슬 망원경"
+    rarity: B
+    custom-model-data: 100103
+    category: spyglass
+    allowed-materials:
+      - SPYGLASS
+  carrot_cake_carrot_on_a_stick:
+    display-name: "&6당근케이크 낚싯대"
+    rarity: B
+    custom-model-data: 100104
+    category: carrot_on_a_stick
+    allowed-materials:
+      - CARROT_ON_A_STICK
+  sky_pickaxe:
+    display-name: "&b하늘빛 곡괭이"
+    rarity: B
+    custom-model-data: 100105
+    category: pickaxe
+    allowed-materials:
+      - WOODEN_PICKAXE
+      - STONE_PICKAXE
+      - COPPER_PICKAXE
+      - IRON_PICKAXE
+      - GOLDEN_PICKAXE
+      - DIAMOND_PICKAXE
+      - NETHERITE_PICKAXE
+  snowman_sword:
+    display-name: "&f눈사람 검"
+    rarity: B
+    custom-model-data: 100106
+    category: sword
+    allowed-materials:
+      - WOODEN_SWORD
+      - STONE_SWORD
+      - COPPER_SWORD
+      - IRON_SWORD
+      - GOLDEN_SWORD
+      - DIAMOND_SWORD
+      - NETHERITE_SWORD
+  caramel_axe:
+    display-name: "&6캐러멜 도끼"
+    rarity: B
+    custom-model-data: 100107
+    category: axe
+    allowed-materials:
+      - WOODEN_AXE
+      - STONE_AXE
+      - COPPER_AXE
+      - IRON_AXE
+      - GOLDEN_AXE
+      - DIAMOND_AXE
+      - NETHERITE_AXE
+  banana_sword:
+    display-name: "&e바나나 검"
+    rarity: A
+    custom-model-data: 100108
+    category: sword
+    allowed-materials:
+      - WOODEN_SWORD
+      - STONE_SWORD
+      - COPPER_SWORD
+      - IRON_SWORD
+      - GOLDEN_SWORD
+      - DIAMOND_SWORD
+      - NETHERITE_SWORD
+  mushroom_pickaxe:
+    display-name: "&c버섯 곡괭이"
+    rarity: A
+    custom-model-data: 100109
+    category: pickaxe
+    allowed-materials:
+      - WOODEN_PICKAXE
+      - STONE_PICKAXE
+      - COPPER_PICKAXE
+      - IRON_PICKAXE
+      - GOLDEN_PICKAXE
+      - DIAMOND_PICKAXE
+      - NETHERITE_PICKAXE
+  spatula_shovel:
+    display-name: "&6뒤집개 삽"
+    rarity: A
+    custom-model-data: 100110
+    category: shovel
+    allowed-materials:
+      - WOODEN_SHOVEL
+      - STONE_SHOVEL
+      - COPPER_SHOVEL
+      - IRON_SHOVEL
+      - GOLDEN_SHOVEL
+      - DIAMOND_SHOVEL
+      - NETHERITE_SHOVEL
+  sunflower_mace:
+    display-name: "&e해바라기 철퇴"
+    rarity: A
+    custom-model-data: 100111
+    category: mace
+    allowed-materials:
+      - MACE
+  sun_spear:
+    display-name: "&6해님 창"
+    rarity: A
+    custom-model-data: 100112
+    category: spear
+    allowed-materials:
+      - WOODEN_SPEAR
+      - STONE_SPEAR
+      - COPPER_SPEAR
+      - IRON_SPEAR
+      - GOLDEN_SPEAR
+      - DIAMOND_SPEAR
+      - NETHERITE_SPEAR

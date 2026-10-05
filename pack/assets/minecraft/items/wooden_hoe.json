@@ -42,6 +42,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/candy_cane_hoe"
     }
+   },
+   {
+    "threshold": 100092,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/corn_hoe"
+    }
    }
   ]
  }

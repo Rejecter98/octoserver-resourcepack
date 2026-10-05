@@ -56,6 +56,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/leaf_axe"
     }
+   },
+   {
+    "threshold": 100090,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/green_grape_axe"
+    }
+   },
+   {
+    "threshold": 100107,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/caramel_axe"
+    }
    }
   ]
  }

@@ -28,6 +28,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/heart_flint_and_steel"
     }
+   },
+   {
+    "threshold": 100101,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/apple_flint_and_steel"
+    }
    }
   ]
  }

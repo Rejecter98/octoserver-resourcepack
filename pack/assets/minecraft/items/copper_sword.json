@@ -42,6 +42,27 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/constellation_sword"
     }
+   },
+   {
+    "threshold": 100088,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/banana_milk_sword"
+    }
+   },
+   {
+    "threshold": 100106,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/snowman_sword"
+    }
+   },
+   {
+    "threshold": 100108,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/banana_sword"
+    }
    }
   ]
  }

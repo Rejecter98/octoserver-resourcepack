@@ -56,6 +56,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/matcha_shovel"
     }
+   },
+   {
+    "threshold": 100091,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/sweet_potato_shovel"
+    }
+   },
+   {
+    "threshold": 100110,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/spatula_shovel"
+    }
    }
   ]
  }

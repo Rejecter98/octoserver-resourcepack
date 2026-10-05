@@ -49,6 +49,27 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/firefly_pickaxe"
     }
+   },
+   {
+    "threshold": 100089,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/macaron_pickaxe"
+    }
+   },
+   {
+    "threshold": 100105,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/sky_pickaxe"
+    }
+   },
+   {
+    "threshold": 100109,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/mushroom_pickaxe"
+    }
    }
   ]
  }
