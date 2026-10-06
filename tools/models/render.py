@@ -92,9 +92,11 @@ class Model:
         return res
 
 
-def render(model, anim=None, t=0.0, yaw=0, pitch=12, S=8, size=(360, 420), ground=None, extra=(), scale=1.0, bg=(0, 0, 0, 0)):
+def render(model, anim=None, t=0.0, yaw=0, pitch=12, S=8, size=(360, 420), ground=None, extra=(), scale=1.0, bg=(0, 0, 0, 0), base=None):
     W, H = size
     img = np.zeros((H, W, 4), np.uint8); img[:] = bg
+    if base is not None:
+        img[:] = np.array(base.convert('RGBA'))
     zb = np.full((H, W), -1e9)
     cy, sy = math.cos(math.radians(yaw)), math.sin(math.radians(yaw))
     cp, sp = math.cos(math.radians(pitch)), math.sin(math.radians(pitch))
@@ -115,37 +117,55 @@ def render(model, anim=None, t=0.0, yaw=0, pitch=12, S=8, size=(360, 420), groun
     sh = (((xx - W / 2) / (11 * S * scale)) ** 2 + ((yy - gy) / (3.2 * S * scale)) ** 2) < 1
     img[sh] = (img[sh] * 0.6 + np.array([40, 60, 40, 255]) * 0.4).astype(np.uint8)
     img[sh, 3] = 255
-    for P, N, uv, glow in allf:
+    trans = []
+
+    def draw(P, N, uv, glow, mode):
         A, B, Cc = [proj(p) for p in P]
         u = B - A; v = Cc - A
         det = u[0] * v[1] - u[1] * v[0]
         if abs(det) < 1e-6:
-            continue
+            return
         D = B + v
         xs = [A[0], B[0], Cc[0], D[0]]; ys = [A[1], B[1], Cc[1], D[1]]
         x0, x1 = max(0, int(min(xs))), min(W - 1, int(max(xs)) + 1)
         y0, y1 = max(0, int(min(ys))), min(H - 1, int(max(ys)) + 1)
         if x0 >= x1 or y0 >= y1:
-            continue
+            return
         gx, gyy = np.meshgrid(np.arange(x0, x1 + 1) + 0.5, np.arange(y0, y1 + 1) + 0.5)
         dx, dy = gx - A[0], gyy - A[1]
         s_ = (dx * v[1] - dy * v[0]) / det
         t_ = (u[0] * dy - u[1] * dx) / det
         m = (s_ >= 0) & (s_ < 1) & (t_ >= 0) & (t_ < 1)
         if not m.any():
-            continue
+            return
         z = A[2] + s_ * u[2] + t_ * v[2]
         tu = np.clip((uv[0] + s_ * (uv[2] - uv[0])).astype(int), 0, tex.shape[1] - 1)
         tv = np.clip((uv[1] + t_ * (uv[3] - uv[1])).astype(int), 0, tex.shape[0] - 1)
         col = tex[tv, tu]
-        m &= col[..., 3] > 127
+        a = col[..., 3]
         sub = zb[y0:y1 + 1, x0:x1 + 1]
-        m &= z > sub
-        if not m.any():
-            continue
         shade = 1.0 if glow else 0.6 + 0.4 * max(0.0, float(N @ L)) + 0.08 * max(0.0, float(-N[2]))
-        c = np.clip(col[..., :3] * shade, 0, 255).astype(np.uint8)
+        c = np.clip(col[..., :3] * shade, 0, 255)
         reg = img[y0:y1 + 1, x0:x1 + 1]
-        reg[m, :3] = c[m]; reg[m, 3] = 255
-        sub[m] = z[m]
+        if mode == "opaque":
+            m &= (a == 255) & (z > sub)
+            if not m.any():
+                return
+            reg[m, :3] = c[m].astype(np.uint8); reg[m, 3] = 255
+            sub[m] = z[m]
+        else:
+            m &= (a > 8) & (a < 255) & (z > sub)
+            if not m.any():
+                return
+            al = (a[..., None] / 255.0)
+            reg[m, :3] = (reg[m, :3] * (1 - al[m]) + c[m] * al[m]).astype(np.uint8)
+            reg[m, 3] = 255
+
+    for P, N, uv, glow in allf:
+        draw(P, N, uv, glow, "opaque")
+        trans.append((P, N, uv, glow))
+    # 반투명 면은 먼 것부터
+    trans.sort(key=lambda f: min(proj(p)[2] for p in f[0]))
+    for P, N, uv, glow in trans:
+        draw(P, N, uv, glow, "trans")
     return Image.fromarray(img)
