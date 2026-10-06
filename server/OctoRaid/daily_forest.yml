@@ -1,0 +1,27 @@
+# OctoRaid raids.yml 의 daily_forest 부분 (기록용 원본 — 서버 raids.yml 의 같은 레이드를 이 내용으로 맞출 것)
+# 티어: 일일 T1~T3 (+0~+10) 담당 / 보상 강화석 2개 (docs/raid_tiers.md)
+  daily_forest:
+    type: daily                 # daily(매일 6시 초기화) / weekly(매주 월요일 6시)
+    name: "&2숲의 수호자"
+    icon: OAK_SAPLING
+    description:
+      - "&7숲을 지키는 오래된 수호자."
+      - "&7혼자서도 도전할 수 있어요."
+    recommended: "+5 ~ +10"
+    min-players: 1
+    max-players: 4
+    time-limit: 600             # 초 (10분)
+    start-countdown: 5
+    boss:
+      mythic: "octo_forest_guardian"   # MythicMobs 몹 이름 (MythicMobs 없거나 이름이 틀리면 아래 vanilla 로 소환)
+      vanilla: VINDICATOR              # 테스트용 바닐라 몹
+      vanilla-health: 200
+      health-per-extra-player: 0.6     # 1명 늘 때마다 보스 체력 +60%
+      scale: 1.8                       # 보스 크기 배율 (1.0 = 원래 크기)
+    reward:                     # 하루 1번만 (재입장은 자유, 보상 없음)
+      money: 200
+      commands:                 # 콘솔 명령 ({player} = 플레이어 이름)
+        - "enhance stone {player} 2"
+      lore:                     # 메뉴와 채팅에 보여줄 보상 설명
+        - "강화석 2개"
+        - "200원"

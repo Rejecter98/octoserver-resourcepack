@@ -12,7 +12,8 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
   (첨부: `CosmeticPack.zip`, `skins.yml` / 본문 첫 줄 `sha1: <값>`, 그 아래 변경된 스킨 목록)
   - `models/**`, `server/BetterModel/**`, `tools/**` 변경도 릴리스를 만듦
 - `models/` — 레이드 보스 BetterModel 원본 `.bbmodel` (팩 밖, 서버 `plugins/BetterModel/models/` 에도 같은 파일)
-- `server/` — 서버에 넣는 설정 원본 (MythicMobs Mobs/Skills, BetterModel config.yml)
+- `server/` — 서버에 넣는 설정 원본 (MythicMobs Mobs/Skills, BetterModel config.yml, OctoRaid raids.yml 레이드별 부분)
+- `docs/raid_tiers.md` — **레이드 보스 티어표** (보스 만들 때마다 반드시 참고)
 - `tools/gen_bettermodel.py` — 릴리스 때 BetterModel 팩을 실제 BetterModel 로 생성해 합침 (아래 "레이드 보스")
 
 ## 서버 플러그인 (CosmeticSkins) 연동
@@ -206,6 +207,9 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
    - 릴리스 태그 이름
 
 ## 레이드 보스 (OctoRaid + MythicMobs 5.13 무료 + BetterModel)
+- **체력·피해·방어력·페이즈·졸개 수·보상·레이드 id 는 `docs/raid_tiers.md` 티어표를 따름** (보스마다 티어 지정,
+  설계안에 티어표 값과 실제 값을 함께 표시). 표에 없는 값만 따로 계산
+- 확정 보스: 숲의 수호자(daily_forest) = 일일 T1~T3 담당, 체력 2,400 · 보상 강화석 2개 — 다시 바꾸지 말 것
 - 보스 하나당 결과물: 컨셉 · 밸런스 계산 · `server/MythicMobs/Mobs|Skills/<이름>.yml` · `models/<이름>.bbmodel`
   · raids.yml boss 부분 · (필요 시) spigot.yml 값 · 릴리스 sha1 · 적용 체크리스트 · 플러그인 쪽 요청사항(따로)
 - 진행: 테마/설계안 → 미리보기(모델 렌더 + 모션 GIF) → 사용자 "승인" → 제작·릴리스 → 전달
@@ -213,10 +217,11 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
   크기(SCALE 속성)·60블록 리쉬·종료 시 몹 정리. 보스는 `PreventOtherDrops: true`, `Despawn: false`, 보상 없음
 - 이름: 영문 소문자 + `octo_` (스킬 `octo_<약어>_<패턴>`), 대사 한국어 + `&` 색코드
 - 큰 공격은 반드시 예고(채팅·사운드·파티클·멈춤) → 모션의 예고 자세 시간과 스킬 `delay` 를 맞출 것
-- 체력 2048 초과(인원 배율 2.8배 포함)면 spigot.yml `settings.attribute.maxHealth.max` 값을 안내
+- 모든 적용 체크리스트에 spigot.yml `settings.attribute.maxHealth.max: 100000.0` 포함
 - 몹이 든 무기 공격력이 Damage 에 더해짐 (나무 도끼 +6, 철 도끼 +8 …) → 실제 피해 = Damage + 무기
 - MythicMobs 줄에 `: `(콜론+공백)이 들어가면 YAML 이 깨짐 → 그 줄 전체를 작은따옴표로 감쌀 것
 - MythicMobs 문법은 wiki.mythiccraft.io 에서 확인 (추측 금지). 프리미엄 기능 금지
+- raids.yml 레이드별 부분은 `server/OctoRaid/<레이드id>.yml` 로 기록해 두고 결과물로 전달
 - 모델이 없어도 레이드가 돌아가야 함: 바닐라 외형(몹 종류·장비·크기·가벼운 오라) + `bm:` 줄은 실패해도 무시됨
 
 ### BetterModel 연동 (버전 고정: BetterModel 3.5.0, Paper 26.2 build 129 — `tools/gen_bettermodel.py` 상단)
