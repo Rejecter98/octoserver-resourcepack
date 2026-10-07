@@ -1,0 +1,98 @@
+# T4 주간 레이드 보스 — 심해의 닻지기 (권장 +12, docs/raid_tiers.md)
+# 넣을 곳: plugins/MythicMobs/Mobs/octo_anchor_keeper.yml  →  /mm reload
+#
+# - 체력 13,400 (OctoRaid 인원 배율: 2명 21,440 / 3명 29,480 / 4명 37,520)
+#   → spigot.yml settings.attribute.maxHealth.max: 100000.0 필요
+# - 방어력 5 = Armor 3 + 구리 투구 2  /  평타 41 (무기 없음)
+# - 3D 모델: BetterModel octo_anchor_keeper (없으면 익사 좀비 + 구리 투구 외형으로 정상 진행)
+# - 드랍·경험치 없음, 사라지지 않음. 인원 배율·크기·보상·시간은 OctoRaid 가 처리
+octo_anchor_keeper:
+  Type: DROWNED
+  Display: '&3심해의 닻지기'
+  Health: 13400
+  Damage: 41
+  Armor: 3
+  BossBar:
+    Enabled: true
+    Title: '&3심해의 닻지기'
+    Range: 60
+    Color: BLUE
+    Style: SEGMENTED_10
+  Options:
+    MovementSpeed: 0.24
+    KnockbackResistance: 1.0
+    FollowRange: 48
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    PreventSunburn: true
+    Despawn: false
+    Silent: false
+  Equipment:
+  - COPPER_HELMET HEAD
+  Skills:
+  # ---- 시작 (phase: 1/2, busy: 패턴 겹침 방지, rage: 광폭화)
+  - setvariable{var=caster.phase;value=1;type=INTEGER} @self ~onSpawn
+  - setvariable{var=caster.busy;value=0;type=INTEGER} @self ~onSpawn
+  - setvariable{var=caster.rage;value=0;type=INTEGER} @self ~onSpawn
+  - bm:model{mid=octo_anchor_keeper;da=true} @self ~onSpawn
+  - 'message{m="&3심해의 닻지기&7: ...깊은 바다의 정적을 깨뜨린 자들인가."} @PlayersInRadius{r=60} ~onSpawn'
+  # ---- 상시 오라 (2초마다 앵무조개 빛 조금)
+  - effect:particles{p=nautilus;a=6;hs=1;vs=1.5;y=2.5} @self ~onTimer:40
+  # ---- 평타 모션
+  - bm:state{mid=octo_anchor_keeper;s=attack} @self ~onAttack
+  # ---- 패턴 (페이즈 1 / 페이즈 2 간격, 틱)
+  - skill{s=octo_ak_throw} @self ~onTimer:240 ?variableequals{var=caster.phase;value=1}
+  - skill{s=octo_ak_throw} @self ~onTimer:180 ?variableequals{var=caster.phase;value=2}
+  - skill{s=octo_ak_quake} @self ~onTimer:400 ?variableequals{var=caster.phase;value=1}
+  - skill{s=octo_ak_quake} @self ~onTimer:300 ?variableequals{var=caster.phase;value=2}
+  - skill{s=octo_ak_bubble_cast} @self ~onTimer:700
+  - skill{s=octo_ak_tide} @self ~onTimer:500 ?variableequals{var=caster.phase;value=2}
+  - skill{s=octo_ak_jelly_summon} @self ~onTimer:600 ?variableequals{var=caster.phase;value=2}
+  # ---- 체력 50% 이하 → 페이즈 2 (한 번만)
+  - skill{s=octo_ak_phase2} @self ~onDamaged ?healthpercent{h=<0.5} ?variableequals{var=caster.phase;value=1}
+  # ---- 광폭화: 제한 20분 중 17분 경과(남은 3분) = 20400틱
+  - skill{s=octo_ak_rage} @self ~onTimer:20400 ?variableequals{var=caster.rage;value=0}
+  # ---- 사망 (쓰러지는 모션은 BetterModel 이 death 애니메이션 자동 재생)
+  - 'message{m="&3심해의 닻지기&7: ...닻이... 바닥에... 닿았군..."} @PlayersInRadius{r=60} ~onDeath'
+  - effect:particles{p=nautilus;a=60;hs=2;vs=2;y=1.5} @self ~onDeath
+
+# 거품 감옥의 거품 — 체력 60 (+12 네더라이트 검 보통 4대 / 크리티컬 3대), 5초 뒤 사라짐
+octo_ak_bubble:
+  Type: GLOW_SQUID
+  Display: '&b거품'
+  Health: 60
+  Armor: 0
+  Options:
+    NoAI: true
+    Scale: 2.2
+    Collidable: false
+    KnockbackResistance: 1.0
+    PreventOtherDrops: true
+    Despawn: true
+    Silent: true
+  Skills:
+  - bm:model{mid=octo_ak_bubble;da=true} @self ~onSpawn
+  - remove{delay=105} @self ~onSpawn
+  # 깨지면: 안에 갇힌 사람 둔화·나약함 풀어줌 (같은 효과를 1틱으로 덮어씀)
+  - potion{type=SLOWNESS;duration=1;level=0;force=true;hasParticles=false;hasIcon=false} @PlayersInRadius{r=1.5} ~onDeath
+  - potion{type=WEAKNESS;duration=1;level=0;force=true;hasParticles=false;hasIcon=false} @PlayersInRadius{r=1.5} ~onDeath
+  - sound{s=block.bubble_column.bubble_pop;v=1.5;p=0.8} @self ~onDeath
+  - effect:particles{p=bubble_pop;a=40;hs=0.8;vs=1;y=1} @self ~onDeath
+  - 'message{m="&b거품이 터졌습니다!"} @PlayersInRadius{r=60} ~onDeath'
+
+# 2페이즈 해파리 졸개 (동시 최대 3)
+octo_ak_jelly:
+  Type: SLIME
+  Display: '&d해파리'
+  Health: 120
+  Damage: 12
+  Options:
+    Size: 2
+    PreventSlimeSplit: true
+    PreventOtherDrops: true
+    MovementSpeed: 0.3
+    Despawn: true
+  Skills:
+  - potion{type=SLOWNESS;duration=40;level=1} @target ~onAttack
+  - effect:particles{p=glow;a=4;hs=0.5;vs=0.5;y=0.8} @self ~onTimer:30

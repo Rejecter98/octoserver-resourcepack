@@ -1,0 +1,173 @@
+# 심해의 닻지기 스킬 — 넣을 곳: plugins/MythicMobs/Skills/octo_anchor_keeper.yml  →  /mm reload
+# bm:state = BetterModel 모션 (없으면 그 줄만 무시)
+# caster.busy = 패턴 겹침 방지 / caster.rage = 광폭화(1이면 패턴 피해 ×1.5)
+# 패턴 끝마다 raid retarget → 한 명만 계속 맞지 않게
+
+# ② 닻 던지기 — 가장 먼 사람에게 1초 사슬 선(예고) → 선 위에 남아 있으면 피해 50 + 보스 앞으로 끌려옴
+octo_ak_throw:
+  Conditions:
+  - variableequals{var=caster.busy;value=0}
+  Skills:
+  - setvariable{var=caster.busy;value=1;type=INTEGER} @self
+  - bm:state{mid=octo_anchor_keeper;s=throw} @self
+  - sound{s=block.chain.place;v=1.5;p=0.6} @self
+  - potion{type=SLOWNESS;duration=30;level=10;hasParticles=false;hasIcon=false} @self
+  - skill{s=octo_ak_throw_aim} @PlayersInRadius{r=40;sort=FURTHEST;limit=1}
+  - delay 20
+  - sound{s=item.trident.throw;v=1.5;p=0.6} @self
+  - delay 20
+  - command{c="raid retarget <caster.uuid>"} @self
+  - setvariable{var=caster.busy;value=0;type=INTEGER} @self
+
+octo_ak_throw_aim:
+  Skills:
+  - 'message{m="&3닻지기&7가 &b<target.name>&7님에게 닻을 겨눕니다! &c(사슬 선에서 비키세요)"} @PlayersInRadius{r=60}'
+  - skill{s=octo_ak_throw_line} @Line{r=1}
+
+# (내부) 시전 순간의 선 위치 그대로 → 1초 표시 → 그 선 위에 있는 사람
+octo_ak_throw_line:
+  Skills:
+  - effect:particles{p=dust;color=#9AA4B0;size=1.3;a=2;repeat=4;repeatInterval=5}
+  - delay 20
+  - effect:particles{p=crit;a=3}
+  - skill{s=octo_ak_throw_hit} @PlayersNearTargetLocations{r=1.3}
+
+octo_ak_throw_hit:
+  Skills:
+  - damage{a=50} ?variableequals{var=caster.rage;value=0}
+  - damage{a=75} ?variableequals{var=caster.rage;value=1}
+  - pull{velocity=6}
+  - sound{s=block.chain.break;v=1;p=0.8}
+
+# ③ 해저 지진 (큰 패턴) — 1.6초 예고(멈춤 + 반경 6 원 + 십자 균열 4줄) → 원 안 68 + 띄우기 / 균열 위 68
+octo_ak_quake:
+  Conditions:
+  - variableequals{var=caster.busy;value=0}
+  Skills:
+  - setvariable{var=caster.busy;value=1;type=INTEGER} @self
+  - bm:state{mid=octo_anchor_keeper;s=quake} @self
+  - 'message{m="&3닻지기&7가 닻을 높이 듭니다! &c(원과 십자 균열을 피해 대각선으로!)"} @PlayersInRadius{r=60}'
+  - sound{s=entity.ravager.roar;v=1;p=0.6} @self
+  - potion{type=SLOWNESS;duration=40;level=10;hasParticles=false;hasIcon=false} @self
+  - effect:particlering{particle=dust;color=#4FB3C8;size=1.5;radius=6;points=40;amount=1;repeat=6;repeatInterval=5} @selfLocation
+  - skill{s=octo_ak_quake_mark} @Ring{r=14;p=4}
+  - delay 32
+  - sound{s=entity.generic.explode;v=1.2;p=0.7} @self
+  - effect:particles{p=explosion;a=8;hs=3;vs=0.3} @self
+  - damage{a=68} @PlayersInRadius{r=6} ?variableequals{var=caster.rage;value=0}
+  - damage{a=102} @PlayersInRadius{r=6} ?variableequals{var=caster.rage;value=1}
+  - throw{velocity=4;velocityY=7} @PlayersInRadius{r=6}
+  - skill{s=octo_ak_quake_line} @Ring{r=14;p=4}
+  - delay 18
+  - command{c="raid retarget <caster.uuid>"} @self
+  - setvariable{var=caster.busy;value=0;type=INTEGER} @self
+
+# (내부) 균열 표시: 보스 → 고리 4점까지 선
+octo_ak_quake_mark:
+  Skills:
+  - skill{s=octo_ak_line_fx} @Line{r=1}
+
+octo_ak_line_fx:
+  Skills:
+  - effect:particles{p=dust;color=#4FB3C8;size=1.3;a=1;repeat=6;repeatInterval=5}
+
+# (내부) 균열 피해: 선 위에 있는 사람 (원 안에서 이미 맞은 사람은 제외)
+octo_ak_quake_line:
+  Skills:
+  - skill{s=octo_ak_quake_crack} @Line{r=1}
+
+octo_ak_quake_crack:
+  Skills:
+  - effect:particles{p=cloud;a=2;hs=0.3;vs=0.2}
+  - skill{s=octo_ak_quake_dmg} @PlayersNearTargetLocations{r=1.2}
+
+octo_ak_quake_dmg:
+  TargetConditions:
+  - distance{d=6.5to40}
+  Skills:
+  - damage{a=68} ?variableequals{var=caster.rage;value=0}
+  - damage{a=102} ?variableequals{var=caster.rage;value=1}
+
+# ④ 거품 감옥 (파티 기믹) — 무작위 1명 5초 감금(이동·공격 불가) → 파티원이 거품(체력 60)을 못 깨면 즉사
+#    살아 있는 사람이 2명 이상일 때만
+octo_ak_bubble_cast:
+  Conditions:
+  - variableequals{var=caster.busy;value=0}
+  - playersinradius{a=>1;r=40}
+  Skills:
+  - setvariable{var=caster.busy;value=1;type=INTEGER} @self
+  - bm:state{mid=octo_anchor_keeper;s=bubble} @self
+  - sound{s=block.bubble_column.whirlpool_inside;v=1.5;p=1.0} @self
+  - delay 16
+  - skill{s=octo_ak_bubble_trap} @PlayersInRadius{r=40;sort=RANDOM;limit=1}
+  - delay 20
+  - setvariable{var=caster.busy;value=0;type=INTEGER} @self
+
+octo_ak_bubble_trap:
+  Skills:
+  - 'message{m="&b<target.name>&7님이 &b거품&7에 갇혔습니다! &c5초 안에 거품을 깨주세요!"} @PlayersInRadius{r=60}'
+  - summon{type=octo_ak_bubble;amount=1}
+  - potion{type=SLOWNESS;duration=100;level=9;force=true;hasParticles=false}
+  - potion{type=WEAKNESS;duration=100;level=9;force=true;hasParticles=false}
+  - sound{s=block.bubble_column.upwards_inside;v=1.5;p=1.0}
+  - delay 100
+  - skill{s=octo_ak_bubble_fail}
+
+# (내부) 5초 뒤에도 거품이 남아 있으면 즉사
+octo_ak_bubble_fail:
+  TargetConditions:
+  - mobsinradius{types=octo_ak_bubble;amount=1to9;radius=4}
+  Skills:
+  - damage{a=9999;ignoreArmor=true;ignoreresistance=true;ignoreinvulnerability=true;ignoreenchantments=true}
+  - 'message{m="&b<target.name>&7님이 거품 속에서 정신을 잃었습니다..."} @PlayersInRadius{r=60}'
+
+# ⑤ (페이즈 2) 밀물 — 바깥 12~30블록에 2초 물결 표시 → 피해 45 + 보스 쪽으로 끌려옴
+octo_ak_tide:
+  Conditions:
+  - variableequals{var=caster.busy;value=0}
+  Skills:
+  - setvariable{var=caster.busy;value=1;type=INTEGER} @self
+  - bm:state{mid=octo_anchor_keeper;s=roar} @self
+  - 'message{m="&9밀물이 밀려옵니다! &7(바깥에 있으면 휩쓸려요 — 보스 쪽으로!)"} @PlayersInRadius{r=60}'
+  - sound{s=ambient.underwater.enter;v=1.5;p=0.6} @self
+  - effect:particlering{particle=dust;color=#5BC0EB;size=1.5;radius=12;points=48;amount=1;repeat=8;repeatInterval=5} @selfLocation
+  - effect:particlering{particle=dust;color=#5BC0EB;size=1.5;radius=20;points=64;amount=1;repeat=8;repeatInterval=5} @selfLocation
+  - delay 40
+  - sound{s=entity.generic.splash;v=2;p=0.6} @self
+  - effect:particlering{particle=cloud;radius=18;points=64;amount=2} @selfLocation
+  - damage{a=45} @PlayersInRing{min=12;max=30} ?variableequals{var=caster.rage;value=0}
+  - damage{a=68} @PlayersInRing{min=12;max=30} ?variableequals{var=caster.rage;value=1}
+  - pull{velocity=4} @PlayersInRing{min=12;max=30}
+  - delay 20
+  - command{c="raid retarget <caster.uuid>"} @self
+  - setvariable{var=caster.busy;value=0;type=INTEGER} @self
+
+# (페이즈 2) 해파리 2마리 (동시 최대 3)
+octo_ak_jelly_summon:
+  Conditions:
+  - mobsinradius{types=octo_ak_jelly;amount=0to1;radius=60}
+  Skills:
+  - 'message{m="&d해파리&7들이 떠오릅니다! &7(닿으면 둔화)"} @PlayersInRadius{r=60}'
+  - summon{type=octo_ak_jelly;amount=2;radius=5} @self
+
+# 페이즈 2 진입 (체력 50%)
+octo_ak_phase2:
+  Skills:
+  - setvariable{var=caster.phase;value=2;type=INTEGER} @self
+  - setvariable{var=caster.busy;value=1;type=INTEGER} @self
+  - bm:state{mid=octo_anchor_keeper;s=roar} @self
+  - 'message{m="&3심해의 닻지기&7: &c바다가... 차오른다! &7(밀물·해파리 추가)"} @PlayersInRadius{r=60}'
+  - sound{s=entity.elder_guardian.curse;v=1;p=0.8} @self
+  - potion{type=SLOWNESS;duration=44;level=10;hasParticles=false;hasIcon=false} @self
+  - effect:particles{p=nautilus;a=80;hs=3;vs=2;y=2} @self
+  - delay 44
+  - setvariable{var=caster.busy;value=0;type=INTEGER} @self
+
+# 광폭화 (남은 3분) — 패턴 피해 ×1.5, 평타 +9 (힘 III)
+octo_ak_rage:
+  Skills:
+  - setvariable{var=caster.rage;value=1;type=INTEGER} @self
+  - bm:state{mid=octo_anchor_keeper;s=roar} @self
+  - 'message{m="&4[광폭화] &3심해의 닻지기&7가 분노합니다! &c(남은 3분, 모든 공격 강화)"} @PlayersInRadius{r=60}'
+  - sound{s=entity.warden.roar;v=1;p=1.2} @self
+  - potion{type=STRENGTH;duration=999999;level=2;hasParticles=false;hasIcon=false} @self

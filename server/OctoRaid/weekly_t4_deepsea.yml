@@ -1,0 +1,28 @@
+# OctoRaid raids.yml 의 weekly_t4_deepsea 부분 — raids.yml 의 raids: 아래에 추가
+# 티어: T4 주간 (권장 +12, docs/raid_tiers.md) / 보상 강화석 10개
+  weekly_t4_deepsea:
+    type: weekly                # 매주 월요일 6시 초기화
+    name: "&3심해의 닻지기"
+    icon: HEART_OF_THE_SEA
+    description:
+      - "&7깊은 바다에서 올라온 닻의 수호자."
+      - "&7서로의 거품을 깨주며 함께 싸워야 해요."
+      - "&b2~4명 파티 전용"
+    recommended: "+12"
+    min-players: 2
+    max-players: 4
+    time-limit: 1200            # 초 (20분) — 남은 3분부터 광폭화
+    start-countdown: 5
+    boss:
+      mythic: "octo_anchor_keeper"
+      vanilla: DROWNED                 # MythicMobs 없을 때 테스트용
+      vanilla-health: 400
+      health-per-extra-player: 0.6     # 1명당 +60%
+      scale: 1.7                       # 약 4.3블록
+      aggro-switch-seconds: 15         # 한 명만 계속 맞지 않게
+    reward:                     # 주 1번
+      money: 0                  # 티어표 보상은 강화석만 (돈을 주려면 여기 수정)
+      commands:
+        - "enhance stone {player} 10"
+      lore:
+        - "강화석 10개"
