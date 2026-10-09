@@ -1,0 +1,13 @@
+{
+  "skin": "pumpkin_ghost_hoe",
+  "name": "호박 유령 대낫",
+  "name_color": [255, 170, 60],
+  "event_badge": "할로윈 한정 픽업",
+  "rarity": "S",
+  "tool_label": "괭이 스킨",
+  "tool_icon": "<미러 에셋>/assets/minecraft/textures/item/diamond_hoe.png",
+  "tagline": "잭오랜턴이 웃는 보랏빛 낫. 들고 있으면 박쥐가 맴돌아요",
+  "chips": ["박쥐 애니메이션", "유령불 이펙트", "전용 사운드"],
+  "period": "10/10 ~ 10/31",
+  "decor": "halloween"
+}
