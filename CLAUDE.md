@@ -39,6 +39,9 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
     cat_ear_helmet ~ kaleidoscope_spyglass (100076~100085)
   - S 상시: sakura_fairy_sword(100063), firefly_pickaxe(100064), constellation_sword(100086), sun_phoenix_crossbow(100087)
   - S 한정(시즌 1 심해): deep_sea_whale_bow(100065) — 전용 사운드 `cosmetics:skin.whale.shoot` (거품 보글보글 0.43초)
+  - S 한정(할로윈): pumpkin_ghost_hoe(100113) — 전용 사운드 `cosmetics:skin.ghost.hit` (휘파람 "후우~" 0.75초),
+    손에 든 동안 박쥐가 맴도는 애니메이션: 아이템 정의 entry 를 `minecraft:composite`(스킨 모델 + `_bats` 모델)로,
+    `_bats` 모델 = 아이템 둘레 32x32 평면 + 애니메이션 텍스처(.png.mcmeta), gui/ground/fixed/head display scale 0 으로 숨김
   - 나머지는 전부 B
 - **스킨 이펙트 (CosmeticSkins 1.4.1-octo~)**: skins.yml 스킨마다 선택으로 `effects:` (S 등급의 조건)
   ```yaml
