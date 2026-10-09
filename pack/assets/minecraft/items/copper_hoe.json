@@ -53,8 +53,17 @@
    {
     "threshold": 100113,
     "model": {
-     "type": "minecraft:model",
-     "model": "cosmetics:item/pumpkin_ghost_hoe"
+     "type": "minecraft:composite",
+     "models": [
+      {
+       "type": "minecraft:model",
+       "model": "cosmetics:item/pumpkin_ghost_hoe"
+      },
+      {
+       "type": "minecraft:model",
+       "model": "cosmetics:item/pumpkin_ghost_hoe_bats"
+      }
+     ]
     }
    }
   ]
