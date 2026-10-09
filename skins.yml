@@ -1265,6 +1265,9 @@ skins:
         speed: 0.02
         color: "#FF9A3C"
         size: 1.2
+        sound: "cosmetics:skin.ghost.swing"
+        volume: 0.5
+        pitch: 1.0
       hit:
         particle: SOUL
         count: 20

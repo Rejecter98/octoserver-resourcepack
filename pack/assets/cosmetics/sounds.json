@@ -12,5 +12,12 @@
         "name": "cosmetics:skin/ghost_hit"
       }
     ]
+  },
+  "skin.ghost.swing": {
+    "sounds": [
+      {
+        "name": "cosmetics:skin/ghost_swing"
+      }
+    ]
   }
 }
