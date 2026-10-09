@@ -5,5 +5,12 @@
         "name": "cosmetics:skin/whale_shoot"
       }
     ]
+  },
+  "skin.ghost.hit": {
+    "sounds": [
+      {
+        "name": "cosmetics:skin/ghost_hit"
+      }
+    ]
   }
 }

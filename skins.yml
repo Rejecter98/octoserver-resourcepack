@@ -1244,3 +1244,47 @@ skins:
       - GOLDEN_SPEAR
       - DIAMOND_SPEAR
       - NETHERITE_SPEAR
+  pumpkin_ghost_hoe:
+    display-name: "&6호박 유령 대낫"
+    rarity: S
+    custom-model-data: 100113
+    category: hoe
+    allowed-materials:
+      - WOODEN_HOE
+      - STONE_HOE
+      - COPPER_HOE
+      - IRON_HOE
+      - GOLDEN_HOE
+      - DIAMOND_HOE
+      - NETHERITE_HOE
+    effects:
+      swing:
+        particle: DUST
+        count: 15
+        spread: 0.3
+        speed: 0.02
+        color: "#FF9A3C"
+        size: 1.2
+      hit:
+        particle: SOUL
+        count: 20
+        spread: 0.35
+        speed: 0.03
+        at: target
+        sound: "cosmetics:skin.ghost.hit"
+        volume: 0.7
+        pitch: 1.0
+      break:
+        particle: DUST
+        count: 20
+        spread: 0.4
+        speed: 0.03
+        color: "#9B5CC9"
+        size: 1.1
+        at: target
+      hold:
+        particle: SOUL_FIRE_FLAME
+        count: 3
+        spread: 0.3
+        speed: 0.01
+        interval: 8
