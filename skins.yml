@@ -1285,6 +1285,6 @@ skins:
       hold:
         particle: SOUL_FIRE_FLAME
         count: 3
-        spread: 0.3
+        spread: 0.15
         speed: 0.01
         interval: 8
