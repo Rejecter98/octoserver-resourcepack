@@ -35,6 +35,27 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/apple_flint_and_steel"
     }
+   },
+   {
+    "threshold": 100120,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/shooting_star_flint_and_steel"
+    }
+   },
+   {
+    "threshold": 100129,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/frost_flint_and_steel"
+    }
+   },
+   {
+    "threshold": 100130,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/mint_flint_and_steel"
+    }
    }
   ]
  }

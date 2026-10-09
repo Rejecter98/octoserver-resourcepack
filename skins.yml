@@ -1288,3 +1288,143 @@ skins:
         spread: 0.15
         speed: 0.01
         interval: 8
+  whale_tail_fishing_rod:
+    display-name: "&b고래꼬리 낚싯대"
+    rarity: A
+    custom-model-data: 100114
+    category: fishing_rod
+    allowed-materials:
+      - FISHING_ROD
+  star_candy_fishing_rod:
+    display-name: "&e별사탕 낚싯대"
+    rarity: A
+    custom-model-data: 100115
+    category: fishing_rod
+    allowed-materials:
+      - FISHING_ROD
+  donut_carrot_on_a_stick:
+    display-name: "&d도넛 낚싯대"
+    rarity: A
+    custom-model-data: 100116
+    category: carrot_on_a_stick
+    allowed-materials:
+      - CARROT_ON_A_STICK
+  mushroom_carrot_on_a_stick:
+    display-name: "&c버섯 낚싯대"
+    rarity: A
+    custom-model-data: 100117
+    category: carrot_on_a_stick
+    allowed-materials:
+      - CARROT_ON_A_STICK
+  chick_shears:
+    display-name: "&e병아리 가위"
+    rarity: A
+    custom-model-data: 100118
+    category: shears
+    allowed-materials:
+      - SHEARS
+  fish_shears:
+    display-name: "&b물고기 가위"
+    rarity: A
+    custom-model-data: 100119
+    category: shears
+    allowed-materials:
+      - SHEARS
+  shooting_star_flint_and_steel:
+    display-name: "&e별똥별 부싯돌"
+    rarity: A
+    custom-model-data: 100120
+    category: flint_and_steel
+    allowed-materials:
+      - FLINT_AND_STEEL
+  cat_tail_brush:
+    display-name: "&6고양이꼬리 브러시"
+    rarity: A
+    custom-model-data: 100121
+    category: brush
+    allowed-materials:
+      - BRUSH
+  sunflower_spyglass:
+    display-name: "&e해바라기 망원경"
+    rarity: A
+    custom-model-data: 100122
+    category: spyglass
+    allowed-materials:
+      - SPYGLASS
+  bamboo_spyglass:
+    display-name: "&a대나무 망원경"
+    rarity: A
+    custom-model-data: 100123
+    category: spyglass
+    allowed-materials:
+      - SPYGLASS
+  lavender_fishing_rod:
+    display-name: "&d라벤더 낚싯대"
+    rarity: B
+    custom-model-data: 100124
+    category: fishing_rod
+    allowed-materials:
+      - FISHING_ROD
+  mint_choco_fishing_rod:
+    display-name: "&a민트초코 낚싯대"
+    rarity: B
+    custom-model-data: 100125
+    category: fishing_rod
+    allowed-materials:
+      - FISHING_ROD
+  purple_carrot_on_a_stick:
+    display-name: "&5보라당근 낚싯대"
+    rarity: B
+    custom-model-data: 100126
+    category: carrot_on_a_stick
+    allowed-materials:
+      - CARROT_ON_A_STICK
+  soda_carrot_on_a_stick:
+    display-name: "&b소다 낚싯대"
+    rarity: B
+    custom-model-data: 100127
+    category: carrot_on_a_stick
+    allowed-materials:
+      - CARROT_ON_A_STICK
+  cherry_blossom_shears:
+    display-name: "&d벚꽃 가위"
+    rarity: B
+    custom-model-data: 100128
+    category: shears
+    allowed-materials:
+      - SHEARS
+  frost_flint_and_steel:
+    display-name: "&b서리 부싯돌"
+    rarity: B
+    custom-model-data: 100129
+    category: flint_and_steel
+    allowed-materials:
+      - FLINT_AND_STEEL
+  mint_flint_and_steel:
+    display-name: "&a민트 부싯돌"
+    rarity: B
+    custom-model-data: 100130
+    category: flint_and_steel
+    allowed-materials:
+      - FLINT_AND_STEEL
+  honey_brush:
+    display-name: "&6꿀 브러시"
+    rarity: B
+    custom-model-data: 100131
+    category: brush
+    allowed-materials:
+      - BRUSH
+  peach_brush:
+    display-name: "&d복숭아 브러시"
+    rarity: B
+    custom-model-data: 100132
+    category: brush
+    allowed-materials:
+      - BRUSH
+  grape_spyglass:
+    display-name: "&5포도 망원경"
+    rarity: B
+    custom-model-data: 100133
+    category: spyglass
+    allowed-materials:
+      - SPYGLASS

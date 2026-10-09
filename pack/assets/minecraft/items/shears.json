@@ -35,6 +35,27 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/strawberry_shears"
     }
+   },
+   {
+    "threshold": 100118,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/chick_shears"
+    }
+   },
+   {
+    "threshold": 100119,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/fish_shears"
+    }
+   },
+   {
+    "threshold": 100128,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/cherry_blossom_shears"
+    }
    }
   ]
  }

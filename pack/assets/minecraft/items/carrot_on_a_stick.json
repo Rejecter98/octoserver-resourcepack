@@ -28,6 +28,34 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/carrot_cake_carrot_on_a_stick"
     }
+   },
+   {
+    "threshold": 100116,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/donut_carrot_on_a_stick"
+    }
+   },
+   {
+    "threshold": 100117,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/mushroom_carrot_on_a_stick"
+    }
+   },
+   {
+    "threshold": 100126,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/purple_carrot_on_a_stick"
+    }
+   },
+   {
+    "threshold": 100127,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/soda_carrot_on_a_stick"
+    }
    }
   ]
  }

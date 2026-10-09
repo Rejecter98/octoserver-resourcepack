@@ -60,6 +60,66 @@
      },
      "property": "minecraft:fishing_rod/cast"
     }
+   },
+   {
+    "threshold": 100114,
+    "model": {
+     "type": "minecraft:condition",
+     "on_false": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/whale_tail_fishing_rod"
+     },
+     "on_true": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/whale_tail_fishing_rod_cast"
+     },
+     "property": "minecraft:fishing_rod/cast"
+    }
+   },
+   {
+    "threshold": 100115,
+    "model": {
+     "type": "minecraft:condition",
+     "on_false": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/star_candy_fishing_rod"
+     },
+     "on_true": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/star_candy_fishing_rod_cast"
+     },
+     "property": "minecraft:fishing_rod/cast"
+    }
+   },
+   {
+    "threshold": 100124,
+    "model": {
+     "type": "minecraft:condition",
+     "on_false": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/lavender_fishing_rod"
+     },
+     "on_true": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/lavender_fishing_rod_cast"
+     },
+     "property": "minecraft:fishing_rod/cast"
+    }
+   },
+   {
+    "threshold": 100125,
+    "model": {
+     "type": "minecraft:condition",
+     "on_false": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/mint_choco_fishing_rod"
+     },
+     "on_true": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/mint_choco_fishing_rod_cast"
+     },
+     "property": "minecraft:fishing_rod/cast"
+    }
    }
   ]
  }
