@@ -68,8 +68,9 @@ jobs:
           zip -r -X ../CosmeticPack.zip . -x '*.DS_Store' -x '__MACOSX/*' -x 'assets/dogam/report.json'
           cd ..
           unzip -l CosmeticPack.zip | grep -q ' pack.mcmeta$' || { echo "pack.mcmeta not at zip root"; exit 1; }
-          # OctoRaid 직업 아이템 (item_model="octoraid:<id>") — 빠지면 릴리스 중단
-          for id in shaman_beads soul_lantern archer_feather horn_battle horn_swift horn_heal; do
+          # OctoRaid 직업 아이템 (item_model="octoraid:<id>") — 레포의 pack/assets/octoraid/items 전부가 zip 에 있어야 함
+          ls pack/assets/octoraid/items/*.json >/dev/null || { echo "missing pack/assets/octoraid"; exit 1; }
+          for id in $(ls pack/assets/octoraid/items | sed 's/\.json$//'); do
             unzip -l CosmeticPack.zip | grep -q " assets/octoraid/items/$id.json$" || { echo "missing assets/octoraid/items/$id.json"; exit 1; }
             unzip -l CosmeticPack.zip | grep -q " assets/octoraid/textures/item/$id.png$" || { echo "missing assets/octoraid/textures/item/$id.png"; exit 1; }
           done
