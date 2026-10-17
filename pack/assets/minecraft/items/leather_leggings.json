@@ -176,6 +176,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cloud_leggings"
     }
+   },
+   {
+    "threshold": 100136,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/maple_leggings"
+    }
+   },
+   {
+    "threshold": 100146,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/bear_leggings"
+    }
    }
   ]
  }

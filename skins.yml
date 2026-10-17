@@ -1431,3 +1431,221 @@ skins:
     category: spyglass
     allowed-materials:
       - SPYGLASS
+  maple_helmet:
+    display-name: "&6단풍 투구"
+    rarity: B
+    custom-model-data: 100134
+    category: helmet
+    equipment-asset: "cosmetics:maple"
+    allowed-materials:
+      - LEATHER_HELMET
+      - CHAINMAIL_HELMET
+      - COPPER_HELMET
+      - IRON_HELMET
+      - GOLDEN_HELMET
+      - DIAMOND_HELMET
+      - NETHERITE_HELMET
+  maple_chestplate:
+    display-name: "&6단풍 흉갑"
+    rarity: B
+    custom-model-data: 100135
+    category: chestplate
+    equipment-asset: "cosmetics:maple"
+    allowed-materials:
+      - LEATHER_CHESTPLATE
+      - CHAINMAIL_CHESTPLATE
+      - COPPER_CHESTPLATE
+      - IRON_CHESTPLATE
+      - GOLDEN_CHESTPLATE
+      - DIAMOND_CHESTPLATE
+      - NETHERITE_CHESTPLATE
+  maple_leggings:
+    display-name: "&6단풍 레깅스"
+    rarity: B
+    custom-model-data: 100136
+    category: leggings
+    equipment-asset: "cosmetics:maple"
+    allowed-materials:
+      - LEATHER_LEGGINGS
+      - CHAINMAIL_LEGGINGS
+      - COPPER_LEGGINGS
+      - IRON_LEGGINGS
+      - GOLDEN_LEGGINGS
+      - DIAMOND_LEGGINGS
+      - NETHERITE_LEGGINGS
+  maple_boots:
+    display-name: "&6단풍 부츠"
+    rarity: B
+    custom-model-data: 100137
+    category: boots
+    equipment-asset: "cosmetics:maple"
+    allowed-materials:
+      - LEATHER_BOOTS
+      - CHAINMAIL_BOOTS
+      - COPPER_BOOTS
+      - IRON_BOOTS
+      - GOLDEN_BOOTS
+      - DIAMOND_BOOTS
+      - NETHERITE_BOOTS
+  aurora_elytra:
+    display-name: "&b오로라 날개"
+    rarity: B
+    custom-model-data: 100138
+    category: elytra
+    equipment-asset: "cosmetics:aurora"
+    allowed-materials:
+      - ELYTRA
+  mint_horse_armor:
+    display-name: "&a민트 말 갑옷"
+    rarity: B
+    custom-model-data: 100139
+    category: horse_armor
+    equipment-asset: "cosmetics:mint_horse"
+    allowed-materials:
+      - LEATHER_HORSE_ARMOR
+      - COPPER_HORSE_ARMOR
+      - IRON_HORSE_ARMOR
+      - GOLDEN_HORSE_ARMOR
+      - DIAMOND_HORSE_ARMOR
+      - NETHERITE_HORSE_ARMOR
+  tangerine_wolf_armor:
+    display-name: "&6귤 늑대 갑옷"
+    rarity: B
+    custom-model-data: 100140
+    category: wolf_armor
+    equipment-asset: "cosmetics:tangerine_wolf"
+    allowed-materials:
+      - WOLF_ARMOR
+  strawberry_milk_trident:
+    display-name: "&d딸기우유 삼지창"
+    rarity: B
+    custom-model-data: 100141
+    category: trident
+    allowed-materials:
+      - TRIDENT
+  night_sky_shield:
+    display-name: "&9밤하늘 방패"
+    rarity: B
+    custom-model-data: 100142
+    category: shield
+    allowed-materials:
+      - SHIELD
+  maple_bow:
+    display-name: "&6단풍 활"
+    rarity: B
+    custom-model-data: 100143
+    category: bow
+    allowed-materials:
+      - BOW
+  bear_helmet:
+    display-name: "&6곰돌이 모자"
+    rarity: A
+    custom-model-data: 100144
+    category: helmet
+    equipment-asset: "cosmetics:bear_pajama"
+    allowed-materials:
+      - LEATHER_HELMET
+      - CHAINMAIL_HELMET
+      - COPPER_HELMET
+      - IRON_HELMET
+      - GOLDEN_HELMET
+      - DIAMOND_HELMET
+      - NETHERITE_HELMET
+  bear_chestplate:
+    display-name: "&6곰돌이 잠옷"
+    rarity: A
+    custom-model-data: 100145
+    category: chestplate
+    equipment-asset: "cosmetics:bear_pajama"
+    allowed-materials:
+      - LEATHER_CHESTPLATE
+      - CHAINMAIL_CHESTPLATE
+      - COPPER_CHESTPLATE
+      - IRON_CHESTPLATE
+      - GOLDEN_CHESTPLATE
+      - DIAMOND_CHESTPLATE
+      - NETHERITE_CHESTPLATE
+  bear_leggings:
+    display-name: "&6곰돌이 잠옷 바지"
+    rarity: A
+    custom-model-data: 100146
+    category: leggings
+    equipment-asset: "cosmetics:bear_pajama"
+    allowed-materials:
+      - LEATHER_LEGGINGS
+      - CHAINMAIL_LEGGINGS
+      - COPPER_LEGGINGS
+      - IRON_LEGGINGS
+      - GOLDEN_LEGGINGS
+      - DIAMOND_LEGGINGS
+      - NETHERITE_LEGGINGS
+  bear_boots:
+    display-name: "&6곰돌이 슬리퍼"
+    rarity: A
+    custom-model-data: 100147
+    category: boots
+    equipment-asset: "cosmetics:bear_pajama"
+    allowed-materials:
+      - LEATHER_BOOTS
+      - CHAINMAIL_BOOTS
+      - COPPER_BOOTS
+      - IRON_BOOTS
+      - GOLDEN_BOOTS
+      - DIAMOND_BOOTS
+      - NETHERITE_BOOTS
+  angel_elytra:
+    display-name: "&e천사 날개"
+    rarity: A
+    custom-model-data: 100148
+    category: elytra
+    equipment-asset: "cosmetics:angel"
+    allowed-materials:
+      - ELYTRA
+  flower_crown_horse_armor:
+    display-name: "&d꽃화관 말 갑옷"
+    rarity: A
+    custom-model-data: 100149
+    category: horse_armor
+    equipment-asset: "cosmetics:flower_crown"
+    allowed-materials:
+      - LEATHER_HORSE_ARMOR
+      - COPPER_HORSE_ARMOR
+      - IRON_HORSE_ARMOR
+      - GOLDEN_HORSE_ARMOR
+      - DIAMOND_HORSE_ARMOR
+      - NETHERITE_HORSE_ARMOR
+  puppy_scarf_wolf_armor:
+    display-name: "&c멍멍 스카프"
+    rarity: A
+    custom-model-data: 100150
+    category: wolf_armor
+    equipment-asset: "cosmetics:puppy_scarf"
+    allowed-materials:
+      - WOLF_ARMOR
+  crescent_moon_bow:
+    display-name: "&e초승달 활"
+    rarity: A
+    custom-model-data: 100151
+    category: bow
+    allowed-materials:
+      - BOW
+  gummy_bear_mace:
+    display-name: "&c곰젤리 철퇴"
+    rarity: A
+    custom-model-data: 100152
+    category: mace
+    allowed-materials:
+      - MACE
+  carrot_spear:
+    display-name: "&6당근 창"
+    rarity: A
+    custom-model-data: 100153
+    category: spear
+    allowed-materials:
+      - WOODEN_SPEAR
+      - STONE_SPEAR
+      - COPPER_SPEAR
+      - IRON_SPEAR
+      - GOLDEN_SPEAR
+      - DIAMOND_SPEAR
+      - NETHERITE_SPEAR

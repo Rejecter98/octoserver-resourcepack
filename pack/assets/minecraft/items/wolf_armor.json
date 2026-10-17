@@ -47,6 +47,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/soda_wolf_armor"
     }
+   },
+   {
+    "threshold": 100140,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/tangerine_wolf_armor"
+    }
+   },
+   {
+    "threshold": 100150,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/puppy_scarf_wolf_armor"
+    }
    }
   ]
  }

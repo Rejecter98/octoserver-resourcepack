@@ -60,6 +60,36 @@
      },
      "property": "minecraft:broken"
     }
+   },
+   {
+    "threshold": 100138,
+    "model": {
+     "type": "minecraft:condition",
+     "on_false": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/aurora_elytra"
+     },
+     "on_true": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/aurora_elytra_broken"
+     },
+     "property": "minecraft:broken"
+    }
+   },
+   {
+    "threshold": 100148,
+    "model": {
+     "type": "minecraft:condition",
+     "on_false": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/angel_elytra"
+     },
+     "on_true": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/angel_elytra_broken"
+     },
+     "property": "minecraft:broken"
+    }
    }
   ]
  }

@@ -183,6 +183,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cat_ear_helmet"
     }
+   },
+   {
+    "threshold": 100134,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/maple_helmet"
+    }
+   },
+   {
+    "threshold": 100144,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/bear_helmet"
+    }
    }
   ]
  }

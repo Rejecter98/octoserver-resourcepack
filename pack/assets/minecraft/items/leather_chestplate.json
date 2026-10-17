@@ -176,6 +176,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/cloud_chestplate"
     }
+   },
+   {
+    "threshold": 100135,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/maple_chestplate"
+    }
+   },
+   {
+    "threshold": 100145,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/bear_chestplate"
+    }
    }
   ]
  }

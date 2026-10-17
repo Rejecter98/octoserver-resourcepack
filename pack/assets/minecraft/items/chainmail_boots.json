@@ -111,6 +111,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/duck_boots"
     }
+   },
+   {
+    "threshold": 100137,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/maple_boots"
+    }
+   },
+   {
+    "threshold": 100147,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/bear_boots"
+    }
    }
   ]
  }

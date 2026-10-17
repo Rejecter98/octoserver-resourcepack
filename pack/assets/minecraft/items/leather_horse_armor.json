@@ -34,6 +34,20 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/lavender_horse_armor"
     }
+   },
+   {
+    "threshold": 100139,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/mint_horse_armor"
+    }
+   },
+   {
+    "threshold": 100149,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/flower_crown_horse_armor"
+    }
    }
   ]
  }

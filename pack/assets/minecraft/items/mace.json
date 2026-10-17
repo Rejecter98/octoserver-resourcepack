@@ -42,6 +42,13 @@
      "type": "minecraft:model",
      "model": "cosmetics:item/sunflower_mace"
     }
+   },
+   {
+    "threshold": 100152,
+    "model": {
+     "type": "minecraft:model",
+     "model": "cosmetics:item/gummy_bear_mace"
+    }
    }
   ]
  }
