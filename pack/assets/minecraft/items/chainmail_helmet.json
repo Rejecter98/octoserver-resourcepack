@@ -108,8 +108,21 @@
    {
     "threshold": 100076,
     "model": {
-     "type": "minecraft:model",
-     "model": "cosmetics:item/cat_ear_helmet"
+     "type": "minecraft:select",
+     "property": "minecraft:display_context",
+     "cases": [
+      {
+       "when": "head",
+       "model": {
+        "type": "minecraft:model",
+        "model": "cosmetics:item/cat_ear_helmet_head"
+       }
+      }
+     ],
+     "fallback": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/cat_ear_helmet"
+     }
     }
    },
    {
@@ -122,8 +135,21 @@
    {
     "threshold": 100144,
     "model": {
-     "type": "minecraft:model",
-     "model": "cosmetics:item/bear_helmet"
+     "type": "minecraft:select",
+     "property": "minecraft:display_context",
+     "cases": [
+      {
+       "when": "head",
+       "model": {
+        "type": "minecraft:model",
+        "model": "cosmetics:item/bear_helmet_head"
+       }
+      }
+     ],
+     "fallback": {
+      "type": "minecraft:model",
+      "model": "cosmetics:item/bear_helmet"
+     }
     }
    }
   ]

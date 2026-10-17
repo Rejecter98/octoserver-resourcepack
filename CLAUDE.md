@@ -80,6 +80,27 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
   - 파일: `pack/assets/cosmetics/sounds/skin/<이름>.ogg` — **Ogg Vorbis, 모노** (스테레오면 위치에 따라 안 들림)
   - skins.yml 에서는 `sound: "cosmetics:skin.anchor.hit"` (이벤트 이름)
   - 소리는 직접 합성해서 만듦 (ffmpeg libvorbis 사용 가능), 짧고(1초 안팎) 부드럽게, 볼륨 과하지 않게
+- **방어구 입체화 (A·S 방어구, CosmeticSkins 1.5.0-octo~)** — 등급별 기준:
+  | 등급 | 투구 | 흉갑(몸통) | 레깅스·신발 |
+  |---|---|---|---|
+  | S | 입체 모델 (크게: 뿔·왕관·용 머리 등) | 몸통 입체 장식(어깨·등 날개·망토 등) + 고해상도 텍스처 | 고해상도 텍스처 |
+  | A | 입체 모델 (작게: 귀·깃털·작은 뿔 정도) | 고해상도 텍스처 | 고해상도 텍스처 |
+  | B | 변경 없음 | 변경 없음 | 변경 없음 |
+  - **입체 투구**: skins.yml 에 `head-model: true` → 플러그인이 그 투구의 equippable `asset_id` 를 지움
+    (slot=HEAD·장착 소리는 유지) → 장비 텍스처 대신 아이템 모델이 머리에 그려짐 (호박 쓰는 원리)
+    - 아이템 정의 entry: `minecraft:select` / `display_context` → `head` 케이스 = `cosmetics:item/<id>_head`(입체),
+      fallback = 기존 아이콘 모델 (인벤토리·손·도감 실루엣은 아이콘 그대로)
+    - 입체 모델 좌표: 0~16 이 머리 둘레 10px(호박 크기) → 머리 8px = 1.6~14.4, 모자 레이어 0.8~15.2 →
+      껍데기는 0.6~15.4 정도로 감싸고 장식을 위에 얹음. 앞 = 북쪽(-Z), `display.head` 는 단위 변환
+    - 입체 투구에서는 **트림·가죽 염색 색이 안 보임** (장비 레이어를 안 쓰므로), 인챈트 반짝임은 모델 전체에 보임
+    - 생성기: `tools/armor3d/helmet3d.py` (고해상도: `tools/armor3d/hires.py`, 원본 64x32 는 `tools/armor3d/orig/`, 미리보기 렌더러 `player_render.py`) (32x32 재질 칸 텍스처 `cosmetics:item/<id>_head`)
+  - **고해상도 텍스처**: 장비 텍스처 64x32 → **128x64** (UV 배치·투명 모양은 그대로, 2배 디테일).
+    검증 규칙의 "humanoid 64x32" 는 A·S 고해상도 세트면 128x64(또는 256x128, 비율 2:1) 허용
+  - **몸통 장식 (S 흉갑)**: skins.yml `body-attachment: {item-model, offset [오른쪽,위,뒤], scale, sneak-offset, sneak-tilt}`
+    → 플러그인이 ItemDisplay 를 따로 띄워 매 틱 teleport (탑승/passenger 금지 — 월드 이동 텔레포트가 깨짐),
+    저장 안 되는 엔티티 + 태그로 정리, 히트박스 없음. 리소스팩에는 `assets/cosmetics/items/<id>_body.json` 아이템 정의 +
+    모델을 만들 것 (ItemDisplay 는 FIXED 변환, 방향은 첫 S 흉갑 만들 때 인게임에서 맞출 것)
+  - 현재 적용: 냥이 모자·곰돌이 모자(입체 투구), 곰돌이 잠옷 세트·오리 장화(고해상도). S 방어구는 아직 없음
 - **display-name** 은 토큰 이름과 스킨 도감 이름으로 그대로 쓰임
   → 한국어 + `&` 색코드로 예쁘게 (테마 색 하나로 통일, 예: 솜사탕 `&d`, 서리 `&b`, 불꽃 `&c`, 벚꽃 `&d`)
   - 이미 쓰이는 이름과 겹치지 않게, 너무 길지 않게 (도감 한 줄에 들어가도록)

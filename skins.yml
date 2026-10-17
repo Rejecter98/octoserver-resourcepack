@@ -3,6 +3,9 @@
 #   A : 외형(모양) 자체가 원본에서 바뀐 스킨
 #   S : 크기 변화나 이펙트·파티클까지 포함된 스킨
 #   S(한정) : S + 전용 사운드까지 포함 — 한정 여부는 가챠 배너 설정에서 지정
+# 방어구 입체화 (CosmeticSkins 1.5.0-octo~)
+#   head-model: true   투구 스킨 → 머리에 쓴 모습이 입체 모델 (장비 텍스처 asset_id 대신 아이템 모델, A·S 투구)
+#   body-attachment:   S 흉갑 스킨 → 몸통 입체 장식 (item-model / offset [오른쪽,위,뒤] / scale / sneak-offset / sneak-tilt)
 skins:
   flame_blade:
     display-name: "&c불꽃 검"
@@ -840,6 +843,7 @@ skins:
     rarity: A
     custom-model-data: 100076
     category: helmet
+    head-model: true
     equipment-asset: "cosmetics:cat_ear"
     allowed-materials:
       - LEATHER_HELMET
@@ -1542,6 +1546,7 @@ skins:
     rarity: A
     custom-model-data: 100144
     category: helmet
+    head-model: true
     equipment-asset: "cosmetics:bear_pajama"
     allowed-materials:
       - LEATHER_HELMET
