@@ -1,0 +1,85 @@
+{
+ "parent": "octofish:item/sea_bass",
+ "display": {
+  "thirdperson_righthand": {
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "translation": [
+    0,
+    3.2,
+    1
+   ],
+   "scale": [
+    0.605,
+    0.605,
+    0.605
+   ]
+  },
+  "firstperson_righthand": {
+   "rotation": [
+    0,
+    -90,
+    25
+   ],
+   "translation": [
+    1.13,
+    3.32,
+    1.13
+   ],
+   "scale": [
+    0.7208,
+    0.7208,
+    0.7208
+   ]
+  },
+  "ground": {
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "translation": [
+    0,
+    2,
+    0
+   ],
+   "scale": [
+    0.55,
+    0.55,
+    0.55
+   ]
+  },
+  "head": {
+   "rotation": [
+    0,
+    180,
+    0
+   ],
+   "translation": [
+    0,
+    13,
+    7
+   ],
+   "scale": [
+    1.1,
+    1.1,
+    1.1
+   ]
+  },
+  "fixed": {
+   "rotation": [
+    0,
+    180,
+    0
+   ],
+   "scale": [
+    1.1,
+    1.1,
+    1.1
+   ]
+  }
+ }
+}

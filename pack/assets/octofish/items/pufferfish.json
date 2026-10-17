@@ -1,0 +1,139 @@
+{
+ "model": {
+  "type": "minecraft:range_dispatch",
+  "property": "minecraft:custom_model_data",
+  "index": 0,
+  "fallback": {
+   "type": "minecraft:model",
+   "model": "octofish:item/pufferfish"
+  },
+  "entries": [
+   {
+    "threshold": 0.75,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x8"
+    }
+   },
+   {
+    "threshold": 0.85,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x9"
+    }
+   },
+   {
+    "threshold": 0.95,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish"
+    }
+   },
+   {
+    "threshold": 1.05,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x11"
+    }
+   },
+   {
+    "threshold": 1.15,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x12"
+    }
+   },
+   {
+    "threshold": 1.25,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x13"
+    }
+   },
+   {
+    "threshold": 1.35,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x14"
+    }
+   },
+   {
+    "threshold": 1.45,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x15"
+    }
+   },
+   {
+    "threshold": 1.55,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x16"
+    }
+   },
+   {
+    "threshold": 1.65,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x17"
+    }
+   },
+   {
+    "threshold": 1.75,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x18"
+    }
+   },
+   {
+    "threshold": 1.85,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x19"
+    }
+   },
+   {
+    "threshold": 1.95,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x20"
+    }
+   },
+   {
+    "threshold": 2.05,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x21"
+    }
+   },
+   {
+    "threshold": 2.15,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x22"
+    }
+   },
+   {
+    "threshold": 2.25,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x23"
+    }
+   },
+   {
+    "threshold": 2.35,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x24"
+    }
+   },
+   {
+    "threshold": 2.45,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/pufferfish_x25"
+    }
+   }
+  ]
+ }
+}

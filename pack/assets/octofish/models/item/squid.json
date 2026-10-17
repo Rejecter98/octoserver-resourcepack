@@ -1,1 +1,6 @@
-{"parent": "minecraft:item/generated", "textures": {"layer0": "octofish:item/squid"}}
+{
+ "parent": "minecraft:item/generated",
+ "textures": {
+  "layer0": "octofish:item/squid"
+ }
+}

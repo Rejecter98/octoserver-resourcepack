@@ -1,1 +1,6 @@
-{"model": {"type": "minecraft:model", "model": "octofish:item/bait_shiny"}}
+{
+ "model": {
+  "type": "minecraft:model",
+  "model": "octofish:item/bait_shiny"
+ }
+}

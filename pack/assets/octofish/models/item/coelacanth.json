@@ -1,1 +1,6 @@
-{"parent": "minecraft:item/generated", "textures": {"layer0": "octofish:item/coelacanth"}}
+{
+ "parent": "minecraft:item/generated",
+ "textures": {
+  "layer0": "octofish:item/coelacanth"
+ }
+}

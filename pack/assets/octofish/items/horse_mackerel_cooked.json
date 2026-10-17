@@ -1,1 +1,6 @@
-{"model": {"type": "minecraft:model", "model": "octofish:item/horse_mackerel_cooked"}}
+{
+ "model": {
+  "type": "minecraft:model",
+  "model": "octofish:item/horse_mackerel_cooked"
+ }
+}

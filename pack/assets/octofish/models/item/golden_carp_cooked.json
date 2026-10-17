@@ -1,1 +1,6 @@
-{"parent": "minecraft:item/generated", "textures": {"layer0": "octofish:item/golden_carp_cooked"}}
+{
+ "parent": "minecraft:item/generated",
+ "textures": {
+  "layer0": "octofish:item/golden_carp_cooked"
+ }
+}
