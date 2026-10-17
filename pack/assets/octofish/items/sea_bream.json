@@ -1,0 +1,139 @@
+{
+ "model": {
+  "type": "minecraft:range_dispatch",
+  "property": "minecraft:custom_model_data",
+  "index": 0,
+  "fallback": {
+   "type": "minecraft:model",
+   "model": "octofish:item/sea_bream"
+  },
+  "entries": [
+   {
+    "threshold": 0.75,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x8"
+    }
+   },
+   {
+    "threshold": 0.85,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x9"
+    }
+   },
+   {
+    "threshold": 0.95,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream"
+    }
+   },
+   {
+    "threshold": 1.05,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x11"
+    }
+   },
+   {
+    "threshold": 1.15,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x12"
+    }
+   },
+   {
+    "threshold": 1.25,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x13"
+    }
+   },
+   {
+    "threshold": 1.35,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x14"
+    }
+   },
+   {
+    "threshold": 1.45,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x15"
+    }
+   },
+   {
+    "threshold": 1.55,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x16"
+    }
+   },
+   {
+    "threshold": 1.65,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x17"
+    }
+   },
+   {
+    "threshold": 1.75,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x18"
+    }
+   },
+   {
+    "threshold": 1.85,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x19"
+    }
+   },
+   {
+    "threshold": 1.95,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x20"
+    }
+   },
+   {
+    "threshold": 2.05,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x21"
+    }
+   },
+   {
+    "threshold": 2.15,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x22"
+    }
+   },
+   {
+    "threshold": 2.25,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x23"
+    }
+   },
+   {
+    "threshold": 2.35,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x24"
+    }
+   },
+   {
+    "threshold": 2.45,
+    "model": {
+     "type": "minecraft:model",
+     "model": "octofish:item/sea_bream_x25"
+    }
+   }
+  ]
+ }
+}
