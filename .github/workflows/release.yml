@@ -61,6 +61,9 @@ jobs:
           python3 tools/gen_bettermodel.py 2>&1 | tee ci-bettermodel.log
           cat bettermodel_report.json
 
+      - name: Sync OctoFish tier rods with fishing rod skins
+        run: python3 tools/gen_octofish_rods.py
+
       - name: Build CosmeticPack.zip
         run: |
           rm -f CosmeticPack.zip

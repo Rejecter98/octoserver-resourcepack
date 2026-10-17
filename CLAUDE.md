@@ -145,6 +145,10 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
 - `pack/assets/octofish/` (낚시 플러그인 OctoFish 리소스: 물고기·요리 44종, 미끼 3종, 낚싯대 4종 = items 47개)
   도 레포에 커밋된 원본 → 사용자가 새 zip 을 주면 폴더 통째 교체, 그 외에는 지우거나 덮어쓰지 말 것
   - release.yml 이 레포의 octofish 파일 전부가 zip 안에 있는지 확인 (빠지면 릴리스 중단)
+  - **예외**: `octofish/items/rod_{iron,gold,diamond,netherite}.json` 은 `tools/gen_octofish_rods.py` 가 생성
+    (minecraft `fishing_rod.json` 을 복사하고 fallback 만 등급 모양으로 바꾸는 방식, release.yml 이 zip 직전에 실행).
+    낚싯대 스킨을 추가할 땐 `fishing_rod.json` 만 고치면 되고, rod_*.json 은 손으로 고치지 않음
+    (스킨 추가 후 로컬에서도 한 번 돌려서 같이 커밋하면 레포와 릴리스 내용이 같아짐)
 - 참고: 26.2 에는 구리 도구·갑옷이 있지만, 기존 도구 스킨 12종에는 아직 구리가 없음 (나무·돌·철·금·다이아·네더라이트만)
 
 ## 규칙
