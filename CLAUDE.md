@@ -172,6 +172,13 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
     낚싯대 스킨을 추가할 땐 `fishing_rod.json` 만 고치면 되고, rod_*.json 은 손으로 고치지 않음
     (스킨 추가 후 로컬에서도 한 번 돌려서 같이 커밋하면 레포와 릴리스 내용이 같아짐)
     → 새 octofish zip 으로 폴더를 교체한 뒤에도 반드시 이 스크립트를 돌린 다음 커밋 (zip 의 rod_*.json 은 스킨 없는 원본)
+- `pack/assets/octofarm/` (농사 플러그인 OctoFarm: 작물·씨앗·비료·물뿌리개 아이콘 items 119 + 밭 작물 블록 모델 48(ItemDisplay 용))
+  · `pack/assets/octocook/` (요리 플러그인 OctoCook: 요리 아이콘 40종 64px + 뒤집기 미니게임 `pan/` 하위 폴더 10장)
+  도 레포에 커밋된 원본 → 새 zip 이 오면 폴더 통째 교체, 그 외에는 지우거나 덮어쓰지 말 것
+  - 둘 다 PAPER 에 item_model(`octofarm:<id>`, `octocook:<id>`, `octocook:pan/<id>`) 로 붙임 → `paper.json` 은 만들지 않음
+  - OctoFarm 이 `pack/assets/minecraft/textures/block/` 의 바닐라 작물 텍스처 20장(wheat_stage0~7, carrots/potatoes/beetroots_stage0~3,
+    32px)을 덮어씀 → 이 폴더는 OctoFarm 소유 (새 OctoFarm zip 이 오면 이 20장도 교체)
+  - release.yml 이 octofish·octofarm·octocook·minecraft/textures/block 파일 전부가 zip 안에 있는지 확인 (빠지면 릴리스 중단)
 - 참고: 26.2 에는 구리 도구·갑옷이 있지만, 기존 도구 스킨 12종에는 아직 구리가 없음 (나무·돌·철·금·다이아·네더라이트만)
 
 ## 규칙

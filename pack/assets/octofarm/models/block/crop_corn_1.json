@@ -1,0 +1,7 @@
+{
+ "parent": "minecraft:block/crop",
+ "textures": {
+  "crop": "octofarm:block/crop_corn_1",
+  "particle": "octofarm:block/crop_corn_1"
+ }
+}
