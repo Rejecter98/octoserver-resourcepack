@@ -11,7 +11,7 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
   `CosmeticPack.zip` 빌드 → sha1 계산 → 기존 `vN` 중 최대 N+1 태그로 릴리스 생성
   (첨부: `CosmeticPack.zip`, `skins.yml` / 본문 첫 줄 `sha1: <값>`, 그 아래 변경된 스킨 목록)
   - `models/**`, `server/BetterModel/**`, `tools/**` 변경도 릴리스를 만듦
-- `models/` — 레이드 보스 BetterModel 원본 `.bbmodel` (팩 밖, 서버 `plugins/BetterModel/models/` 에도 같은 파일)
+- `models/` — 레이드 보스·펫(`pet_*`) BetterModel 원본 `.bbmodel` (팩 밖, 서버 `plugins/BetterModel/models/` 에도 같은 파일)
 - `server/` — 서버에 넣는 설정 원본 (MythicMobs Mobs/Skills, BetterModel config.yml, OctoRaid raids.yml 레이드별 부분)
 - `docs/raid_tiers.md` — **레이드 보스 티어표** (보스 만들 때마다 반드시 참고)
 - `tools/gen_bettermodel.py` — 릴리스 때 BetterModel 팩을 실제 BetterModel 로 생성해 합침 (아래 "레이드 보스")
@@ -260,6 +260,51 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
    - 서버에서 할 일: skins.yml → `plugins/CosmeticSkins/` 에 덮어쓰기,
      `resource-pack-sha1` 교체, 서버 재시작
    - 릴리스 태그 이름
+
+## 펫 (OctoPet + BetterModel)
+- 서버의 3D 펫 시스템: 펫은 BetterModel 모델로 주인을 따라다니고, 창고·가챠 화면에는 아이콘으로 보임
+- 현재 펫 3종: 아기 문어 `octopus` · 아기 여우 `fox` · 아기 고양이 `cat`
+- 파일 위치
+  - 모델: `models/pet_<id>.bbmodel` (레이드 보스 모델과 같은 폴더 → 릴리스 때 `tools/gen_bettermodel.py` 가 `assets/bettermodel/` 에 같이 생성,
+    release.yml 이 `bettermodel_report.json` 에 `pet_*` 가 다 있는지 확인)
+  - 아이콘: `pack/assets/octopet/` (items · models/item · textures/item), 서버가 `item_model="octopet:<id>"` 로 직접 지정
+    → 바닐라 아이템 정의는 건드리지 않음. release.yml 이 octoraid 와 같은 방식으로 items + 같은 이름 텍스처 확인
+  - 생성기(참고용): `tools/models/pets/` (petmodel.py · paint.py · pets.py · build.py — 위 3종을 만든 파이썬 코드)
+### 모델 규칙 `models/pet_<id>.bbmodel`
+- Blockbench free 포맷, 앞 = 북쪽(-Z), 원점 = 발밑 가운데, 큐브 회전 없이 뼈 회전만
+- 크기: 높이 12~16단위(0.75~1블록), 폭 8~10단위 — 플레이어 옆을 졸졸 따라다니는 "아기" 크기
+- 뼈 이름: 머리는 `h_head` (주인 쪽을 바라봄), 그 밖에 `body`, 다리 · 꼬리 등 자유
+- 애니메이션 (반드시 이 이름, BetterModel 이 자동 재생)
+  - `idle` : 가만히 있을 때 반복 (2~2.5초, 살짝 숨쉬기 · 꼬리 흔들기)
+  - `walk` : 움직일 때 반복 (0.6~0.8초, 다리 교차 · 몸 통통)
+- Blockbench 규칙: 애니메이션 회전 x·y 부호 반전, 위치 x 반전 (`tools/models/render.py` 로 확인)
+- 텍스처는 파일 안 base64, `resolution` = 텍스처 크기, UV 는 픽셀 좌표
+- 컨셉: 귀엽고 둥글둥글한 파스텔 톤 (큰 눈 + 볼터치), 큐브 10~20개
+### 아이콘 `pack/assets/octopet/`
+- `textures/item/<id>.png` 64x64 — 모델을 앞 3/4 각도에서 렌더한 그림 (투명 배경)
+- `models/item/<id>.json` → `{"parent":"minecraft:item/generated","textures":{"layer0":"octopet:item/<id>"}}`
+- `items/<id>.json` → `{"model":{"type":"minecraft:model","model":"octopet:item/<id>"}}`
+### 서버 설정 (사용자에게 전달할 것)
+`plugins/OctoPet/pets.yml` 의 `species:` 아래에 추가 → `/pet reload`
+```yaml
+  <id>:
+    name: "아기 OO"          # 한국어 이름
+    color: "&d"              # 이름 색 (& 색코드)
+    model: pet_<id>          # .bbmodel 파일 이름
+    icon: "octopet:<id>"
+    icon-material: PINK_DYE  # 팩이 없을 때 대신 보일 아이템
+    gacha: true              # true = 가챠 S급에서 나옴 (false = 이벤트 · 관리자 지급 전용)
+    description:
+      - "&7한 줄 소개"
+```
+- 펫은 전부 가챠 **S급** (스킨 S 와 같은 풀). 따로 등급을 정할 필요 없음
+- 사용자 서버 작업: `.bbmodel` 을 `plugins/BetterModel/models/` 에 넣기 → `/bettermodel reload` → pets.yml 추가 → `/pet reload`
+  → `resource-pack-sha1` 교체
+### 작업 순서 (펫 요청마다)
+1. 펫 id · 이름 · 컨셉 · 색 계획을 먼저 보여주기
+2. 모델 · 아이콘 · pets.yml 조각 만들기
+3. 미리보기: 정면 3/4 · 옆 · 뒤 + `walk` 동작 몇 프레임 (render.py)
+4. 사용자 "승인" → 커밋 · push → 릴리스 → sha1 · .bbmodel 파일 · pets.yml 조각 전달
 
 ## 레이드 보스 (OctoRaid + MythicMobs 5.13 무료 + BetterModel)
 - **체력·피해·방어력·페이즈·졸개 수·보상·레이드 id 는 `docs/raid_tiers.md` 티어표를 따름** (보스마다 티어 지정,
