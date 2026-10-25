@@ -156,9 +156,11 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
   - UV 배치는 바닐라 `textures/entity/equipment/humanoid(_leggings)/iron.png` 와 같게
     (바닐라 원본을 모양·명암 기준으로 쓰고 색만 바꾸는 방식이 안전)
 - `pack/assets/servermenu/` (메뉴 GUI 배경·폰트) 는 다른 플러그인용 → **절대 수정 금지**
-- `pack/assets/octoraid/` (OctoRaid 직업 아이템 11종: shaman_beads, soul_lantern, archer_feather,
-  horn_battle/swift/heal, breaker_shield, durandal_trident, executioner_axe, knight_spears, sniper_scope)
-  은 레포에 커밋된 원본 → 사용자가 새 zip 을 주면 폴더 통째 교체, 그 외에는 지우거나 덮어쓰지 말 것
+- `pack/assets/octoraid/` (OctoRaid 직업 아이템 19종: shaman_beads(64px), soul_lantern, archer_feather,
+  horn_battle/swift/heal, breaker_shield, durandal_trident, executioner_axe, knight_spears, sniper_scope,
+  shaman_staff_wood/stone/copper/iron/gold/diamond/netherite, soul_orb + 쓰러짐 화면 비네트 폰트 `font/overlay.json`
+  → `textures/font/downed.png`, 문자 \ue000 — `minecraft/font/default.json` 은 건드리지 않음)
+  은 레포에 커밋된 원본 → 사용자가 새 zip 을 주면 그 지시대로(통째 교체 또는 같은 이름만 덮어쓰기), 그 외에는 지우거나 덮어쓰지 말 것
   - 서버가 `item_model` 컴포넌트로 직접 지정 (`paper[item_model="octoraid:shaman_beads"]`,
     `goat_horn[item_model="octoraid:horn_battle"]`) → 바닐라 `paper.json`·`goat_horn.json` 은 만들거나 건드리지 않음
   - 뿔 3종은 `minecraft:using_item` 조건 + `_tooting` 모델(parent `minecraft:item/tooting_goat_horn`)
