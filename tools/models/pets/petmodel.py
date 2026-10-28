@@ -122,7 +122,7 @@ class Model:
                         kfs.append({'channel': channel, 'data_points': [{'x': str(round(v[0], 3)), 'y': str(round(v[1], 3)), 'z': str(round(v[2], 3))}],
                                     'uuid': uid(), 'time': round(t, 4), 'color': -1, 'interpolation': 'catmullrom'})
                 animators[b.uuid] = {'name': bn, 'type': 'bone', 'keyframes': kfs}
-            anims.append({'uuid': uid(), 'name': name, 'loop': 'loop' if loop else 'once', 'override': False,
+            anims.append({'uuid': uid(), 'name': name, 'loop': loop if isinstance(loop, str) else ('loop' if loop else 'once'), 'override': False,
                           'length': length, 'snapping': 20, 'selected': False, 'anim_time_update': '',
                           'blend_weight': '', 'start_delay': '', 'loop_delay': '', 'animators': animators})
         return {

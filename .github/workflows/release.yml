@@ -75,7 +75,7 @@ jobs:
           # — 레포의 pack/assets/<ns>/items 전부 + 같은 이름 텍스처가 zip 에 있어야 함
           for ns in octoraid octopet; do
             ls pack/assets/$ns/items/*.json >/dev/null || { echo "missing pack/assets/$ns"; exit 1; }
-            for id in $(ls pack/assets/$ns/items | sed 's/\.json$//'); do
+            for id in $(cd pack/assets/$ns/items && find . -name '*.json' | sed 's|^\./||; s/\.json$//'); do   # 하위 폴더(ui/ 등) 포함
               unzip -l CosmeticPack.zip | grep -q " assets/$ns/items/$id.json$" || { echo "missing assets/$ns/items/$id.json"; exit 1; }
               unzip -l CosmeticPack.zip | grep -q " assets/$ns/textures/item/$id.png$" || { echo "missing assets/$ns/textures/item/$id.png"; exit 1; }
             done
@@ -84,12 +84,12 @@ jobs:
           for m in $(ls models | grep '^pet_.*\.bbmodel$' | sed 's/\.bbmodel$//'); do
             grep -q "\"$m\"" bettermodel_report.json || { echo "BetterModel 팩에 $m 없음"; exit 1; }
           done
-          # 플러그인 리소스 (OctoFish 낚시 / OctoFarm 농사 / OctoCook 요리 + OctoFarm 의 바닐라 작물 텍스처)
+          # 플러그인 리소스 (OctoFish 낚시 / OctoFarm 농사 / OctoCook 요리 / OctoPet 폰트·UI + OctoFarm 의 바닐라 작물 텍스처)
           # — 레포의 해당 폴더 파일 전부가 zip 에 있어야 함
           for ns in octofish octofarm octocook; do
             ls pack/assets/$ns/items/*.json >/dev/null || { echo "missing pack/assets/$ns"; exit 1; }
           done
-          for f in $(cd pack && find assets/octofish assets/octofarm assets/octocook assets/minecraft/textures/block -type f); do
+          for f in $(cd pack && find assets/octofish assets/octofarm assets/octocook assets/octopet assets/minecraft/textures/block -type f); do
             unzip -l CosmeticPack.zip | grep -q " $f$" || { echo "missing $f"; exit 1; }
           done
           # BetterModel 병합 결과도 들어 있어야 함

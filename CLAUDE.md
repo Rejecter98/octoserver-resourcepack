@@ -262,21 +262,36 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
    - 릴리스 태그 이름
 
 ## 펫 (OctoPet + BetterModel)
-- 서버의 3D 펫 시스템: 펫은 BetterModel 모델로 주인을 따라다니고, 창고·가챠 화면에는 아이콘으로 보임
+- 서버의 3D 펫 시스템: 펫은 BetterModel 모델로 주인을 따라다니고, 창고·가챠 화면에는 아이콘으로 보임. 교감 메뉴(쓰다듬기·놀기 등)도 있음
 - 현재 펫 3종: 아기 문어 `octopus` · 아기 여우 `fox` · 아기 고양이 `cat`
 - 파일 위치
   - 모델: `models/pet_<id>.bbmodel` (레이드 보스 모델과 같은 폴더 → 릴리스 때 `tools/gen_bettermodel.py` 가 `assets/bettermodel/` 에 같이 생성,
     release.yml 이 `bettermodel_report.json` 에 `pet_*` 가 다 있는지 확인)
-  - 아이콘: `pack/assets/octopet/` (items · models/item · textures/item), 서버가 `item_model="octopet:<id>"` 로 직접 지정
-    → 바닐라 아이템 정의는 건드리지 않음. release.yml 이 octoraid 와 같은 방식으로 items + 같은 이름 텍스처 확인
-  - 생성기(참고용): `tools/models/pets/` (petmodel.py · paint.py · pets.py · build.py — 위 3종을 만든 파이썬 코드)
+  - `pack/assets/octopet/` (사용자가 새 zip 을 주면 폴더 통째 교체)
+    - 펫 아이콘: items · models/item · textures/item (`item_model="octopet:<id>"`)
+    - 교감 메뉴 배경: `font/gui.json` + `textures/gui/interact.png` (176x74, servermenu 와 같은 방식, 글자 \uE010, 공백 \uF801/\uF802)
+    - 버튼 아이콘: `items/ui/*` · `models/item/ui/*` · `textures/item/ui/*` (`item_model="octopet:ui/<이름>"`, 현재 14종)
+    - 감정 말풍선: `font/emote.json` + `textures/font/emote_*.png` (글자 \uE101~\uE106: love·happy·sleepy·hungry·bored·sparkle)
+    - 폰트는 전부 `octopet:` 네임스페이스 → `minecraft/font/default.json`·`servermenu` 는 건드리지 않음
+    - release.yml 이 octoraid 와 같은 방식(하위 폴더 포함)으로 items + 같은 경로 텍스처를 확인하고, octopet 파일 전부가 zip 에 있는지 확인
+  - 생성기(참고용): `tools/models/pets/` (petmodel.py · paint.py · pets.py · build.py · ui/gen_ui.py — 모델·UI 생성 파이썬 코드)
+  - 폰트 그림은 가로·세로 256px 이하 (넘으면 네모로 보임)
 ### 모델 규칙 `models/pet_<id>.bbmodel`
 - Blockbench free 포맷, 앞 = 북쪽(-Z), 원점 = 발밑 가운데, 큐브 회전 없이 뼈 회전만
 - 크기: 높이 12~16단위(0.75~1블록), 폭 8~10단위 — 플레이어 옆을 졸졸 따라다니는 "아기" 크기
-- 뼈 이름: 머리는 `h_head` (주인 쪽을 바라봄), 그 밖에 `body`, 다리 · 꼬리 등 자유
-- 애니메이션 (반드시 이 이름, BetterModel 이 자동 재생)
-  - `idle` : 가만히 있을 때 반복 (2~2.5초, 살짝 숨쉬기 · 꼬리 흔들기)
-  - `walk` : 움직일 때 반복 (0.6~0.8초, 다리 교차 · 몸 통통)
+  (탈것 `ride` 펫은 플레이어가 타도 어색하지 않게 크게, 높이 16~24단위)
+- 뼈 이름: 머리는 `h_head` (주인 쪽을 바라봄), 그 밖에 `body`, 다리 · 꼬리 등 자유. 뼈 `root` 의 피벗은 몸 가운데 (빙글 돌기·구르기 기준점)
+- 애니메이션 8개 (반드시 이 이름)
+  | 이름 | 재생 | 길이 | 내용 |
+  |---|---|---|---|
+  | `idle` | loop (BetterModel 자동) | 2~2.5초 | 가만히 — 살짝 숨쉬기 · 꼬리 흔들기 |
+  | `walk` | loop (BetterModel 자동) | 0.6~0.8초 | 움직일 때 — 다리 교차 · 몸 통통 |
+  | `pet` | once | 0.8초 | 쓰다듬기 — 고개 갸웃 · 꼬리 흔들기 |
+  | `hop` | once | 0.4초 | 폴짝 (주인이 점프할 때) |
+  | `play` | once | 1.2초 | 놀기 — 높이 뛰며 한 바퀴 |
+  | `sit` | loop | 정지 자세 | 앉기 (기다려 · 주인이 웅크릴 때) |
+  | `pose` | loop | 정지 자세 | 포즈 (6초) |
+  | `trick` | once | 1.5~3초 | 특기 — 펫마다 다른 고유 동작, 한정 펫은 더 화려하게 |
 - Blockbench 규칙: 애니메이션 회전 x·y 부호 반전, 위치 x 반전 (`tools/models/render.py` 로 확인)
 - 텍스처는 파일 안 base64, `resolution` = 텍스처 크기, UV 는 픽셀 좌표
 - 컨셉: 귀엽고 둥글둥글한 파스텔 톤 (큰 눈 + 볼터치), 큐브 10~20개
@@ -284,6 +299,7 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
 - `textures/item/<id>.png` 64x64 — 모델을 앞 3/4 각도에서 렌더한 그림 (투명 배경)
 - `models/item/<id>.json` → `{"parent":"minecraft:item/generated","textures":{"layer0":"octopet:item/<id>"}}`
 - `items/<id>.json` → `{"model":{"type":"minecraft:model","model":"octopet:item/<id>"}}`
+- 서버가 아이콘 아이템에 `item_model="octopet:<id>"` 를 직접 지정 → 바닐라 아이템 정의는 건드리지 않음
 ### 서버 설정 (사용자에게 전달할 것)
 `plugins/OctoPet/pets.yml` 의 `species:` 아래에 추가 → `/pet reload`
 ```yaml
@@ -294,16 +310,28 @@ Paper 26.2 마인크래프트 서버의 스킨 리소스팩(CosmeticPack) 레포
     icon: "octopet:<id>"
     icon-material: PINK_DYE  # 팩이 없을 때 대신 보일 아이템
     gacha: true              # true = 가챠 S급에서 나옴 (false = 이벤트 · 관리자 지급 전용)
+    sound: entity.cat.purreow   # 쓰다듬을 때 소리 (커스텀 사운드 가능: octopet:pet.<id>)
+    sound-pitch: 1.3
+    lines: ["대사1", "대사2"]   # 쓰다듬을 때 말풍선
+    trick: { name: "특기 이름", particle: HEART, sound: entity.cat.purr }
+    # 한정 펫 차별화 (선택)
+    ride: true               # 올라탈 수 있음 (모델은 플레이어가 타도 어색하지 않게 크게, 높이 16~24단위)
+    ride-speed: 0.32
+    aura: CHERRY_LEAVES      # 항상 은은하게 (데이터 없는 파티클만)
     description:
       - "&7한 줄 소개"
 ```
 - 펫은 전부 가챠 **S급** (스킨 S 와 같은 풀). 따로 등급을 정할 필요 없음
+- **외형을 바꾸면** 모델 · 동작 · 특기 · 탈것 · 소리 · 대사 · 오라가 같이 바뀜 (효과 · 친밀도는 펫 개체 그대로)
+  → **한정 펫은 탈것(ride) · 오라 · 전용 소리 · 특기 연출로 차별화**
+  - 전용 소리는 `octopet:pet.<id>` (커스텀 사운드 규칙은 스킨과 같음: Ogg Vorbis 모노, `assets/octopet/sounds.json` + `sounds/`)
+  - aura 파티클은 스킨 이펙트와 같은 금지 목록 적용 (블록·아이템 데이터 필요한 것 금지)
 - 사용자 서버 작업: `.bbmodel` 을 `plugins/BetterModel/models/` 에 넣기 → `/bettermodel reload` → pets.yml 추가 → `/pet reload`
   → `resource-pack-sha1` 교체
 ### 작업 순서 (펫 요청마다)
-1. 펫 id · 이름 · 컨셉 · 색 계획을 먼저 보여주기
-2. 모델 · 아이콘 · pets.yml 조각 만들기
-3. 미리보기: 정면 3/4 · 옆 · 뒤 + `walk` 동작 몇 프레임 (render.py)
+1. 펫 id · 이름 · 컨셉 · 색 계획을 먼저 보여주기 (한정 펫이면 탈것·오라·소리·특기 계획도)
+2. 모델 · 아이콘 · pets.yml 조각 만들기 (동작 8개 전부)
+3. 미리보기: 정면 3/4 · 옆 · 뒤 + `walk` 동작 몇 프레임 + 교감 동작(pet·hop·play·sit·pose·trick) (render.py)
 4. 사용자 "승인" → 커밋 · push → 릴리스 → sha1 · .bbmodel 파일 · pets.yml 조각 전달
 
 ## 레이드 보스 (OctoRaid + MythicMobs 5.13 무료 + BetterModel)

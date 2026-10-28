@@ -1,0 +1,58 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "octopet:font/emote_love.png",
+      "ascent": 8,
+      "height": 10,
+      "chars": [
+        "\ue101"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "octopet:font/emote_happy.png",
+      "ascent": 8,
+      "height": 10,
+      "chars": [
+        "\ue102"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "octopet:font/emote_sleepy.png",
+      "ascent": 8,
+      "height": 10,
+      "chars": [
+        "\ue103"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "octopet:font/emote_hungry.png",
+      "ascent": 8,
+      "height": 10,
+      "chars": [
+        "\ue104"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "octopet:font/emote_bored.png",
+      "ascent": 8,
+      "height": 10,
+      "chars": [
+        "\ue105"
+      ]
+    },
+    {
+      "type": "bitmap",
+      "file": "octopet:font/emote_sparkle.png",
+      "ascent": 8,
+      "height": 10,
+      "chars": [
+        "\ue106"
+      ]
+    }
+  ]
+}
